@@ -1,5 +1,6 @@
 # Wasserstein GAN for Knowledge Graph Completion
 
+![PyPI - Downloads](https://img.shields.io/pypi/dw/semantic-gan)
 [![PyPI](https://img.shields.io/pypi/v/semantic-gan)](https://pypi.org/project/semantic-gan/)
 [![Sync Results](https://github.com/erdemonal/SemanticGAN/actions/workflows/sync-results.yml/badge.svg)](https://github.com/erdemonal/SemanticGAN/actions/workflows/sync-results.yml)
 [![pages-build-deployment](https://github.com/erdemonal/SemanticGAN/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/erdemonal/SemanticGAN/actions/workflows/pages/pages-build-deployment)
