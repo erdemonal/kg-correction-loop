@@ -1,7 +1,20 @@
-data/processed/*.txt
-data/processed/*.json
-data/real/
-data/synthetic/*.txt
-checkpoints/*.pth
+# Python
 __pycache__/
+*.py[cod]
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
 .DS_Store
+
+# Local experiment outputs
+outputs/
+results/
+logs/
