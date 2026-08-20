@@ -16,7 +16,7 @@ OPTIONS = {
     "temperature": 0,
     "seed": 42,
     "num_ctx": 4096,
-    "num_predict": 1024,
+    "num_predict": 2048,
 }
 
 
