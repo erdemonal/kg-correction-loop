@@ -1,0 +1,83 @@
+{
+  "benchmark": {
+    "name": "Text2KGBench Wikidata-TekGen",
+    "domains": ["Movie", "Music"],
+    "commit": "50a3d255371b8817cdff70fd88459ac82b339cfe"
+  },
+  "model": {
+    "name": "llama3.1:8b-instruct-q4_K_M",
+    "digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+    "ollama": "0.32.14",
+    "temperature": 0,
+    "seed": 42,
+    "num_ctx": 4096,
+    "num_predict": 2048
+  },
+  "generation": {
+    "code_commit": "83ac3589903f6e9f53888166a88fbd6c995c2953",
+    "movie": {
+      "cases": 840,
+      "truncated": 13,
+      "api_errors": 0
+    },
+    "music": {
+      "cases": 675,
+      "truncated": 17,
+      "api_errors": 0
+    },
+    "total": {
+      "cases": 1515,
+      "truncated": 30,
+      "api_errors": 0
+    }
+  },
+  "evaluation": {
+    "movie": {
+      "precision": 0.44,
+      "recall": 0.35,
+      "f1": 0.36,
+      "ontology_conformance": 0.97,
+      "subject_hallucination": 0.11,
+      "relation_hallucination": 0.03,
+      "object_hallucination": 0.10
+    },
+    "music": {
+      "precision": 0.43,
+      "recall": 0.36,
+      "f1": 0.37,
+      "ontology_conformance": 0.97,
+      "subject_hallucination": 0.06,
+      "relation_hallucination": 0.03,
+      "object_hallucination": 0.10
+    },
+    "movie_music_mean": {
+      "precision": 0.43,
+      "recall": 0.35,
+      "f1": 0.36,
+      "ontology_conformance": 0.97,
+      "subject_hallucination": 0.08,
+      "relation_hallucination": 0.03,
+      "object_hallucination": 0.10
+    }
+  },
+  "sha256": {
+    "extractor": "41bd3ac5ebf9d97c3d9ed9e2919ec1c32718a18865658e0d061095b37f305c96",
+    "evaluator": "78a0f7ffed4fb7324ef3ed359cd9024dd38efe7b3f6629d167206d54017ae8d2",
+    "movie_prompts": "6abf7cc90ba2649e3a34f6b74483a81bfec797cb2f2de30593a5f9ef4ee6219c",
+    "music_prompts": "feb29280873a2e3f672fb710475218d6720194c3ff806396fbf3b23e91275564",
+    "movie_responses": "d70c078821ca27a3306e8cda3abe37dd4d6828d8a44d6015b732dc9a6bbd68d8",
+    "music_responses": "2e7699a1e302687f44def45418c92dba7d0ca0657d768efe63bc235cd9f938dd",
+    "movie_ground_truth": "601dcee5c77c9de5acbe4da2fb66492e30e8cecf91a6f6d29e416e973b5b5110",
+    "music_ground_truth": "60b6f8ca71f1549a0c6c4e6103aa9274006f0413b0578a6fe1603fc810f26761",
+    "movie_ontology": "72b7e207438b6bb5fa85401fd967830dc859d4e0d487473e8f6755ddf922beb0",
+    "music_ontology": "3c163c979e608c8836c69e4dbc2797aa7f32ab92ee2e8b630962312320f38d0a"
+  },
+  "notes": [
+    "The stored Text2KGBench prompts were used unchanged.",
+    "Exact duplicate triples were removed before evaluation while the raw parsed triples were retained.",
+    "Length-limited generations were retained in the evaluation.",
+    "The Movie run was completed in two segments after an interruption; the final file was verified as their exact byte concatenation.",
+    "Inference settings were fixed, but repeated runs are not assumed to be byte-identical.",
+    "movie_music_mean refers only to the Movie and Music domains."
+  ]
+}

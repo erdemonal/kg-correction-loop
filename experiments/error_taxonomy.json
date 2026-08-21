@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "classes": [
+    {
+      "id": "disjointness_violation",
+      "label": "Disjointness violation",
+      "category": "logic",
+      "description": "An entity belongs to classes declared disjoint."
+    },
+    {
+      "id": "functional_property_conflict",
+      "label": "Functional-property conflict",
+      "category": "logic",
+      "description": "A functional property has multiple fillers that are explicitly distinct."
+    },
+    {
+      "id": "domain_range_violation",
+      "label": "Domain or range violation",
+      "category": "schema",
+      "description": "A relation is used with a subject or object outside its intended domain or range."
+    },
+    {
+      "id": "cardinality_breach",
+      "label": "Cardinality breach",
+      "category": "schema",
+      "description": "A graph violates an explicit cardinality or required-value constraint."
+    },
+    {
+      "id": "temporal_impossibility",
+      "label": "Temporal impossibility",
+      "category": "schema",
+      "description": "A graph violates a temporal ordering constraint."
+    },
+    {
+      "id": "grounding_error",
+      "label": "Grounding error",
+      "category": "grounding",
+      "description": "A triple is not supported by the source sentence."
+    }
+  ],
+  "notes": [
+    "OWL functional-property conflicts require explicit distinctness or distinct literal values to produce an inconsistency.",
+    "Missing minimum-cardinality values are not OWL inconsistencies under the open-world assumption.",
+    "Changes following the pilot annotation will be recorded as a new version."
+  ]
+}
