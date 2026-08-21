@@ -73,11 +73,11 @@
     "music_ontology": "3c163c979e608c8836c69e4dbc2797aa7f32ab92ee2e8b630962312320f38d0a"
   },
   "notes": [
-    "The stored Text2KGBench prompts were used unchanged.",
-    "Exact duplicate triples were removed before evaluation while the raw parsed triples were retained.",
-    "Length-limited generations were retained in the evaluation.",
-    "The Movie run was completed in two segments after an interruption; the final file was verified as their exact byte concatenation.",
-    "Inference settings were fixed, but repeated runs are not assumed to be byte-identical.",
-    "movie_music_mean refers only to the Movie and Music domains."
+    "The Text2KGBench prompts were used without modification.",
+    "Exact duplicate triples were removed before evaluation. The raw parsed triples were retained.",
+    "Outputs truncated at the generation limit were included in the evaluation.",
+    "The Movie run was interrupted and finished in two segments. The final file is their concatenation, verified to match those segments exactly.",
+    "Decoding settings were fixed. Repeated runs are not assumed to produce identical files.",
+    "The mean is over the Movie and Music domains only."
   ]
 }

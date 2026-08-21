@@ -5,31 +5,31 @@
       "id": "disjointness_violation",
       "label": "Disjointness violation",
       "category": "logic",
-      "description": "An entity belongs to classes declared disjoint."
+      "description": "An entity is asserted to belong to two or more classes that are declared disjoint."
     },
     {
       "id": "functional_property_conflict",
-      "label": "Functional-property conflict",
+      "label": "Functional property conflict",
       "category": "logic",
-      "description": "A functional property has multiple fillers that are explicitly distinct."
+      "description": "A functional property is assigned two or more values that are explicitly distinct."
     },
     {
       "id": "domain_range_violation",
       "label": "Domain or range violation",
       "category": "schema",
-      "description": "A relation is used with a subject or object outside its intended domain or range."
+      "description": "A relation is used with a subject or object that falls outside its intended domain or range."
     },
     {
       "id": "cardinality_breach",
-      "label": "Cardinality breach",
+      "label": "Cardinality violation",
       "category": "schema",
-      "description": "A graph violates an explicit cardinality or required-value constraint."
+      "description": "A graph violates an explicit cardinality constraint or omits a required property."
     },
     {
       "id": "temporal_impossibility",
       "label": "Temporal impossibility",
       "category": "schema",
-      "description": "A graph violates a temporal ordering constraint."
+      "description": "A graph violates a constraint on temporal order."
     },
     {
       "id": "grounding_error",
@@ -39,8 +39,8 @@
     }
   ],
   "notes": [
-    "OWL functional-property conflicts require explicit distinctness or distinct literal values to produce an inconsistency.",
-    "Missing minimum-cardinality values are not OWL inconsistencies under the open-world assumption.",
-    "Changes following the pilot annotation will be recorded as a new version."
+    "Under OWL, a functional property conflict is inconsistent only when the values are asserted to be distinct or are distinct literals.",
+    "A missing value for a minimum cardinality constraint is not an OWL inconsistency, because OWL adopts open world assumption.",
+    "Revisions after the pilot annotation will be recorded as a new version."
   ]
 }
