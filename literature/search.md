@@ -2,7 +2,7 @@
 
 Last checked: 2026-08-21.
 
-The review covers work from 2023 to 2026 on LLM-based knowledge graph extraction, validation, and repair.
+The search covers work from 2023 to 2026 on LLM-based knowledge graph extraction, validation, and repair.
 
 Sources:
 
