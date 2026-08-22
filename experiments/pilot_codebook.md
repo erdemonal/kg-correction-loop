@@ -2,6 +2,8 @@
 
 The pilot checks whether the current error taxonomy adequately describes errors observed in natural model outputs. It is not used to estimate error frequency. Labels are recorded at the case level. A taxonomy label appears at most once in a case, even if the same type of error occurs more than once.
 
+Annotations were produced by a single annotator following this guide.
+
 The source sentence is the only evidence used to assess grounding. The `triples` field is the extracted graph being annotated. The raw `response` is used to determine whether a problem was introduced during parsing. The `parsed_triples_raw` field is used only as a parsing diagnostic. Evaluator-filtered triples are not used.
 
 For schema and logic labels, use the Movie and Music OWL ontologies from the pinned Text2KGBench version. Do not use axioms added later during ontology enrichment.
@@ -47,6 +49,8 @@ Treat an omission as uncovered only when the source explicitly gives multiple fi
 ## Parsing problems
 
 Set `parse_issue` to `true` when the raw model response cannot be faithfully converted into triples by the parser.
+
+The flag records a conversion problem and does not assign sole responsibility to the parser. Ambiguous entity formatting or explanatory model output can also cause the conversion to produce unintended triples.
 
 Do not assign a semantic error label when the apparent semantic error was created only by parsing. Other unaffected triples in the same case may still receive semantic labels.
 
