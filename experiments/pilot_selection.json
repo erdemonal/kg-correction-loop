@@ -1,0 +1,54 @@
+{
+  "seed": 42,
+  "per_domain_n": 20,
+  "eligible_counts": {
+    "movie": 827,
+    "music": 658
+  },
+  "selected_ids": {
+    "movie": [
+      "ont_1_movie_test_26",
+      "ont_1_movie_test_31",
+      "ont_1_movie_test_33",
+      "ont_1_movie_test_92",
+      "ont_1_movie_test_98",
+      "ont_1_movie_test_107",
+      "ont_1_movie_test_117",
+      "ont_1_movie_test_145",
+      "ont_1_movie_test_226",
+      "ont_1_movie_test_231",
+      "ont_1_movie_test_253",
+      "ont_1_movie_test_284",
+      "ont_1_movie_test_439",
+      "ont_1_movie_test_568",
+      "ont_1_movie_test_614",
+      "ont_1_movie_test_664",
+      "ont_1_movie_test_703",
+      "ont_1_movie_test_767",
+      "ont_1_movie_test_771",
+      "ont_1_movie_test_772"
+    ],
+    "music": [
+      "ont_2_music_test_27",
+      "ont_2_music_test_29",
+      "ont_2_music_test_32",
+      "ont_2_music_test_34",
+      "ont_2_music_test_92",
+      "ont_2_music_test_98",
+      "ont_2_music_test_107",
+      "ont_2_music_test_117",
+      "ont_2_music_test_146",
+      "ont_2_music_test_230",
+      "ont_2_music_test_235",
+      "ont_2_music_test_245",
+      "ont_2_music_test_257",
+      "ont_2_music_test_288",
+      "ont_2_music_test_444",
+      "ont_2_music_test_531",
+      "ont_2_music_test_573",
+      "ont_2_music_test_621",
+      "ont_2_music_test_633",
+      "ont_2_music_test_672"
+    ]
+  }
+}
