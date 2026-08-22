@@ -4,7 +4,7 @@ Recent research explores knowledge graph extraction, validation, and repair, but
 
 Text2KGBench provides an important benchmark for extracting knowledge graphs from text using an ontology. It evaluates extraction accuracy, ontology conformance, and hallucination as separate aspects of output quality. Later systems such as iText2KG, KGGen, OntoLogX, ANCHOR, and Wikontic also show the role of ontology information and validation in knowledge graph construction.
 
-SHACL and OWL address distinct requirements. SHACL verifies whether an RDF graph meets explicit constraints, whereas OWL reasoning applies open world assumption and can infer information not explicitly stated in the graph. Oudshoorn et al. emphasize this difference and argue against equating SHACL validation with OWL reasoning.
+SHACL and OWL address distinct requirements. SHACL verifies whether an RDF graph meets explicit constraints, whereas OWL reasoning follows the open world assumption and can infer information not explicitly stated in the graph. Oudshoorn et al. emphasize this difference and argue against equating SHACL validation with OWL reasoning.
 
 Language models provide another way to assess graph statements. Regino and dos Reis study the use of language models to validate RDF triples. Adam and Kliegr evaluate graph statements against supporting text. Tsaneva et al. and Dechtiar et al. also examine approaches that combine different forms of validation rather than relying on a language model alone.
 
