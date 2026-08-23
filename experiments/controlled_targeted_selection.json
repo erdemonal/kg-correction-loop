@@ -1,0 +1,368 @@
+{
+  "version": 1,
+  "purpose": "selected domain/range and temporal controlled cases",
+  "selection_size": 20,
+  "unique_case_ids": 20,
+  "counts": {
+    "movie": {
+      "domain_range": 5,
+      "temporal": 5
+    },
+    "music": {
+      "domain_range": 5,
+      "temporal": 5
+    }
+  },
+  "cases": [
+    {
+      "id": "ont_1_movie_test_423",
+      "domain": "movie",
+      "error_type": "domain_range",
+      "source_text": "Paradise Now is a period film directed by Hany Abu-Assad about two Palestinian men preparing for a suicide attack in Israel.",
+      "proposal": {
+        "operation": "add",
+        "statement": [
+          "Paradise Now",
+          "narrative_location",
+          "Israel"
+        ],
+        "explicit_type": [
+          "Israel",
+          "Q6256"
+        ],
+        "expected_range": "Q515"
+      },
+      "note": "The source supports Israel as the location of the described events. Israel is typed as a country. narrative location expects a city."
+    },
+    {
+      "id": "ont_1_movie_test_463",
+      "domain": "movie",
+      "error_type": "domain_range",
+      "source_text": "Our Homeland is a 2012 Japanese drama film about a Korean man's visit to his family in Japan after a long exile in North Korea.",
+      "proposal": {
+        "operation": "add",
+        "statement": [
+          "Our Homeland",
+          "narrative_location",
+          "Japan"
+        ],
+        "explicit_type": [
+          "Japan",
+          "Q6256"
+        ],
+        "expected_range": "Q515"
+      },
+      "note": "The source supports Japan as a narrative location. Japan is typed as a country. narrative location expects a city."
+    },
+    {
+      "id": "ont_1_movie_test_559",
+      "domain": "movie",
+      "error_type": "domain_range",
+      "source_text": "The Italian Job tells the story of Charlie Croker, the leader of a cockney criminal gang released from prison with the intention of doing a big job in Italy to steal gold bullion from an armoured security truck.",
+      "proposal": {
+        "operation": "add",
+        "statement": [
+          "The Italian Job",
+          "narrative_location",
+          "Italy"
+        ],
+        "explicit_type": [
+          "Italy",
+          "Q6256"
+        ],
+        "expected_range": "Q515"
+      },
+      "note": "The source places the planned robbery in Italy. Italy is typed as a country. narrative location expects a city."
+    },
+    {
+      "id": "ont_1_movie_test_652",
+      "domain": "movie",
+      "error_type": "domain_range",
+      "source_text": "Havana Blues is a 2005 Spanish and Cuban film by Benito Zambrano, which tells the story of two young musicians in Cuba.",
+      "proposal": {
+        "operation": "add",
+        "statement": [
+          "Havana Blues",
+          "narrative_location",
+          "Cuba"
+        ],
+        "explicit_type": [
+          "Cuba",
+          "Q6256"
+        ],
+        "expected_range": "Q515"
+      },
+      "note": "The source places the story in Cuba. Cuba is typed as a country. narrative location expects a city."
+    },
+    {
+      "id": "ont_1_movie_test_767",
+      "domain": "movie",
+      "error_type": "domain_range",
+      "source_text": "Cry Freedom is a 1987 epic drama film directed and produced by Sir Richard Attenborough, set in late-1970s apartheid-era South Africa.",
+      "proposal": {
+        "operation": "add",
+        "statement": [
+          "Cry Freedom",
+          "narrative_location",
+          "South Africa"
+        ],
+        "explicit_type": [
+          "South Africa",
+          "Q6256"
+        ],
+        "expected_range": "Q515"
+      },
+      "note": "The source says the film is set in South Africa. This case also appeared as a natural domain or range example in the pilot."
+    },
+    {
+      "id": "ont_2_music_test_188",
+      "domain": "music",
+      "error_type": "domain_range",
+      "source_text": "\"My World Is Empty Without You\" is a 1965 song recorded and released as a single by The Supremes for the Motown label.",
+      "proposal": {
+        "operation": "add",
+        "statement": [
+          "My World Is Empty Without You",
+          "record_label",
+          "Motown"
+        ],
+        "explicit_type": [
+          "My World Is Empty Without You",
+          "Q134556"
+        ],
+        "expected_domain": "Q482994"
+      },
+      "note": "The source describes the work as a single and associates it with the Motown label."
+    },
+    {
+      "id": "ont_2_music_test_197",
+      "domain": "music",
+      "error_type": "domain_range",
+      "source_text": "Rebel Rebel was released in the UK in February 1974 by RCA Victor as the lead single from the album Diamond Dogs.",
+      "proposal": {
+        "operation": "add",
+        "statement": [
+          "Rebel Rebel",
+          "record_label",
+          "RCA Victor"
+        ],
+        "explicit_type": [
+          "Rebel Rebel",
+          "Q134556"
+        ],
+        "expected_domain": "Q482994"
+      },
+      "note": "The source describes Rebel Rebel as a single and names RCA Victor as the releasing label."
+    },
+    {
+      "id": "ont_2_music_test_224",
+      "domain": "music",
+      "error_type": "domain_range",
+      "source_text": "You Belong with Me was released on April 18, 2009, by Big Machine Records as the third single from Swift's second studio album, Fearless.",
+      "proposal": {
+        "operation": "add",
+        "statement": [
+          "You Belong with Me",
+          "record_label",
+          "Big Machine Records"
+        ],
+        "explicit_type": [
+          "You Belong with Me",
+          "Q134556"
+        ],
+        "expected_domain": "Q482994"
+      },
+      "note": "The source describes the work as a single and names Big Machine Records."
+    },
+    {
+      "id": "ont_2_music_test_230",
+      "domain": "music",
+      "error_type": "domain_range",
+      "source_text": "Let's Wait Awhile was released on January 6, 1987, by A&M Records as the album's fifth single.",
+      "proposal": {
+        "operation": "add",
+        "statement": [
+          "Let's Wait Awhile",
+          "record_label",
+          "A&M Records"
+        ],
+        "explicit_type": [
+          "Let's Wait Awhile",
+          "Q134556"
+        ],
+        "expected_domain": "Q482994"
+      },
+      "note": "The source describes the work as a single and names A&M Records. This case was already identified as a natural example."
+    },
+    {
+      "id": "ont_2_music_test_474",
+      "domain": "music",
+      "error_type": "domain_range",
+      "source_text": "\"Gods Zoo\" is a single by the English post-punk/gothic rock band Death Cult, released on 23 October 1983 by Situation Two.",
+      "proposal": {
+        "operation": "add",
+        "statement": [
+          "Gods Zoo",
+          "record_label",
+          "Situation Two"
+        ],
+        "explicit_type": [
+          "Gods Zoo",
+          "Q134556"
+        ],
+        "expected_domain": "Q482994"
+      },
+      "note": "The source describes Gods Zoo as a single and names Situation Two as the releasing label."
+    },
+    {
+      "id": "ont_1_movie_test_28",
+      "domain": "movie",
+      "error_type": "temporal",
+      "source_text": "A rough-cut version of the episode originally aired on December 20, 1998; a final version was later aired on January 31, 1999.",
+      "proposal": {
+        "operation": "swap",
+        "subject": "Death Has a Shadow",
+        "first_property": "roughCutAirDate",
+        "first_value": "1998-12-20",
+        "second_property": "finalAirDate",
+        "second_value": "1999-01-31"
+      },
+      "note": "The source orders the rough cut broadcast before the final broadcast."
+    },
+    {
+      "id": "ont_1_movie_test_405",
+      "domain": "movie",
+      "error_type": "temporal",
+      "source_text": "Miss Sloane had its world premiere on November 11, 2016, at the AFI Fest, and began a limited theatrical release in the United States on November 25, 2016.",
+      "proposal": {
+        "operation": "swap",
+        "subject": "Miss Sloane",
+        "first_property": "premiereDate",
+        "first_value": "2016-11-11",
+        "second_property": "theatricalReleaseDate",
+        "second_value": "2016-11-25"
+      },
+      "note": "The source gives an exact premiere date followed by an exact theatrical release date."
+    },
+    {
+      "id": "ont_1_movie_test_422",
+      "domain": "movie",
+      "error_type": "temporal",
+      "source_text": "The 2D version of Tekken: Blood Vengeance was released as a standalone DVD on November 22, 2011 in the US, and December 22, 2011 in Japan.",
+      "proposal": {
+        "operation": "swap",
+        "subject": "Tekken: Blood Vengeance",
+        "first_property": "usDvdReleaseDate",
+        "first_value": "2011-11-22",
+        "second_property": "japanDvdReleaseDate",
+        "second_value": "2011-12-22"
+      },
+      "note": "The source gives exact DVD release dates for the United States and Japan."
+    },
+    {
+      "id": "ont_1_movie_test_438",
+      "domain": "movie",
+      "error_type": "temporal",
+      "source_text": "Fear Island was released direct-to-video on September 8, 2009 in Canada and on June 28, 2010 in the United States.",
+      "proposal": {
+        "operation": "swap",
+        "subject": "Fear Island",
+        "first_property": "canadaVideoReleaseDate",
+        "first_value": "2009-09-08",
+        "second_property": "usVideoReleaseDate",
+        "second_value": "2010-06-28"
+      },
+      "note": "The source gives exact regional video release dates in chronological order."
+    },
+    {
+      "id": "ont_1_movie_test_467",
+      "domain": "movie",
+      "error_type": "temporal",
+      "source_text": "Emotional Arithmetic opened at the Toronto International Film Festival on September 15, 2007, and was released in Canada on April 18, 2008.",
+      "proposal": {
+        "operation": "swap",
+        "subject": "Emotional Arithmetic",
+        "first_property": "premiereDate",
+        "first_value": "2007-09-15",
+        "second_property": "theatricalReleaseDate",
+        "second_value": "2008-04-18"
+      },
+      "note": "The source provides exact festival opening and later release dates. This is the primary Movie temporal example from the specification."
+    },
+    {
+      "id": "ont_2_music_test_105",
+      "domain": "music",
+      "error_type": "temporal",
+      "source_text": "Je te dis tout was released digitally on 28 January 2013 and physically on 4 March 2013.",
+      "proposal": {
+        "operation": "swap",
+        "subject": "Je te dis tout",
+        "first_property": "digitalReleaseDate",
+        "first_value": "2013-01-28",
+        "second_property": "physicalReleaseDate",
+        "second_value": "2013-03-04"
+      },
+      "note": "The source provides exact digital and physical release dates."
+    },
+    {
+      "id": "ont_2_music_test_215",
+      "domain": "music",
+      "error_type": "temporal",
+      "source_text": "You da One premiered on US radio on November 11, 2011, and was made available to download digitally throughout Europe and Australasia on November 14, 2011.",
+      "proposal": {
+        "operation": "swap",
+        "subject": "You da One",
+        "first_property": "radioPremiereDate",
+        "first_value": "2011-11-11",
+        "second_property": "digitalReleaseDate",
+        "second_value": "2011-11-14"
+      },
+      "note": "The source provides exact radio premiere and digital availability dates. This is the primary Music temporal example from the specification."
+    },
+    {
+      "id": "ont_2_music_test_605",
+      "domain": "music",
+      "error_type": "temporal",
+      "source_text": "Blizzard of Ozz was released on 20 September 1980 in the UK and on 27 March 1981 in the US.",
+      "proposal": {
+        "operation": "swap",
+        "subject": "Blizzard of Ozz",
+        "first_property": "ukReleaseDate",
+        "first_value": "1980-09-20",
+        "second_property": "usReleaseDate",
+        "second_value": "1981-03-27"
+      },
+      "note": "The source provides exact UK and US release dates."
+    },
+    {
+      "id": "ont_2_music_test_659",
+      "domain": "music",
+      "error_type": "temporal",
+      "source_text": "Blackwater Park was released on March 12, 2001 in Europe and a day later in North America.",
+      "proposal": {
+        "operation": "swap",
+        "subject": "Blackwater Park",
+        "first_property": "europeReleaseDate",
+        "first_value": "2001-03-12",
+        "second_property": "northAmericaReleaseDate",
+        "second_value": "2001-03-13"
+      },
+      "note": "The second date follows directly from the source phrase \"a day later\". No outside date is introduced."
+    },
+    {
+      "id": "ont_2_music_test_660",
+      "domain": "music",
+      "error_type": "temporal",
+      "source_text": "Morningrise was released on June 24, 1996, in Europe and on June 24, 1997, in the United States.",
+      "proposal": {
+        "operation": "swap",
+        "subject": "Morningrise",
+        "first_property": "europeReleaseDate",
+        "first_value": "1996-06-24",
+        "second_property": "usReleaseDate",
+        "second_value": "1997-06-24"
+      },
+      "note": "The source provides exact European and US release dates one year apart."
+    }
+  ]
+}

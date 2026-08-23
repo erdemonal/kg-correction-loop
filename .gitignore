@@ -19,5 +19,8 @@ outputs/
 results/
 logs/
 
+# Downloaded pinned ontologies
+validation/source/
+
 # Testing
 .pytest_cache/

@@ -1,0 +1,17 @@
+@prefix moviec: <https://cenguix.github.io/Text2KGBench/ont_1_movie/concepts#> .
+@prefix movier: <https://cenguix.github.io/Text2KGBench/ont_1_movie/relations#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+<https://github.com/erdemonal/kg-correction-loop#MovieControlledProductionCompanyShape>
+    a sh:NodeShape ;
+    sh:targetObjectsOf movier:P272 ;
+    sh:not [
+        sh:class moviec:Q5
+    ] ;
+    sh:message "A human cannot be used as a production company." .
+
+<https://github.com/erdemonal/kg-correction-loop#MovieControlledNarrativeLocationShape>
+    a sh:NodeShape ;
+    sh:targetObjectsOf movier:P840 ;
+    sh:class moviec:Q515 ;
+    sh:message "A narrative location must be a city." .
