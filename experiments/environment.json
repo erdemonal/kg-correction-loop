@@ -1,0 +1,61 @@
+{
+  "captured_at_utc": "2026-08-23T16:53:43.005235+00:00",
+  "purpose": "Software environment used for controlled validation. Capturing this file does not run validators or the grounding model.",
+  "python": {
+    "version": "3.14.7 (main, Aug 10 2026, 00:00:00) [GCC 16.1.1 20260515 (Red Hat 16.1.1-2)]",
+    "version_info": [
+      3,
+      14,
+      7,
+      "final",
+      0
+    ],
+    "implementation": "CPython",
+    "executable": "/home/erdem/Documents/GitHub/kg-correction-loop/.venv/bin/python"
+  },
+  "platform": {
+    "system": "Linux",
+    "release": "7.1.8-200.fc44.x86_64",
+    "version": "#1 SMP PREEMPT_DYNAMIC Mon Aug 10 03:35:23 UTC 2026",
+    "machine": "x86_64",
+    "platform": "Linux-7.1.8-200.fc44.x86_64-x86_64-with-glibc2.43"
+  },
+  "packages": {
+    "rdflib": "7.6.0",
+    "pyshacl": "0.40.1",
+    "owlready2": "0.51",
+    "owlrl": "7.6.2",
+    "pytest": "9.1.1",
+    "pip": "26.2.1"
+  },
+  "java": {
+    "executable": "/usr/bin/java",
+    "version_output": "openjdk version \"25.0.4\" 2026-07-21\nOpenJDK Runtime Environment (Red_Hat-25.0.4.0.7-2) (build 25.0.4+7)\nOpenJDK 64-Bit Server VM (Red_Hat-25.0.4.0.7-2) (build 25.0.4+7, mixed mode, sharing)",
+    "returncode": 0
+  },
+  "ollama": {
+    "executable": "/usr/local/bin/ollama",
+    "version_output": "ollama version is 0.32.14",
+    "returncode": 0
+  },
+  "hermit_jars": [
+    {
+      "relative_to_owlready2": "hermit/HermiT.jar",
+      "size_bytes": 6928520,
+      "sha256": "97e53f519720a0a2e328556e03b806aa239347c85e57637a935e6433ed2ad3a8"
+    }
+  ],
+  "git": {
+    "head": "f55d42e21bab1417fa6ab93bec00d8c668a2b035",
+    "expected_prior_head": "f55d42e21bab1417fa6ab93bec00d8c668a2b035",
+    "head_matches_expected_prior_commit": true,
+    "status_short": "M experiments/enrichment_spec.md\n?? experiments/validation_protocol.md\n?? src/capture_validation_environment.py\n?? tests/test_validation_protocol.py",
+    "git_version": "git version 2.55.0"
+  },
+  "grounding_assessor": {
+    "judge_version": "v3",
+    "model": "qwen2.5:7b-instruct-q4_K_M",
+    "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+    "prompt_sha256": "7fa341845f64e6c2b7079026bc4567e33f0ef3910c7e02f3efc654559223e73b"
+  }
+}

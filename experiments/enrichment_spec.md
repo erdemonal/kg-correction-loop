@@ -92,9 +92,9 @@ The controlled modification uses a subject explicitly typed as `Single (Q134556)
 
 Pilot case `ont_2_music_test_230` is a natural example of this pattern, but it is not automatically used as a controlled case.
 
-SHACL is evaluated both on the original graph and, as a supplementary condition, after OWL RL materialization.
+SHACL is evaluated on the original graph and in a supplementary condition with pySHACL OWL RL inference enabled. The ontology is supplied during validation.
 
-Materialization may add the type implied by the OWL domain or range axiom. As a result, a SHACL violation in the original graph may disappear after materialization. The two conditions are reported separately.
+OWL RL inference may add a type implied by an OWL domain or range axiom. A SHACL violation in the original graph may therefore disappear when this inference option is enabled. The two conditions are kept separate.
 
 ## Cardinality
 
@@ -116,7 +116,7 @@ SHACL reports a violation because the required value is missing.
 
 OWL remains consistent because the open world assumption allows the required director to exist without being explicitly stated in the graph.
 
-The grounding assessor does not report an error because the statements that remain in the graph are still supported by the source text. The grounding task evaluates support for asserted statements, not extraction completeness.
+The grounding assessor cannot detect the controlled deletion itself because it checks support for assertions that are present. It does not check extraction completeness. Any grounding findings on other baseline assertions are kept as background results.
 
 ### Music
 
@@ -128,7 +128,7 @@ The SHACL and OWL constraints follow the same structure as the Movie case. SHACL
 
 The modification removes the only composer statement.
 
-The expected behavior is the same as in the Movie case: SHACL reports a violation, OWL remains consistent, and the grounding assessor does not report an unsupported statement.
+The expected symbolic behavior is the same as in the Movie case. SHACL reports a violation and OWL remains consistent. The grounding assessor cannot detect the omission itself. Any other grounding findings are kept as background results.
 
 ## Temporal ordering
 
@@ -164,7 +164,7 @@ The modification exchanges the two dates.
 
 For these cases, SHACL SPARQL reports the temporal violation.
 
-OWL remains consistent because the ontology does not contain axioms that compare the two date values.
+The OWL model contains no axiom that orders the two date values. In the current HermiT environment, `xsd:date` assertions are removed only from the copy sent to HermiT because the reasoner does not support that datatype in this setup. The OWL part of the study therefore does not examine the date assertions or their order.
 
 The grounding assessor also reports an error because exchanging the dates makes the temporal statements inconsistent with the source text.
 

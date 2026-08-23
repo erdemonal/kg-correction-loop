@@ -1,0 +1,1745 @@
+{
+  "version": 1,
+  "captured_at_utc": "2026-08-23T16:53:43.036255+00:00",
+  "purpose": "Hashes for the controlled validation setup. Generated graphs and result files stay outside Git. Their hashes are recorded here before the repair experiments begin.",
+  "prior_repository_commit": "f55d42e21bab1417fa6ab93bec00d8c668a2b035",
+  "selection": {
+    "selection_size": 50,
+    "unique_case_ids": 50,
+    "counts": {
+      "movie": {
+        "disjointness": 5,
+        "domain_range": 5,
+        "cardinality": 5,
+        "temporal": 5,
+        "grounding": 5
+      },
+      "music": {
+        "disjointness": 5,
+        "domain_range": 5,
+        "cardinality": 5,
+        "temporal": 5,
+        "grounding": 5
+      }
+    }
+  },
+  "controlled_manifest_rows": 50,
+  "convergence_rule": "Converged when both the violation identity set and the asserted triple set are unchanged across two consecutive repair rounds.",
+  "source_artifacts": [
+    {
+      "path": "experiments/controlled_grounding_adjudication.json",
+      "size_bytes": 5647,
+      "sha256": "d194822db4104534a36b5a99f19abb37f3f65ba9f7df14d8029492f60ad36ddc"
+    },
+    {
+      "path": "experiments/controlled_review_decisions.jsonl",
+      "size_bytes": 48760,
+      "sha256": "d3bb9d2f9d8c10bc567316a5c386c6d9bb7df3ece7a53ed85165858346a7abaf"
+    },
+    {
+      "path": "experiments/controlled_selection.json",
+      "size_bytes": 27744,
+      "sha256": "25be4d458dd82b48454cea415423783ec243c317a4251db9814cb28a3357fb27"
+    },
+    {
+      "path": "experiments/controlled_structural_selection.json",
+      "size_bytes": 14485,
+      "sha256": "004d111d10899af8212c5a7de6fb81ff98e0cf8966acbaf13b3e3ecf692e1e04"
+    },
+    {
+      "path": "experiments/controlled_targeted_selection.json",
+      "size_bytes": 13214,
+      "sha256": "97ae30a4aca1f2f4580e5e1296a82034f7b06ab37c7e15c487ccfea73a2d5c63"
+    },
+    {
+      "path": "experiments/enrichment_spec.md",
+      "size_bytes": 10274,
+      "sha256": "fb9efb4380dfadb2675487626270aa49557f12ae215aed5b8a9d1a59c230e25e"
+    },
+    {
+      "path": "experiments/error_taxonomy.json",
+      "size_bytes": 1700,
+      "sha256": "c81d60040a0510109c76a34693198910a7644bfa7a45c828e2f370e14fb7c194"
+    },
+    {
+      "path": "experiments/grounding_calibration_split.json",
+      "size_bytes": 4481,
+      "sha256": "89fee4e144741283daaa99d2c9c8c731d3e35d40cf1f68655cfe936dc5f25d5c"
+    },
+    {
+      "path": "experiments/grounding_judge_prompt_v1.txt",
+      "size_bytes": 1091,
+      "sha256": "432846bc35f9f8526a941e6d0c52ada1f2763dee08285e43356d22ccdbda4cd1"
+    },
+    {
+      "path": "experiments/grounding_judge_prompt_v2.txt",
+      "size_bytes": 2200,
+      "sha256": "e25918b272e8e5509ae47fe84f67e91c69a955f0d7c41308b426e3f9cafa5953"
+    },
+    {
+      "path": "experiments/grounding_judge_prompt_v3.txt",
+      "size_bytes": 2581,
+      "sha256": "7fa341845f64e6c2b7079026bc4567e33f0ef3910c7e02f3efc654559223e73b"
+    },
+    {
+      "path": "experiments/grounding_judge_spec.json",
+      "size_bytes": 4749,
+      "sha256": "ab279e94e5221ce532113fb302bf068a80f1178b2858c142d4528fc2aa6182b8"
+    },
+    {
+      "path": "experiments/validation_protocol.md",
+      "size_bytes": 9519,
+      "sha256": "be3ca99a59f5b1987d50506b628b95fc1ffaf367b98e6742be5f0d87ead83f8f"
+    },
+    {
+      "path": "src/analyze_controlled_grounding.py",
+      "size_bytes": 14538,
+      "sha256": "b0eed4a7de615720262c41552700ff646a7ba4fdd4cc0d89f64ed58a6929111b"
+    },
+    {
+      "path": "src/build_controlled_dataset.py",
+      "size_bytes": 17877,
+      "sha256": "32bb5ec9d58c3a2ca1736a6c8797bfe0c9a78e80e3859038011f0d02d12f420c"
+    },
+    {
+      "path": "src/controlled_cases.py",
+      "size_bytes": 13630,
+      "sha256": "440b3576e19c72adc90d3db73666b9eb55ff87b02b6d95405e4d93ed00db0e68"
+    },
+    {
+      "path": "src/grounding_judge.py",
+      "size_bytes": 5396,
+      "sha256": "149380887ba9fb673cc102337a75827cf25444a370505b6949db22c12f6e4d7d"
+    },
+    {
+      "path": "src/run_controlled_grounding.py",
+      "size_bytes": 12268,
+      "sha256": "71b77a8524850c0928b971b389ecdfb70b5c5360ca0b752cb228db131c8e2295"
+    },
+    {
+      "path": "src/run_grounding_calibration.py",
+      "size_bytes": 6265,
+      "sha256": "cced0e5982147288c3f7d4cbbd004c368a3c2a918e9eb9f7f9aed689c828902e"
+    },
+    {
+      "path": "src/validate_controlled_symbolic.py",
+      "size_bytes": 9695,
+      "sha256": "6b21a94b0bc63e11cc41fc161cea5654e4cbfa4248a57ef00b7cbd9431007ce4"
+    },
+    {
+      "path": "validation/ontologies/movie_enrichment.ttl",
+      "size_bytes": 605,
+      "sha256": "580862650bd8619fb6c809920dee426a3835a6d1e6e956f902318bd3b65ff4dd"
+    },
+    {
+      "path": "validation/ontologies/music_enrichment.ttl",
+      "size_bytes": 825,
+      "sha256": "6132305d51dc0348d1f74471bfa0edf4c0834f28f6489441dbc8525993e20970"
+    },
+    {
+      "path": "validation/shapes/movie.ttl",
+      "size_bytes": 1214,
+      "sha256": "12b42683c7b3f8c427405e9c15a81cea4b1625006d1bebc3870706c1ad51b808"
+    },
+    {
+      "path": "validation/shapes/movie_controlled.ttl",
+      "size_bytes": 699,
+      "sha256": "19b301173efba8c6b586fc356ebec374fb709f374837399bc0baaafd854bc27e"
+    },
+    {
+      "path": "validation/shapes/music.ttl",
+      "size_bytes": 1792,
+      "sha256": "c1fbac345c3099bc190d7643715d5647fba0f40f0fb1f026adf49cfcaf7e8797"
+    },
+    {
+      "path": "validation/shapes/music_controlled.ttl",
+      "size_bytes": 710,
+      "sha256": "de46061cd584b1068d4aaf21c4ad0e956717299d0d3bf5fe2831a59cf8a64a36"
+    }
+  ],
+  "environment_artifact": {
+    "path": "experiments/environment.json",
+    "size_bytes": 2223,
+    "sha256": "f29c235e25d151b72d20746755d5f5a4f4f3bd4932e9b2fb3752011e2f916dce"
+  },
+  "controlled_outputs": [
+    {
+      "path": "outputs/controlled/manifest.jsonl",
+      "size_bytes": 58459,
+      "sha256": "a524847e0b0073d76f0bddf8ccbc70f68be7ae77d6568adec53ff33a97046d1c"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_108/case_shapes.ttl",
+      "size_bytes": 753,
+      "sha256": "675e818778af04148f5831c11cdb405549fc9a54aedad19a3ad0ee3218d7ae75"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_108/clean.ttl",
+      "size_bytes": 1285,
+      "sha256": "b7593f94cfc4f7cb2a22729616de2d855efee9f45be38135b33179defa3fbf90"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_108/grounding_clean.json",
+      "size_bytes": 400,
+      "sha256": "ab43b9129ecb5396761a5ea2a905154f35d4a43818674e207026a1e23d3d16da"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_108/grounding_injected.json",
+      "size_bytes": 318,
+      "sha256": "4da4309ad8c7814816d59a82e8f20be2fbb640ea9461af12ec2c6bed4c082166"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_108/injected.ttl",
+      "size_bytes": 1163,
+      "sha256": "a9bba8e19f94b41b3a8196c24984bdb313b80b56d58690ba87923feb98be840f"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_108/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_117/case_shapes.ttl",
+      "size_bytes": 779,
+      "sha256": "436b58ebaa0b3fd6e5477ec6a172ad44a2dc20b6fd3b627a70cf2247831d5a2b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_117/clean.ttl",
+      "size_bytes": 1009,
+      "sha256": "2ccc4695231c8ac0ad3e8fd8df87ad79a05304afe000d681c66e8b750435bf96"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_117/grounding_clean.json",
+      "size_bytes": 299,
+      "sha256": "ddad9d39598efcaac1e469f8637440e1d160308ce19d96e27b923d00dffa38c3"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_117/grounding_injected.json",
+      "size_bytes": 200,
+      "sha256": "7c3e9381c4c2952ee997354cbf3ebb652ba8d43b1bca026e29767d46708f5aab"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_117/injected.ttl",
+      "size_bytes": 870,
+      "sha256": "be641e9ee21186edd6bc416cd1844170719f02b0a9e64c06d4b699d2dc8e7f5f"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_117/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_118/case_shapes.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_118/clean.ttl",
+      "size_bytes": 854,
+      "sha256": "4d29fdf7dc4a4c12cb60627d3f2401c97a2f72e2e9b34be32b9f2303344dd825"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_118/grounding_clean.json",
+      "size_bytes": 391,
+      "sha256": "e9e937153d9e4dc1888f2ceb654e0a1815183298ad8321a43b370aa13e740fcd"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_118/grounding_injected.json",
+      "size_bytes": 476,
+      "sha256": "47a1f3ff6acb83e2211b67ee9ee573b23ccf511c004f1292f6f8ee05d534fab2"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_118/injected.ttl",
+      "size_bytes": 978,
+      "sha256": "fcc0152f266565991a48665e0adc5348aca35599a4907e4b51b215ddd03994e8"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_118/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_142/case_shapes.ttl",
+      "size_bytes": 751,
+      "sha256": "7035f6241856eeb0c20417e14e4e0cbc0ffcc1f26cff6e5b3c5c3da1629bad23"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_142/clean.ttl",
+      "size_bytes": 1881,
+      "sha256": "fe43e3d433e113cc1ef103b07b19f7a3788b6719a5152a89613e73a9850e1039"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_142/grounding_clean.json",
+      "size_bytes": 547,
+      "sha256": "d8eabed1729031f71c63ee8b90f03bcb6162f53d35ec8b91c742045bed55b1aa"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_142/grounding_injected.json",
+      "size_bytes": 465,
+      "sha256": "e42dc84cac1470a366cf17c2d6055c243ceb588c0bd83afabb361cccca627c62"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_142/injected.ttl",
+      "size_bytes": 1757,
+      "sha256": "118c816a420cf9a863baa98602e28951ac091423b130d891ca34e2ba5d203307"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_142/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_148/case_shapes.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_148/clean.ttl",
+      "size_bytes": 2535,
+      "sha256": "1dbf6aced8c84438f8ecc497bada9cd2dc47f698fbc0afd856f1ceea1442fce1"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_148/grounding_clean.json",
+      "size_bytes": 1003,
+      "sha256": "c36ff3c1a1089ff809591998e059069ea3a253dd6c5c93b32388569c79c8686f"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_148/grounding_injected.json",
+      "size_bytes": 1082,
+      "sha256": "acab2670ddf966ee6ef8256efb734deaa5e5ddda643589027a7212bb57b09c92"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_148/injected.ttl",
+      "size_bytes": 2652,
+      "sha256": "8d9087111cb1cf16be886571cd0d8efa69321039a9ccd49fd0d81ba31202d554"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_148/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_152/case_shapes.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_152/clean.ttl",
+      "size_bytes": 2378,
+      "sha256": "e360014284c8bc3b2e36d5878687f95a4ad22a048d403e3369ea5679e17666c3"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_152/grounding_clean.json",
+      "size_bytes": 871,
+      "sha256": "d61f87bc50dec676dd83ae645641825d74cf40a2f744e552f06709571ef7a553"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_152/grounding_injected.json",
+      "size_bytes": 961,
+      "sha256": "d569244ff900b8b8e5cd498cd6dc5c3c46abb57392cba95e73493f6891158e46"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_152/injected.ttl",
+      "size_bytes": 2501,
+      "sha256": "5b02f15141689cc13711a007793d0befb728058f09d251eb706cdb66a8af823a"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_152/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_174/case_shapes.ttl",
+      "size_bytes": 759,
+      "sha256": "a02a549a57823796d24c3d56f65ea4bc7c0dcd0813c8eb769017105aff803ae3"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_174/clean.ttl",
+      "size_bytes": 1279,
+      "sha256": "52e1f8ceb092622ff7815b62635beeea6804f4d32be896ab531a80f7c25a507e"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_174/grounding_clean.json",
+      "size_bytes": 363,
+      "sha256": "7db4b8a7c6ec79d6a6782081cd525dbbf838d52f62802ff5f56491334fdc3b4a"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_174/grounding_injected.json",
+      "size_bytes": 280,
+      "sha256": "ced0905ae4bc29dd603ab5bb80702a73ab4144a753d6f53850f5c00ff9a7ab6a"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_174/injected.ttl",
+      "size_bytes": 1154,
+      "sha256": "4a834e7cc20648b4db65d4e42c8a48907b496b1a5f435f00ebca948f6b2323c2"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_174/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_188/case_shapes.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_188/clean.ttl",
+      "size_bytes": 898,
+      "sha256": "454c44bd079bf41018e1862ed442aabfe996b629defbd33c225af7537c72bc54"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_188/grounding_clean.json",
+      "size_bytes": 740,
+      "sha256": "97d925bca1dd9f1d0b61428224379f7d8e0bf8801a7d9aa6abb18a9b3cd672a0"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_188/grounding_injected.json",
+      "size_bytes": 839,
+      "sha256": "1901131defa7386b5931433ee9fdc3d1e7f0912107a7335fcc043d66592c494e"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_188/injected.ttl",
+      "size_bytes": 1019,
+      "sha256": "2e86eebfa5093a9d8a1e693bc6b9e86da0c6adc7e5d349d231429ec74600f931"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_188/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_249/case_shapes.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_249/clean.ttl",
+      "size_bytes": 2308,
+      "sha256": "da784f7d6b68bbb418135ee5cd91fa39fa4a69603b7a419bfe5d576c28b046c3"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_249/grounding_clean.json",
+      "size_bytes": 1121,
+      "sha256": "a76a947ca3baead0ce812fe119f2e9723f3dacdb1037c6ff2e665682b9b2367d"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_249/grounding_injected.json",
+      "size_bytes": 1216,
+      "sha256": "c7ca549988f03b7522fc25950eb9570501920db38464fc7e9c571505de30e4ec"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_249/injected.ttl",
+      "size_bytes": 2418,
+      "sha256": "47387ae98764943a5a4337f33103302ac6c168fb95699082bd610852762372be"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_249/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_272/case_shapes.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_272/clean.ttl",
+      "size_bytes": 2906,
+      "sha256": "74406ed22a9946c68440be2e2972a206683ce104fe4fb031d54ad6bd43f104b5"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_272/grounding_clean.json",
+      "size_bytes": 1324,
+      "sha256": "43b9c423acc27a011b1800f10bdd18bfd3802e753ca0fd71e0d45a6da7e182b4"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_272/grounding_injected.json",
+      "size_bytes": 1424,
+      "sha256": "005e4420e72c409868cc4fce0368a1266723fd069f4cdad5d3850c0d22c9dd1b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_272/injected.ttl",
+      "size_bytes": 3023,
+      "sha256": "ab69d2bb575bc677c9411b0fa4e2129d6590efc69b94451bb68c8d9107b21401"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_272/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_28/case_shapes.ttl",
+      "size_bytes": 947,
+      "sha256": "6a9c5faf44f10ee88965d249d80c4ce9746808ff900ae279dea0868093b1e341"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_28/clean.ttl",
+      "size_bytes": 400,
+      "sha256": "d5efb6ee11d0cb338962b850bc3bf33bbbba3626ebb21b029dd1100d0238c19b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_28/grounding_clean.json",
+      "size_bytes": 557,
+      "sha256": "d46e1899c7422c82a1e15c786e8c39a90b8fa80e5d2ec2c4cea1eb6a97ede841"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_28/grounding_injected.json",
+      "size_bytes": 557,
+      "sha256": "9269cc2d50186aa2c74d5bcf9365bcedcecdb4ad03b9f1289e1283ecb316a8ea"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_28/injected.ttl",
+      "size_bytes": 400,
+      "sha256": "ea6550ba47bed218e244e2df6c7f8aefdf53d4f5505907d82c4dfd0b8ab583e0"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_28/owl_context.ttl",
+      "size_bytes": 563,
+      "sha256": "149fc4e627d4d80523cbb923427b20220f94720b479ffb5da9931d5c978063e1"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_295/case_shapes.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_295/clean.ttl",
+      "size_bytes": 1736,
+      "sha256": "1429067315471d633dacc372bbb21d64822ce781a8a310fae2ab76f38271ddc5"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_295/grounding_clean.json",
+      "size_bytes": 631,
+      "sha256": "5eb8ec05b705292c36b41fc31274e4b3390c17ed0d4ec1b79d7be51d9f65c819"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_295/grounding_injected.json",
+      "size_bytes": 711,
+      "sha256": "d6d7b0d08c717101e4b8089b80d285cc2a277ddc26cb91889d52581ab5b56f15"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_295/injected.ttl",
+      "size_bytes": 1855,
+      "sha256": "4d166dadcb9d64103d92efdbe0b6a55e846656399a91177e2a6de17b5eb45473"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_295/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_365/case_shapes.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_365/clean.ttl",
+      "size_bytes": 1472,
+      "sha256": "6a1ea20535268370b0da2d539d23c5fd896949895c95689b54c0888b3494bb8a"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_365/grounding_clean.json",
+      "size_bytes": 749,
+      "sha256": "0941d60438cc7c1b5ae1a104d33f2b24f88d643fc57527c97020f93573121694"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_365/grounding_injected.json",
+      "size_bytes": 846,
+      "sha256": "aa8253413a1bd3d0acba882f3a8544476cdcaf3592e3881f7600e47ba20404ef"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_365/injected.ttl",
+      "size_bytes": 1586,
+      "sha256": "22b209f6d574c9aff4768913acef3041b988fb9112079939bc4c882c405df95e"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_365/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_405/case_shapes.ttl",
+      "size_bytes": 946,
+      "sha256": "9df19850db4709d18de7f94e6ce3c16b256841b5061c30b3ff0806bd887e229f"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_405/clean.ttl",
+      "size_bytes": 396,
+      "sha256": "9ef2f3cb88a218571a7c19940d8c86b9a5a16b825bccb41b5bbe0307790432c1"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_405/grounding_clean.json",
+      "size_bytes": 475,
+      "sha256": "de6072238c3ffc09d0d31df435aea98221b02d77f8591cc468a59255b65b3648"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_405/grounding_injected.json",
+      "size_bytes": 475,
+      "sha256": "bea6278a5cf8895aa8ef0d9cf1eb3dff91e7be53bdb0ddaa1e063d642a012af2"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_405/injected.ttl",
+      "size_bytes": 396,
+      "sha256": "bb52395c7591188dc0ba1a21b0dc3cde210dee95d5a8f1584e17447a041012f0"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_405/owl_context.ttl",
+      "size_bytes": 569,
+      "sha256": "ff46a6b57a33eff76f01b599c8c42e6527655d3ec660ff2232523cc18d79fa94"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_41/case_shapes.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_41/clean.ttl",
+      "size_bytes": 1414,
+      "sha256": "f9bf0621a46fbada131dbd93ee2050d2e26e3a24bd7d1dbdfe9a62bc0b28d75b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_41/grounding_clean.json",
+      "size_bytes": 631,
+      "sha256": "a731f186b60042ff00c004e057b666ef04eca18f407960abda2a902cbee1ea6d"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_41/grounding_injected.json",
+      "size_bytes": 725,
+      "sha256": "4ea237703d446317eab27b96125adb4e2220936b38c72f26c76ff354a1cd786a"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_41/injected.ttl",
+      "size_bytes": 1531,
+      "sha256": "47b63fe8d6c8db693b8324f9768d4a1eada8db57434a8a9db551e9feeaf44d78"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_41/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_422/case_shapes.ttl",
+      "size_bytes": 964,
+      "sha256": "c7a6268432c9935007ccb4ab971461e534c2eadf5db823a390dd1f2006b96b2d"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_422/clean.ttl",
+      "size_bytes": 414,
+      "sha256": "d4cc1604f6f6938f93118470331ed1d81f442b98cbf3d53d39d0d97ae7a1bba3"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_422/grounding_clean.json",
+      "size_bytes": 409,
+      "sha256": "df133ee383ab1e6deae80e0dbee6af2e5b78a785b3984077e2a3cf9160ec4dda"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_422/grounding_injected.json",
+      "size_bytes": 409,
+      "sha256": "1342c59335921e58615d2931a35112abac3d92dbbcd143d85bad4e5ed7e2fe79"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_422/injected.ttl",
+      "size_bytes": 414,
+      "sha256": "9f99e37999a0d005ac245a53dd402bfbf0bc42eb21e7ddc0c1b89b3102934eea"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_422/owl_context.ttl",
+      "size_bytes": 571,
+      "sha256": "b4da4f017e89f9a3c87306f58da907cb7a553f647d6407d3e1e43a221e22bf04"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_423/case_shapes.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_423/clean.ttl",
+      "size_bytes": 348,
+      "sha256": "66b160c66ebf352ac4132b68855690d1a0227fb43aa18ef325c7d00ce198ca7e"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_423/grounding_clean.json",
+      "size_bytes": 236,
+      "sha256": "85073d51408adf2f55efe7a20acf8d13d0958b6d1e2ea2be8dbd2d26e9eda825"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_423/grounding_injected.json",
+      "size_bytes": 316,
+      "sha256": "bd93ed3551aa9a7a582ec49663560d2fa03cb6b8f2638c4cdc5dfcd6be56a0e5"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_423/injected.ttl",
+      "size_bytes": 538,
+      "sha256": "2d1ef961b814645d6732bc18c4d77dd89f3ff5e93acb4f7dbe7aa2ed439f1f1c"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_423/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_438/case_shapes.ttl",
+      "size_bytes": 953,
+      "sha256": "7ad656a8f5f3e6145921f56d3a33a0a8b38a180dbc60b608fef96fac50bd6441"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_438/clean.ttl",
+      "size_bytes": 403,
+      "sha256": "489d30981d1d987973043fa587428e1d77a8382bcd5fd68a48e3f4c6a19424ba"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_438/grounding_clean.json",
+      "size_bytes": 376,
+      "sha256": "82630e89427234422ff8a768adb919e59bf82d488bec0e12b93183ac243e62d9"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_438/grounding_injected.json",
+      "size_bytes": 376,
+      "sha256": "ec7c93ff6273fd1f00f2d50c089ac54b3f9254158451f5e24308d472ca384a3b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_438/injected.ttl",
+      "size_bytes": 403,
+      "sha256": "1887faa4a22dc4149eeaf135350b204af6b7c77a314b4c4bfde379912edea4ef"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_438/owl_context.ttl",
+      "size_bytes": 576,
+      "sha256": "532671fbdce5dce575ca9137a7c50e2df88e83104729683078f1f2ce42710ed2"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_463/case_shapes.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_463/clean.ttl",
+      "size_bytes": 347,
+      "sha256": "923b98a3fc542b5f94462a1aff2356567f626a7bd8c0b8cfa4f85dc7a0e1662e"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_463/grounding_clean.json",
+      "size_bytes": 240,
+      "sha256": "f6280ae1abc36fb56fb84e33798b67fae5ebd0c87c6b18f9836c8f3607586d8d"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_463/grounding_injected.json",
+      "size_bytes": 319,
+      "sha256": "b6fc2a0b5a81fd75097cc91dceed41701d5a7d060aba69208821a59cb6b001a1"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_463/injected.ttl",
+      "size_bytes": 536,
+      "sha256": "4027e065c87f28ac210baba9f0589b697290a25f7062994f11323f75c0f7cdbe"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_463/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_467/case_shapes.ttl",
+      "size_bytes": 955,
+      "sha256": "ed8d4fe4fd6edbc4a5507b085b5cc24aa28c781bd6229051b64bce0eeb2efc57"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_467/clean.ttl",
+      "size_bytes": 405,
+      "sha256": "9e12e2ee4de5c02999855773a3277ae807d5840498b1a59bbc9a21b1d251ea2e"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_467/grounding_clean.json",
+      "size_bytes": 444,
+      "sha256": "cefafc717a52ab97c3d8072c1b6c5e8838c559f88577e0397ac437791738eca9"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_467/grounding_injected.json",
+      "size_bytes": 444,
+      "sha256": "49a57bfca0480a63c2cbe32198b9117f90f85b5ba1b7f803a14f54a3931426e6"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_467/injected.ttl",
+      "size_bytes": 405,
+      "sha256": "8da884e7c8c68c8f7d3d92acd5be6da625ca8b4a55b248c4274a0a97af9d3727"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_467/owl_context.ttl",
+      "size_bytes": 569,
+      "sha256": "ff46a6b57a33eff76f01b599c8c42e6527655d3ec660ff2232523cc18d79fa94"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_506/case_shapes.ttl",
+      "size_bytes": 762,
+      "sha256": "dad4525b422c7a9952e702b6bf118b435456c5a53c735e3fb2da1d0036d95d55"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_506/clean.ttl",
+      "size_bytes": 1889,
+      "sha256": "b9480ea66f68cfe2b13d591d72d21697f38a7fae09bab1aa954883afa5ed6cbc"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_506/grounding_clean.json",
+      "size_bytes": 631,
+      "sha256": "8f51cb1048fb577e7c2f0c46dc42a58eb9eeaa04914275fcff939bbcab55047a"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_506/grounding_injected.json",
+      "size_bytes": 544,
+      "sha256": "67dcdb1f729fb7596d97210ea3c9cafd7880aa41d90b9048043f29046c3b72c7"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_506/injected.ttl",
+      "size_bytes": 1767,
+      "sha256": "4d5eb3fc602c93f1218a28e09849c9fbe701866292e70f74118083de6c01b994"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_506/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_559/case_shapes.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_559/clean.ttl",
+      "size_bytes": 352,
+      "sha256": "8278e80c4b2f94a0ac48395e44bf39d7da3667419ce87bbaa603ba7702e0723f"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_559/grounding_clean.json",
+      "size_bytes": 325,
+      "sha256": "d5bce02b62ef21a51d9e52df64eafadae1ffcd05ad0e514974625a5fdd175711"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_559/grounding_injected.json",
+      "size_bytes": 407,
+      "sha256": "ece63f70d6f56d936ccaa2bf123295647f3ab8b396d9200d2efb5f5b06601bd4"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_559/injected.ttl",
+      "size_bytes": 541,
+      "sha256": "0ad1d78a82dc90df8b3c9349be2fe92a8898390c8bdce79e845f6f2fb5363e47"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_559/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_652/case_shapes.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_652/clean.ttl",
+      "size_bytes": 346,
+      "sha256": "eb3f3ce9c1391852045c61e1164c5b1da70150511aeb236d749eee87e13fe3e7"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_652/grounding_clean.json",
+      "size_bytes": 228,
+      "sha256": "f8556492689047857a55bebac5e72c83ae420f52b51d7f60a048d72fd798dab6"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_652/grounding_injected.json",
+      "size_bytes": 306,
+      "sha256": "e1a7f88cf7e1e71f608f1c5a9edd1dea3a6940350b1d192e370209619a8a0b47"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_652/injected.ttl",
+      "size_bytes": 534,
+      "sha256": "568098d7372b274859fd2717abbbcf501672cff87f2feddcd2706409e5d64469"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_652/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_767/case_shapes.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_767/clean.ttl",
+      "size_bytes": 355,
+      "sha256": "7ca73c1825958fb60176ca0d494aa6f341c6a97d045fca1172b6b1a2281c6e30"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_767/grounding_clean.json",
+      "size_bytes": 228,
+      "sha256": "5095ad0d5a9ce941f0905836e9d225cf294396ad3416c7e05f9d9ee0b1ae1752"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_767/grounding_injected.json",
+      "size_bytes": 313,
+      "sha256": "f6f0263991f63277f9850dd3a05a6bd31d4d1990eeb6fc8abd7f008f48be3d72"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_767/injected.ttl",
+      "size_bytes": 553,
+      "sha256": "de384798cfa8a86eae1b08b917a8b573d3d958d13a6d152b35ff2870b394753b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_767/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_81/case_shapes.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_81/clean.ttl",
+      "size_bytes": 842,
+      "sha256": "1cf76ab1a1586c57ef723200e512ae3df3cbe103e34978b8bebe146b695ef21c"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_81/grounding_clean.json",
+      "size_bytes": 379,
+      "sha256": "ac0b212459bd0b98b03c463910e81ac0344ff72ee1463583192ae39f349da8f3"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_81/grounding_injected.json",
+      "size_bytes": 457,
+      "sha256": "a2748283b19cca7121ccd50c44369f0bf9135ced2354f01bb79cb9ee4d6e6cd1"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_81/injected.ttl",
+      "size_bytes": 955,
+      "sha256": "412c81bba9fc5e96a9051f0682b45ffdf1fb36d5954ad6b26a6c1a5ac3c695f8"
+    },
+    {
+      "path": "outputs/controlled/ont_1_movie_test_81/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_1/case_shapes.ttl",
+      "size_bytes": 732,
+      "sha256": "745ca175868af1aa65cda8934c7e3b85122797794fc010a1f8b2e5ea284781e4"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_1/clean.ttl",
+      "size_bytes": 1384,
+      "sha256": "4f56aac5127147b9db9c6de52de318e0ed1e7110fddb39ce0f5551a246700249"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_1/grounding_clean.json",
+      "size_bytes": 414,
+      "sha256": "379a7e6b292e34a5ed92a4593f40ccb98d3fa60fd1e687228aab61044fe03792"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_1/grounding_injected.json",
+      "size_bytes": 352,
+      "sha256": "be75bcfa7d1140bcc22b9c9bfc30d0bb5e1466ab33ce7886af38cdd65d431c4a"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_1/injected.ttl",
+      "size_bytes": 1271,
+      "sha256": "f409ef66a82eda29b4382dc1025956c39964aa4ee3076914ae2b2762f661e02a"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_1/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_105/case_shapes.ttl",
+      "size_bytes": 957,
+      "sha256": "df69ebb7f9a29c2c899a28b475090780c5d798c301b5ddd8efbab467c7e9702e"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_105/clean.ttl",
+      "size_bytes": 409,
+      "sha256": "7cd7dc3a2159975bcff219d88bf6e7e6746bd70f807ea967c347c2cc02d5c6ae"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_105/grounding_clean.json",
+      "size_bytes": 431,
+      "sha256": "a3fa778cf633f57ce2cc79bddf71e37b1dfa269e1e349523d5e7c387e04539d0"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_105/grounding_injected.json",
+      "size_bytes": 431,
+      "sha256": "6b48af47be660ba0b87ec97d196eb7b40a5b5ff27b46806e3a5b0609aae268d6"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_105/injected.ttl",
+      "size_bytes": 409,
+      "sha256": "e6c75df5f18f4302fa8d08642c036e7b80b3c474bcfd058f18e11e70523608bc"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_105/owl_context.ttl",
+      "size_bytes": 577,
+      "sha256": "1b86cdf3c8e64803c3f3f2366d5548ac4c0886b6f9ea559b194388afb59905c1"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_125/case_shapes.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_125/clean.ttl",
+      "size_bytes": 861,
+      "sha256": "9d3f824f1297211ce15718ffe731b0e14cecd899f423cef06fa12a7f8e60fff0"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_125/grounding_clean.json",
+      "size_bytes": 438,
+      "sha256": "5c8bc43bd4b43cd9ef68970bd58bc372b477b73b70cf28cd0ae155f65d074d9c"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_125/grounding_injected.json",
+      "size_bytes": 510,
+      "sha256": "1050d109fa51b0fb608b18160848878246445e3a0a13ad99b8b435c99a1c4d6d"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_125/injected.ttl",
+      "size_bytes": 977,
+      "sha256": "12824c8016085acc51ff18625913e4ca67e6772209089cc61d75dac7c8be288e"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_125/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_132/case_shapes.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_132/clean.ttl",
+      "size_bytes": 1261,
+      "sha256": "607049c874491b6ca7fcbb02c8dbd641231bad59c942a5d8d474003a00133c3d"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_132/grounding_clean.json",
+      "size_bytes": 451,
+      "sha256": "9c279c4bd805b5cfb57f47ce47d39dff092b29cd7acf72bdf82dc7c2e46ae9c7"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_132/grounding_injected.json",
+      "size_bytes": 520,
+      "sha256": "e6cca58f4b3a81bc5d18fe97013b4c8bb293b81a91e5051add0470977c3b0adf"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_132/injected.ttl",
+      "size_bytes": 1373,
+      "sha256": "19a17569064c6afe15ca2b6f25fb8169a7be3bc857a0eb17ad04f068d23d4c8a"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_132/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_176/case_shapes.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_176/clean.ttl",
+      "size_bytes": 1475,
+      "sha256": "38ab1af42a71f445fa3c4e9a4166c880f3657c6bf7dab98d25785ee9de6fe929"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_176/grounding_clean.json",
+      "size_bytes": 564,
+      "sha256": "4dfd334a42a7a6bf734cc8e95859d7f6d474460fa6da8ab8ee8e9ad3b9cb851c"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_176/grounding_injected.json",
+      "size_bytes": 637,
+      "sha256": "b2231d297a856170b934bc51948b793dd69553acce6b0f26f6597fd70a55dd72"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_176/injected.ttl",
+      "size_bytes": 1593,
+      "sha256": "01f39243b4bb7faac396301a97041404189b3a940ea05df00e34af999106639b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_176/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_188/case_shapes.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_188/clean.ttl",
+      "size_bytes": 205,
+      "sha256": "ab0bc9d84bdec9a111c1e2eb2d55636ce1cd19b608f4b2ed7481808b4e5b3973"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_188/grounding_clean.json",
+      "size_bytes": 214,
+      "sha256": "25fd30fe46fb2659c0b0d77ada0fb106a6d47c5da83d0b93e7e754d58d142c77"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_188/grounding_injected.json",
+      "size_bytes": 305,
+      "sha256": "96478f68d48a96a6af8d2b1583b974f1f2932bf7217c154ae99ee8c35392982c"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_188/injected.ttl",
+      "size_bytes": 395,
+      "sha256": "f27052a3e0f74a6108bde99aabcc98341c41511cc2e07da9b04b7a423d03d827"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_188/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_197/case_shapes.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_197/clean.ttl",
+      "size_bytes": 179,
+      "sha256": "954f76d9de18e36e47fe91085e966e62487e210b745a3aab0ec7d8dcc00d541c"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_197/grounding_clean.json",
+      "size_bytes": 207,
+      "sha256": "13236593fa326c12d9b6de34e736471656493949588a47e6e3f75d6720354fa5"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_197/grounding_injected.json",
+      "size_bytes": 284,
+      "sha256": "6ace85c3837ab5372897fbfbdd969baf8d526886502c2306580f201cd7d5de84"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_197/injected.ttl",
+      "size_bytes": 375,
+      "sha256": "36776dc41732b9c65b33286d8306829940714ba6cfac7cc8b792a171bc1e1c3e"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_197/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_215/case_shapes.ttl",
+      "size_bytes": 949,
+      "sha256": "683e79bf30b1c878c65c2e6bdd36cbb5376c459a5249766a02d327f37323a197"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_215/clean.ttl",
+      "size_bytes": 401,
+      "sha256": "4054c9b47c33cd007e1a0df6366fa61e06bbf0ba0adc44017b37ca05b07633b9"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_215/grounding_clean.json",
+      "size_bytes": 410,
+      "sha256": "fcc00d39efe6edf0ac8c32542419a69a514b73cca615e3d0b7aad45dc0d386ef"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_215/grounding_injected.json",
+      "size_bytes": 410,
+      "sha256": "163958bc1e9b881cb9a7e354d513520036f78083ada69b282145a1f15d49d356"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_215/injected.ttl",
+      "size_bytes": 401,
+      "sha256": "2f9ac6006b96684f518f22f3966843476485559aaa37086c8ad3134345d05db0"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_215/owl_context.ttl",
+      "size_bytes": 575,
+      "sha256": "10bdd1e34fff1e45a948262557654bd3d87e4a05d846b1a3add06bf785120675"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_224/case_shapes.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_224/clean.ttl",
+      "size_bytes": 190,
+      "sha256": "974402106e82ae3929784adc0a6e924d839adee83f00a97422481c1a448d24af"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_224/grounding_clean.json",
+      "size_bytes": 238,
+      "sha256": "9a2ed1cbe52b8f448211564c4d709ddad94fafe111dd54bab23137c3bff51023"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_224/grounding_injected.json",
+      "size_bytes": 331,
+      "sha256": "282d12289cdfb97b24110a2e3bb7bb482228acf17d4e90e7d6c342b6c022e950"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_224/injected.ttl",
+      "size_bytes": 397,
+      "sha256": "977a1c8a5af61ae3f4d2dceb5c05796bbd8313f56013a8026b78045e2e4f1d65"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_224/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_23/case_shapes.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_23/clean.ttl",
+      "size_bytes": 833,
+      "sha256": "67d322f66e5305b3bdc9d633ee125ecfe0e41b30299fb821096454829361a9a6"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_23/grounding_clean.json",
+      "size_bytes": 327,
+      "sha256": "03205d8cb1ce654ea20f71cafa64a48358a0a765ab64a4a9a990fba789d1ae4d"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_23/grounding_injected.json",
+      "size_bytes": 405,
+      "sha256": "3c2342b6b10cca4c3b2e228dcc16787b5376a78e34fa5de97e56af25e344097f"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_23/injected.ttl",
+      "size_bytes": 955,
+      "sha256": "ab20b2b75a2de8938acaf1d3d5fb46ad33e7d3ae50f05ffa016e0f293b7c110f"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_23/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_230/case_shapes.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_230/clean.ttl",
+      "size_bytes": 189,
+      "sha256": "890df32cf2cbdde6eadaff9e94632adfa9caaaa8da930d03de8d94be5c008b3c"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_230/grounding_clean.json",
+      "size_bytes": 189,
+      "sha256": "4cad86d0027b22d3aa53c0edafe0b8ad393c998d39d48018c7d43919991f22da"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_230/grounding_injected.json",
+      "size_bytes": 273,
+      "sha256": "928adbb57f783f396b6c6aa19f627d4a0720518ceafe50aeb0f874f8ae8ff778"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_230/injected.ttl",
+      "size_bytes": 388,
+      "sha256": "7a9db194110b5ee95d73c03b73c95c8db86f54db1bcbfd63660e0647059bc4ee"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_230/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_236/case_shapes.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_236/clean.ttl",
+      "size_bytes": 855,
+      "sha256": "8d97dc5f2c5ace211879c149b973538186cdcd2805dc8744255c0b4c2b53b69c"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_236/grounding_clean.json",
+      "size_bytes": 428,
+      "sha256": "a344a3e9814a0f1b60488e7f6a05b9780f7639d1d3380fd7fffa16bc076a7b21"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_236/grounding_injected.json",
+      "size_bytes": 501,
+      "sha256": "a772b9e3808b9c48249493405a23b860732f3884852ea90e92d4befdb2fe3289"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_236/injected.ttl",
+      "size_bytes": 973,
+      "sha256": "7fc9bf9bb6d75d024e226ad6b88389aa35848ab2deecc69bd2f5cb534e32c7ff"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_236/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_252/case_shapes.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_252/clean.ttl",
+      "size_bytes": 1443,
+      "sha256": "252b2f42a8d7db9f5aba6cb770fb544114b45c2bff6be62fefc9e59543114b26"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_252/grounding_clean.json",
+      "size_bytes": 928,
+      "sha256": "040123229a05095540485c6657a1825b9fc7701293f9e68f7a64e56cd99f90b6"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_252/grounding_injected.json",
+      "size_bytes": 1009,
+      "sha256": "539e24817c0b42e938ad88f234fce12759942cc806d437a48986b6c189887f8b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_252/injected.ttl",
+      "size_bytes": 1556,
+      "sha256": "7e815b0d11dbed65942620987eaa47f82ea27cb635d8966b87ffff296392280d"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_252/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_27/case_shapes.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_27/clean.ttl",
+      "size_bytes": 863,
+      "sha256": "0c3ec1ecf85e1fc7f094d495d4493ce610d4b67db9a382ceb4f25fe622b06266"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_27/grounding_clean.json",
+      "size_bytes": 378,
+      "sha256": "a6898007a8114ce7aa3737e6aab5dea3efcc6c8fecedd19490360c2c629edeb7"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_27/grounding_injected.json",
+      "size_bytes": 459,
+      "sha256": "c4061410e9be795329bf4c0178a2798afb7134967a3f27b1a04ef27fa52d1336"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_27/injected.ttl",
+      "size_bytes": 979,
+      "sha256": "300603f64ade8d81efd40a3e2be147ab66f25bbf934cfed71f3bb2cfc5d73c1b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_27/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_30/case_shapes.ttl",
+      "size_bytes": 767,
+      "sha256": "df6ab9ebca6edbbcb6a4fd5df350f19558e349f2825a18cf0149d43c247d26cb"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_30/clean.ttl",
+      "size_bytes": 1006,
+      "sha256": "a135e60390f16d10bb9e80dd5421584741683ffa3456d3e54be872aa8a3ea24f"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_30/grounding_clean.json",
+      "size_bytes": 308,
+      "sha256": "9c59cf71fb2603d725af4dcb256f5d2c83f6fdf446e1d380751c6bbca13ece84"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_30/grounding_injected.json",
+      "size_bytes": 213,
+      "sha256": "8972d8ccb80db212682352de1895be44677eb2f123177a3d3223774aed4d3eba"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_30/injected.ttl",
+      "size_bytes": 864,
+      "sha256": "c408f295c544c7dd38df4df3129a68d89b46853658037e0d4e8df9f89baf33bd"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_30/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_34/case_shapes.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_34/clean.ttl",
+      "size_bytes": 855,
+      "sha256": "c9883ea6c2f9b544fe267506781b7ff8becf6875e6460122760baf16e0f45ddb"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_34/grounding_clean.json",
+      "size_bytes": 356,
+      "sha256": "7d31b7c208d2881e426ed2a8c297446b00ad2aa299e9d9fa10adc22fad9b9b24"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_34/grounding_injected.json",
+      "size_bytes": 439,
+      "sha256": "ebdf13b0142e911ed222511d8767facdcc6e54d32ca3e8e0a1cf91150abbcedf"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_34/injected.ttl",
+      "size_bytes": 969,
+      "sha256": "9503b53bdd9d145b154ebc00650991f25ca5061bb17e446ccc43c7b62493da0c"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_34/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_342/case_shapes.ttl",
+      "size_bytes": 741,
+      "sha256": "06780bc6d2bd9b9eb9d01c7d52473e6eeed6f656fc474fc7783c3e987519b643"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_342/clean.ttl",
+      "size_bytes": 1194,
+      "sha256": "e9c42a6333dcedf11b00ba3a56913091e4dba757f6645f85731fcaf915eae0e6"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_342/grounding_clean.json",
+      "size_bytes": 369,
+      "sha256": "9aabca53d894e2e9cbbce2e232d6ac25297b2957cbde83ea545415c9ec9f41b6"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_342/grounding_injected.json",
+      "size_bytes": 299,
+      "sha256": "b74c2580cf77ff2ffff7d56e63f4aa20d9a223af3307eacc6161b7a3f20bb4b9"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_342/injected.ttl",
+      "size_bytes": 1074,
+      "sha256": "4aef20468a50e4463bd9494d6153814faf98cf076052b469fbe413a8506b9b5f"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_342/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_42/case_shapes.ttl",
+      "size_bytes": 757,
+      "sha256": "295fe89ba49ade218731c3c47979584a62f40c90359b7a4d472b7448a86d8df5"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_42/clean.ttl",
+      "size_bytes": 1589,
+      "sha256": "15067ea687a19eabbdac769743d26bd2ae4f33cad4bd87277f00ba0ed462782f"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_42/grounding_clean.json",
+      "size_bytes": 469,
+      "sha256": "c23f26da8b5cce51a32b6fa50e15ad5d686298271cbf4a72b0bdf81e2edd39a3"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_42/grounding_injected.json",
+      "size_bytes": 378,
+      "sha256": "ab0c11fcd8b97ce03d51287f87eec641dbb40b568b5c2c179b925f1bc9787d0a"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_42/injected.ttl",
+      "size_bytes": 1465,
+      "sha256": "5632c43447400a4e510b7ce6ff4eebbbeb5679c75a6da6f423c05fc389f38506"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_42/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_46/case_shapes.ttl",
+      "size_bytes": 769,
+      "sha256": "bc3f7b6a83c18358e13ca18c6ccde55efc8e52acb240e678350ca6fbca481547"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_46/clean.ttl",
+      "size_bytes": 1589,
+      "sha256": "588808cc4507f7eb70cab9b2b9031e5d4f23bf52382128b909088ca309a33def"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_46/grounding_clean.json",
+      "size_bytes": 627,
+      "sha256": "4c13d6bad6cc7ea8faa79eeaec827bf06812e86f076929c3f68ac3d56dd2e9cf"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_46/grounding_injected.json",
+      "size_bytes": 529,
+      "sha256": "0b8441e2f4ef60114d442d1c8833087e93a5014618aca1c50529aa3784b9fd27"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_46/injected.ttl",
+      "size_bytes": 1460,
+      "sha256": "c4a46e02bb113e09c929d131c001983f58688db530e287e1851f5777595a0c96"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_46/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_464/case_shapes.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_464/clean.ttl",
+      "size_bytes": 1562,
+      "sha256": "fe915b0e18f564ad557570ae6045605e4126b3ca281e7fd2faf67f0e564e51dd"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_464/grounding_clean.json",
+      "size_bytes": 667,
+      "sha256": "fe66041dae96638f176a6fd1243ddf425d215575e5a7b467e7d5405913e1f3be"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_464/grounding_injected.json",
+      "size_bytes": 739,
+      "sha256": "9978949d07999e57c57ce86642553725176aa8576c63823a591096af836dcdd3"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_464/injected.ttl",
+      "size_bytes": 1686,
+      "sha256": "3ad7b33d843d6694f5ceb0a4d4b3d9bee5eb83b0dd683f9fa7c16b775e18d7bd"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_464/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_474/case_shapes.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_474/clean.ttl",
+      "size_bytes": 176,
+      "sha256": "1ddea8aac667378683e2579abd851daa1eebbb6c9e69345995818d5d44a9aec1"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_474/grounding_clean.json",
+      "size_bytes": 263,
+      "sha256": "7c8e2f9b546a6aa2ef85b5cca8a12d1e6a7a050d53ca88e2740040c50305ff1e"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_474/grounding_injected.json",
+      "size_bytes": 340,
+      "sha256": "9edee3d9e8151163187fca7b7245b4e52aa2044c91bf39075f4c907e290652bc"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_474/injected.ttl",
+      "size_bytes": 375,
+      "sha256": "5676c85c011ce894f1cd1b59a2e842776709c5e8a93abf6bc358e7e77df9894c"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_474/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_603/case_shapes.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_603/clean.ttl",
+      "size_bytes": 1967,
+      "sha256": "bcde25691f815fa119e7bca48dd577e4883d1566693152172a75f6e7fc1053d5"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_603/grounding_clean.json",
+      "size_bytes": 733,
+      "sha256": "a25dfa00e8a3a0483b9be114acc61bcf4ebdc5fd2f14eb04bd2c509c7333696c"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_603/grounding_injected.json",
+      "size_bytes": 801,
+      "sha256": "6eefe80d07ed635791fb59cb4354695f2e8acd0a68cd6d757d1d0e3271c4b13b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_603/injected.ttl",
+      "size_bytes": 2081,
+      "sha256": "b3f9de3c6a65d47f3ff331ecfc548640c06f1bb4e4ee3249c9e989dc3c1fc6b0"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_603/owl_context.ttl",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_605/case_shapes.ttl",
+      "size_bytes": 945,
+      "sha256": "f17f4642e257e3c0fb559b4f57250430902ba3a9f1dfe7eb08db7eab5f8d4bb4"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_605/clean.ttl",
+      "size_bytes": 397,
+      "sha256": "65435007ea860ecfe04a90d52df9d8533be8a171e0ccc24e2deda01b546c7482"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_605/grounding_clean.json",
+      "size_bytes": 416,
+      "sha256": "8635636033e59617dcef3176a39cb691771067293fa175988743698ac669a6ed"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_605/grounding_injected.json",
+      "size_bytes": 416,
+      "sha256": "fce40c24355f4a479bb568485ff0e75bae267c2a3fc9fee53ed3d25a44189003"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_605/injected.ttl",
+      "size_bytes": 397,
+      "sha256": "7f7dfbfe8ca85a3331711e00e5778b5fcee4f462919143f67091a9949b859f0e"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_605/owl_context.ttl",
+      "size_bytes": 566,
+      "sha256": "b2bbb1a323906c9b244d772d3ebd1e9427a1bfcb5e447e9d0b3d68997a06bacd"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_659/case_shapes.ttl",
+      "size_bytes": 957,
+      "sha256": "c264775c6365b0eb8ad9000dfff3c7200741726df852c4ad3b4bc10003f135b6"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_659/clean.ttl",
+      "size_bytes": 409,
+      "sha256": "d23366285fc7d74aae22ced5c2811c0d2370ecd8a657d6a86b728dbd481554ce"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_659/grounding_clean.json",
+      "size_bytes": 403,
+      "sha256": "c85142be4f8b02b0429beb0142b8f6554d7fdb4d937043835e13430529ba58a3"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_659/grounding_injected.json",
+      "size_bytes": 403,
+      "sha256": "04c0d36f79c3850597f9418fc0d74497bc211ca61c7d977e4d3bfe738fa1504f"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_659/injected.ttl",
+      "size_bytes": 409,
+      "sha256": "d11c8d776bea4ebc1f990084cc5f46e36b32a7de4ffdff58dd17c17607f0c8a0"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_659/owl_context.ttl",
+      "size_bytes": 580,
+      "sha256": "a66e708e9e1c340076a0bd0425116c71f76ddfdbc38c3d851b0b5452f599bd73"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_660/case_shapes.ttl",
+      "size_bytes": 941,
+      "sha256": "dad30b4a03a13acc4d2489148588ec511a1e136ff098934285ddaf3dc925c88d"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_660/clean.ttl",
+      "size_bytes": 393,
+      "sha256": "f201c041d26f12eeb166fe98959dc7bd2ad9469370bae2505991a31dd31d46ac"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_660/grounding_clean.json",
+      "size_bytes": 388,
+      "sha256": "a964f0e6c6fa8cd792f01628cb25da2d372e82b41106571a51d60fc567b298ab"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_660/grounding_injected.json",
+      "size_bytes": 388,
+      "sha256": "bfbd710d68f03095d94071ea7c99d750df786a5960f31c8f6820baf826cc170f"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_660/injected.ttl",
+      "size_bytes": 393,
+      "sha256": "b64bc59e51c227761f9f47d97536f139ea3dde89cbcf1dcccdf413ebfd9310d9"
+    },
+    {
+      "path": "outputs/controlled/ont_2_music_test_660/owl_context.ttl",
+      "size_bytes": 570,
+      "sha256": "fbc081308e9a364752315c70e11c44bc322c744dc8027c5afdd543079c211db5"
+    }
+  ],
+  "results": [
+    {
+      "path": "results/controlled_grounding_target_analysis.json",
+      "size_bytes": 90949,
+      "sha256": "617d93dcc05a348d4464b8f1b26d62cb00a952c55bbdc6ee9e562b2e3330d123"
+    },
+    {
+      "path": "results/controlled_grounding_validation.jsonl",
+      "size_bytes": 125807,
+      "sha256": "f453dce1b054e112aba9fb78c4399e7b3d5942a6b7ee82db97a26bc23d36f10a"
+    },
+    {
+      "path": "results/controlled_grounding_validation.jsonl.meta.json",
+      "size_bytes": 7613,
+      "sha256": "a156283910c4e0c0ebe930a27fa0e495f4644bc2a5f063a90262722fc87d5e7c"
+    },
+    {
+      "path": "results/controlled_symbolic_validation.jsonl",
+      "size_bytes": 13189,
+      "sha256": "995a5be29669bd5aa49f0c8b64456d2f0f90ceaa52f45e47752e67582cfde58c"
+    },
+    {
+      "path": "results/grounding_judge_v1_calibration.jsonl",
+      "size_bytes": 29726,
+      "sha256": "bde2d7312abaec8d31a3c0f1921306cca1486db92d9e1e113261b2f006ea045e"
+    },
+    {
+      "path": "results/grounding_judge_v1_calibration.jsonl.meta.json",
+      "size_bytes": 924,
+      "sha256": "96b66193f518fc84d358a6b8d8cc73813b3d975d8dc5a7461d634e471f059ab9"
+    },
+    {
+      "path": "results/grounding_judge_v2_calibration.jsonl",
+      "size_bytes": 28893,
+      "sha256": "669301f8c280e0796eefd283b74f8cd9f0ff1ae73da7f6fb8b953af5c1548441"
+    },
+    {
+      "path": "results/grounding_judge_v2_calibration.jsonl.meta.json",
+      "size_bytes": 961,
+      "sha256": "b10a498ecfed9b4fb9c7e11f64114b591a39c0a1633e0036e7a603ea2368c6a2"
+    },
+    {
+      "path": "results/grounding_judge_v3_calibration.jsonl",
+      "size_bytes": 28855,
+      "sha256": "916328b93796338e7549c252c3127fdcf19bbf4b844bf2d1c8078d5a86acbb90"
+    },
+    {
+      "path": "results/grounding_judge_v3_calibration.jsonl.meta.json",
+      "size_bytes": 931,
+      "sha256": "fc1b992947a0d30b135202a0c94260d6cf9f70eecf8c7f1a3f0cf61f2b9e3c10"
+    },
+    {
+      "path": "results/grounding_judge_v3_heldout.jsonl",
+      "size_bytes": 19367,
+      "sha256": "6edff0877dc6e04f53fef3466cbc59be2522723e5a55141c135546767d053413"
+    },
+    {
+      "path": "results/grounding_judge_v3_heldout.jsonl.meta.json",
+      "size_bytes": 942,
+      "sha256": "9ee7033d7bb7440daef7798451410b60c3f23470c0fb7826f708f6f35427b3b0"
+    }
+  ],
+  "counts": {
+    "source_artifacts": 26,
+    "controlled_output_files": 301,
+    "result_files": 12
+  },
+  "grounding_identity": {
+    "judge_version": "v3",
+    "model": "qwen2.5:7b-instruct-q4_K_M",
+    "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+    "prompt_sha256": "7fa341845f64e6c2b7079026bc4567e33f0ef3910c7e02f3efc654559223e73b"
+  }
+}
