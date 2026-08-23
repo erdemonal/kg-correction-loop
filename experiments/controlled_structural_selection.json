@@ -1,0 +1,520 @@
+{
+  "version": 1,
+  "purpose": "selected structural controlled cases",
+  "selection_size": 30,
+  "unique_case_ids": 30,
+  "counts": {
+    "movie": {
+      "cardinality": 5,
+      "disjointness": 5,
+      "grounding": 5
+    },
+    "music": {
+      "cardinality": 5,
+      "disjointness": 5,
+      "grounding": 5
+    }
+  },
+  "cases": [
+    {
+      "id": "ont_1_movie_test_117",
+      "domain": "movie",
+      "error_type": "cardinality",
+      "proposal": {
+        "subject": "Toy Story Toons: Hawaiian Vacation",
+        "property": "director",
+        "value": "Gary Rydstrom"
+      },
+      "note": "This case was clean in the pilot and names one director.",
+      "pilot_status": "clean"
+    },
+    {
+      "id": "ont_1_movie_test_174",
+      "domain": "movie",
+      "error_type": "cardinality",
+      "proposal": {
+        "subject": "My Soul Is Slashed",
+        "property": "director",
+        "value": "Shūsuke Kaneko"
+      },
+      "note": "The source names one director. The extracted graph is compact and clean.",
+      "pilot_status": "not_annotated"
+    },
+    {
+      "id": "ont_1_movie_test_506",
+      "domain": "movie",
+      "error_type": "cardinality",
+      "proposal": {
+        "subject": "The Road to Dishonour",
+        "property": "director",
+        "value": "Richard Eichberg"
+      },
+      "note": "The source names one director. The other extracted cast facts are supported.",
+      "pilot_status": "not_annotated"
+    },
+    {
+      "id": "ont_1_movie_test_142",
+      "domain": "movie",
+      "error_type": "cardinality",
+      "proposal": {
+        "subject": "Blonde Trouble",
+        "property": "director",
+        "value": "George Archainbaud"
+      },
+      "note": "The source names one director in a simple sentence about the film and cast.",
+      "pilot_status": "not_annotated"
+    },
+    {
+      "id": "ont_1_movie_test_108",
+      "domain": "movie",
+      "error_type": "cardinality",
+      "proposal": {
+        "subject": "Slayers Gorgeous",
+        "property": "director",
+        "value": "Hiroshi Watanabe"
+      },
+      "note": "The source names the writer and the director as different people.",
+      "pilot_status": "not_annotated"
+    },
+    {
+      "id": "ont_1_movie_test_365",
+      "domain": "movie",
+      "error_type": "disjointness",
+      "proposal": {
+        "injection": [
+          "Resident Evil: Damnation",
+          "production_company",
+          "Makoto Kamiya"
+        ],
+        "human_support": {
+          "relation": "director",
+          "position": "object"
+        }
+      },
+      "note": "The director is clearly a person. The existing production companies are organizations.",
+      "pilot_status": "not_annotated"
+    },
+    {
+      "id": "ont_1_movie_test_41",
+      "domain": "movie",
+      "error_type": "disjointness",
+      "proposal": {
+        "injection": [
+          "The Secret Life of Pets",
+          "production_company",
+          "Brian Lynch"
+        ],
+        "human_support": {
+          "relation": "screenwriter",
+          "position": "object"
+        }
+      },
+      "note": "The screenwriter is clearly a person. Using that person as a production company creates the intended conflict.",
+      "pilot_status": "not_annotated"
+    },
+    {
+      "id": "ont_1_movie_test_152",
+      "domain": "movie",
+      "error_type": "disjointness",
+      "proposal": {
+        "injection": [
+          "Vampire's Kiss",
+          "production_company",
+          "Elizabeth Ashley"
+        ],
+        "human_support": {
+          "relation": "cast_member",
+          "position": "object"
+        }
+      },
+      "note": "The cast member is clearly a person. There is no existing production company conflict.",
+      "pilot_status": "not_annotated"
+    },
+    {
+      "id": "ont_1_movie_test_118",
+      "domain": "movie",
+      "error_type": "disjointness",
+      "proposal": {
+        "injection": [
+          "Roujin Z",
+          "production_company",
+          "Hiroyuki Kitakubo"
+        ],
+        "human_support": {
+          "relation": "director",
+          "position": "object"
+        }
+      },
+      "note": "The director is clearly a person in a compact graph.",
+      "pilot_status": "not_annotated"
+    },
+    {
+      "id": "ont_1_movie_test_188",
+      "domain": "movie",
+      "error_type": "disjointness",
+      "proposal": {
+        "injection": [
+          "The Great Mouse Detective",
+          "production_company",
+          "Basil Rathbone"
+        ],
+        "human_support": {
+          "relation": "cast_member",
+          "position": "object"
+        }
+      },
+      "note": "Basil Rathbone is named as an actor and appears as a cast member.",
+      "pilot_status": "not_annotated"
+    },
+    {
+      "id": "ont_1_movie_test_81",
+      "domain": "movie",
+      "error_type": "grounding",
+      "proposal": {
+        "injection": [
+          "Birds Anonymous",
+          "director",
+          "Warren Foster"
+        ],
+        "human_support": {
+          "relation": "screenwriter",
+          "position": "object"
+        }
+      },
+      "note": "The source names Friz Freleng as director and Warren Foster as writer.",
+      "pilot_status": "not_annotated"
+    },
+    {
+      "id": "ont_1_movie_test_148",
+      "domain": "movie",
+      "error_type": "grounding",
+      "proposal": {
+        "injection": [
+          "Terror Firmer",
+          "director",
+          "Alyce LaTourelle"
+        ],
+        "human_support": {
+          "relation": "cast_member",
+          "position": "object"
+        }
+      },
+      "note": "Alyce LaTourelle is a cast member. Lloyd Kaufman is the director.",
+      "pilot_status": "not_annotated"
+    },
+    {
+      "id": "ont_1_movie_test_272",
+      "domain": "movie",
+      "error_type": "grounding",
+      "proposal": {
+        "injection": [
+          "Alvin and the Chipmunks: The Squeakquel",
+          "director",
+          "Amy Poehler"
+        ],
+        "human_support": {
+          "relation": "cast_member",
+          "position": "object"
+        }
+      },
+      "note": "Amy Poehler is named among the voices. The source does not name a director.",
+      "pilot_status": "not_annotated"
+    },
+    {
+      "id": "ont_1_movie_test_249",
+      "domain": "movie",
+      "error_type": "grounding",
+      "proposal": {
+        "injection": [
+          "The Pink Floyd and Syd Barrett Story",
+          "director",
+          "Bob Klose"
+        ],
+        "human_support": {
+          "relation": "cast_member",
+          "position": "object"
+        }
+      },
+      "note": "John Edginton is named as the director. Bob Klose appears as an interview subject and cast member.",
+      "pilot_status": "not_annotated"
+    },
+    {
+      "id": "ont_1_movie_test_295",
+      "domain": "movie",
+      "error_type": "grounding",
+      "proposal": {
+        "injection": [
+          "I Loved a Soldier",
+          "director",
+          "Charles Boyer"
+        ],
+        "human_support": {
+          "relation": "cast_member",
+          "position": "object"
+        }
+      },
+      "note": "Charles Boyer is named as a star. The source does not support him as director.",
+      "pilot_status": "not_annotated"
+    },
+    {
+      "id": "ont_2_music_test_1",
+      "domain": "music",
+      "error_type": "cardinality",
+      "proposal": {
+        "subject": "'39",
+        "property": "composer",
+        "value": "Brian May"
+      },
+      "note": "The source says the work was composed by Brian May.",
+      "pilot_status": "not_annotated"
+    },
+    {
+      "id": "ont_2_music_test_30",
+      "domain": "music",
+      "error_type": "cardinality",
+      "proposal": {
+        "subject": "Ich hatt ' einen Kameraden",
+        "property": "composer",
+        "value": "Friedrich Silcher"
+      },
+      "note": "The source says Friedrich Silcher set the work to music.",
+      "pilot_status": "not_annotated"
+    },
+    {
+      "id": "ont_2_music_test_42",
+      "domain": "music",
+      "error_type": "cardinality",
+      "proposal": {
+        "subject": "Bharoto Bhagyo Bidhata",
+        "property": "composer",
+        "value": "Rabindranath Tagore"
+      },
+      "note": "The source says Bharoto Bhagyo Bidhata was composed by Rabindranath Tagore.",
+      "pilot_status": "not_annotated"
+    },
+    {
+      "id": "ont_2_music_test_46",
+      "domain": "music",
+      "error_type": "cardinality",
+      "proposal": {
+        "subject": "Zadok the Priest (HWV 258)",
+        "property": "composer",
+        "value": "George Frideric Handel"
+      },
+      "note": "The source says the anthem was composed by Handel.",
+      "pilot_status": "not_annotated"
+    },
+    {
+      "id": "ont_2_music_test_342",
+      "domain": "music",
+      "error_type": "cardinality",
+      "proposal": {
+        "subject": "Voiles",
+        "property": "composer",
+        "value": "Claude Debussy"
+      },
+      "note": "The source describes Voiles as a composition by Claude Debussy.",
+      "pilot_status": "not_annotated"
+    },
+    {
+      "id": "ont_2_music_test_23",
+      "domain": "music",
+      "error_type": "disjointness",
+      "proposal": {
+        "injection": [
+          "Paolo Conte",
+          "performer",
+          "Vito Pallavicini"
+        ],
+        "subject_human_support": {
+          "relation": "composer",
+          "position": "object"
+        },
+        "object_human_support": {
+          "relation": "composer",
+          "position": "object"
+        }
+      },
+      "note": "Paolo Conte and Vito Pallavicini are named as composers.",
+      "pilot_status": "not_annotated"
+    },
+    {
+      "id": "ont_2_music_test_125",
+      "domain": "music",
+      "error_type": "disjointness",
+      "proposal": {
+        "injection": [
+          "Cathy Dennis",
+          "performer",
+          "Rob Davis"
+        ],
+        "subject_human_support": {
+          "relation": "composer",
+          "position": "object"
+        },
+        "object_human_support": {
+          "relation": "composer",
+          "position": "object"
+        }
+      },
+      "note": "Cathy Dennis and Rob Davis are named as writers, composers, and producers.",
+      "pilot_status": "not_annotated"
+    },
+    {
+      "id": "ont_2_music_test_176",
+      "domain": "music",
+      "error_type": "disjointness",
+      "proposal": {
+        "injection": [
+          "Cory Rooney",
+          "performer",
+          "Troy Oliver"
+        ],
+        "subject_human_support": {
+          "relation": "composer",
+          "position": "object"
+        },
+        "object_human_support": {
+          "relation": "composer",
+          "position": "object"
+        }
+      },
+      "note": "Use the two clean composer entities. This avoids the malformed combined lyricist name.",
+      "pilot_status": "not_annotated"
+    },
+    {
+      "id": "ont_2_music_test_603",
+      "domain": "music",
+      "error_type": "disjointness",
+      "proposal": {
+        "injection": [
+          "Kanye West",
+          "performer",
+          "DJ Paul"
+        ],
+        "subject_human_support": {
+          "relation": "producer",
+          "position": "object"
+        },
+        "object_human_support": {
+          "relation": "producer",
+          "position": "object"
+        }
+      },
+      "note": "Use two individual producers. This avoids the subject DJ Nasty & LVM, which looks like a group.",
+      "pilot_status": "not_annotated"
+    },
+    {
+      "id": "ont_2_music_test_236",
+      "domain": "music",
+      "error_type": "disjointness",
+      "proposal": {
+        "injection": [
+          "Joe Elliott",
+          "performer",
+          "Rick Savage"
+        ],
+        "subject_human_support": {
+          "relation": "composer",
+          "position": "object"
+        },
+        "object_human_support": {
+          "relation": "composer",
+          "position": "object"
+        }
+      },
+      "note": "Joe Elliott and Rick Savage are named as writers and are clean person fillers.",
+      "pilot_status": "not_annotated"
+    },
+    {
+      "id": "ont_2_music_test_27",
+      "domain": "music",
+      "error_type": "grounding",
+      "proposal": {
+        "injection": [
+          "West Side Story",
+          "composer",
+          "Stephen Sondheim"
+        ],
+        "human_support": {
+          "relation": "lyrics_by",
+          "position": "object"
+        }
+      },
+      "note": "The source distinguishes music by Leonard Bernstein from lyrics by Stephen Sondheim.",
+      "pilot_status": "clean"
+    },
+    {
+      "id": "ont_2_music_test_34",
+      "domain": "music",
+      "error_type": "grounding",
+      "proposal": {
+        "injection": [
+          "Suicide Is Painless",
+          "composer",
+          "Michael Altman"
+        ],
+        "human_support": {
+          "relation": "lyrics_by",
+          "position": "object"
+        }
+      },
+      "note": "The source distinguishes music by Johnny Mandel from lyrics by Michael Altman.",
+      "pilot_status": "clean"
+    },
+    {
+      "id": "ont_2_music_test_252",
+      "domain": "music",
+      "error_type": "grounding",
+      "proposal": {
+        "injection": [
+          "Bei Mir Bistu Shein",
+          "composer",
+          "Jacob Jacobs"
+        ],
+        "human_support": {
+          "relation": "lyrics_by",
+          "position": "object"
+        }
+      },
+      "note": "The source identifies Jacob Jacobs as lyricist and Sholom Secunda as composer.",
+      "pilot_status": "not_annotated"
+    },
+    {
+      "id": "ont_2_music_test_464",
+      "domain": "music",
+      "error_type": "grounding",
+      "proposal": {
+        "injection": [
+          "La Juive",
+          "composer",
+          "Eugène Scribe"
+        ],
+        "human_support": {
+          "relation": "lyrics_by",
+          "position": "object"
+        }
+      },
+      "note": "The source identifies Eugène Scribe as librettist. The opera is by Fromental Halévy.",
+      "pilot_status": "not_annotated"
+    },
+    {
+      "id": "ont_2_music_test_172",
+      "domain": "music",
+      "error_type": "grounding",
+      "proposal": {
+        "injection": [
+          "Love Takes Time",
+          "composer",
+          "Walter Afanasieff"
+        ],
+        "human_support": {
+          "relation": "producer",
+          "position": "object"
+        }
+      },
+      "note": "Walter Afanasieff is the producer, not one of the named writers.",
+      "pilot_status": "not_annotated"
+    }
+  ]
+}
