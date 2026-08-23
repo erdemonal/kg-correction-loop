@@ -1,0 +1,208 @@
+{
+  "version": 1,
+  "source": "experiments/pilot_annotation.jsonl",
+  "seed": 42,
+  "calibration_fraction": 0.6,
+  "eligibility": {
+    "annotated": true,
+    "exclude_parse_issue": true
+  },
+  "counts": {
+    "pilot_rows": 40,
+    "eligible_rows": 35,
+    "excluded_parse_issue_or_unannotated": 5,
+    "calibration": {
+      "total": 20,
+      "movie": 10,
+      "music": 10,
+      "grounding_error": 13,
+      "no_grounding_error": 7
+    },
+    "heldout": {
+      "total": 15,
+      "movie": 8,
+      "music": 7,
+      "grounding_error": 9,
+      "no_grounding_error": 6
+    }
+  },
+  "calibration": [
+    {
+      "id": "ont_1_movie_test_117",
+      "domain": "movie",
+      "human_grounding_error": false
+    },
+    {
+      "id": "ont_1_movie_test_145",
+      "domain": "movie",
+      "human_grounding_error": true
+    },
+    {
+      "id": "ont_1_movie_test_253",
+      "domain": "movie",
+      "human_grounding_error": true
+    },
+    {
+      "id": "ont_1_movie_test_33",
+      "domain": "movie",
+      "human_grounding_error": true
+    },
+    {
+      "id": "ont_1_movie_test_439",
+      "domain": "movie",
+      "human_grounding_error": true
+    },
+    {
+      "id": "ont_1_movie_test_568",
+      "domain": "movie",
+      "human_grounding_error": true
+    },
+    {
+      "id": "ont_1_movie_test_664",
+      "domain": "movie",
+      "human_grounding_error": true
+    },
+    {
+      "id": "ont_1_movie_test_703",
+      "domain": "movie",
+      "human_grounding_error": true
+    },
+    {
+      "id": "ont_1_movie_test_772",
+      "domain": "movie",
+      "human_grounding_error": true
+    },
+    {
+      "id": "ont_1_movie_test_92",
+      "domain": "movie",
+      "human_grounding_error": true
+    },
+    {
+      "id": "ont_2_music_test_117",
+      "domain": "music",
+      "human_grounding_error": true
+    },
+    {
+      "id": "ont_2_music_test_146",
+      "domain": "music",
+      "human_grounding_error": false
+    },
+    {
+      "id": "ont_2_music_test_230",
+      "domain": "music",
+      "human_grounding_error": false
+    },
+    {
+      "id": "ont_2_music_test_235",
+      "domain": "music",
+      "human_grounding_error": false
+    },
+    {
+      "id": "ont_2_music_test_245",
+      "domain": "music",
+      "human_grounding_error": true
+    },
+    {
+      "id": "ont_2_music_test_27",
+      "domain": "music",
+      "human_grounding_error": false
+    },
+    {
+      "id": "ont_2_music_test_288",
+      "domain": "music",
+      "human_grounding_error": false
+    },
+    {
+      "id": "ont_2_music_test_531",
+      "domain": "music",
+      "human_grounding_error": true
+    },
+    {
+      "id": "ont_2_music_test_633",
+      "domain": "music",
+      "human_grounding_error": false
+    },
+    {
+      "id": "ont_2_music_test_672",
+      "domain": "music",
+      "human_grounding_error": true
+    }
+  ],
+  "heldout": [
+    {
+      "id": "ont_1_movie_test_107",
+      "domain": "movie",
+      "human_grounding_error": true
+    },
+    {
+      "id": "ont_1_movie_test_226",
+      "domain": "movie",
+      "human_grounding_error": true
+    },
+    {
+      "id": "ont_1_movie_test_231",
+      "domain": "movie",
+      "human_grounding_error": true
+    },
+    {
+      "id": "ont_1_movie_test_31",
+      "domain": "movie",
+      "human_grounding_error": true
+    },
+    {
+      "id": "ont_1_movie_test_614",
+      "domain": "movie",
+      "human_grounding_error": true
+    },
+    {
+      "id": "ont_1_movie_test_767",
+      "domain": "movie",
+      "human_grounding_error": false
+    },
+    {
+      "id": "ont_1_movie_test_771",
+      "domain": "movie",
+      "human_grounding_error": false
+    },
+    {
+      "id": "ont_1_movie_test_98",
+      "domain": "movie",
+      "human_grounding_error": true
+    },
+    {
+      "id": "ont_2_music_test_107",
+      "domain": "music",
+      "human_grounding_error": true
+    },
+    {
+      "id": "ont_2_music_test_257",
+      "domain": "music",
+      "human_grounding_error": false
+    },
+    {
+      "id": "ont_2_music_test_32",
+      "domain": "music",
+      "human_grounding_error": true
+    },
+    {
+      "id": "ont_2_music_test_34",
+      "domain": "music",
+      "human_grounding_error": false
+    },
+    {
+      "id": "ont_2_music_test_444",
+      "domain": "music",
+      "human_grounding_error": true
+    },
+    {
+      "id": "ont_2_music_test_92",
+      "domain": "music",
+      "human_grounding_error": false
+    },
+    {
+      "id": "ont_2_music_test_98",
+      "domain": "music",
+      "human_grounding_error": false
+    }
+  ]
+}

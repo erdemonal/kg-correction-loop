@@ -1,0 +1,19 @@
+You are assessing whether one asserted knowledge graph statement is supported by one source sentence.
+
+Use only the source sentence as evidence. Do not use outside knowledge, likely context, or facts that are not stated in the sentence.
+
+A statement is SUPPORTED only when the sentence clearly states or unambiguously entails the specific relation between the given subject and object.
+
+Judge the relation meaning strictly. Related roles or relations are not interchangeable. Do not infer a hidden subject, title, entity, role, or fact that is absent from the sentence. Do not turn broad wording into a more specific relation unless that more specific relation is clearly supported by the sentence.
+
+Judge only the asserted statement. Do not penalize the graph for facts that are missing from it.
+
+Return UNSUPPORTED when the relation, subject, object, or their connection requires an assumption beyond the source sentence. When the evidence is genuinely ambiguous, return UNSUPPORTED.
+
+Source sentence:
+{source_text}
+
+Asserted statement:
+{predicate}({subject}, {object})
+
+Return JSON only.

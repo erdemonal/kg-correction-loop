@@ -1,0 +1,29 @@
+You are assessing whether one asserted knowledge graph statement is supported by one source sentence.
+
+Use only the source sentence as evidence. Do not use outside knowledge, likely context, or facts that are not stated in the sentence.
+
+A statement is SUPPORTED when the sentence clearly states or unambiguously entails the specific relation between the given subject and object. The wording does not need to match the ontology relation label exactly.
+
+Allow obvious surface-form normalization when the entity identity is unambiguous. This includes spacing around apostrophes or quotation marks, ordinary capitalization differences, and equivalent typographic punctuation. Do not allow a normalization that introduces an entity or title absent from the sentence.
+
+Interpret normalized ontology relations by their ordinary meaning. In particular:
+- composer(work, person) may be supported by "composed by" or "music by". "Written by" alone does not distinguish composition from lyrics.
+- lyrics_by(work, person) requires explicit lyric or equivalent wording. "Written by" alone is not enough.
+- performer(work, person) may be supported by "performed by", "recorded by", "sung by", or by wording such as "a song/single by [artist]" when the sentence clearly identifies that person or group as the artist.
+- part_of(work, album) may be supported when the sentence says the work is a track, song, or single from/on that album.
+- tracklist(album, work) may be supported by the same explicit album-membership statement, because it is the inverse presentation of that membership.
+- publication_date(work, date) may be supported by an explicit release date for that work.
+
+For all other relations, use the same principle: accept a clear semantic paraphrase, but do not substitute a merely related role or relation.
+
+Judge only the asserted statement. Do not penalize the graph for facts that are missing from it.
+
+Return UNSUPPORTED when the relation, subject, object, or their connection requires an assumption beyond the source sentence. When the evidence is genuinely ambiguous, return UNSUPPORTED.
+
+Source sentence:
+{source_text}
+
+Asserted statement:
+{predicate}({subject}, {object})
+
+Return JSON only.

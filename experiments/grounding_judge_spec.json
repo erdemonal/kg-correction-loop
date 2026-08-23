@@ -1,0 +1,156 @@
+{
+  "version": 3,
+  "judge_version": "v3",
+  "status": "frozen",
+  "model": "qwen2.5:7b-instruct-q4_K_M",
+  "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+  "prompt": "experiments/grounding_judge_prompt_v3.txt",
+  "prompt_sha256": "7fa341845f64e6c2b7079026bc4567e33f0ef3910c7e02f3efc654559223e73b",
+  "options": {
+    "temperature": 0,
+    "seed": 42,
+    "num_ctx": 4096,
+    "num_predict": 256
+  },
+  "decision_unit": "one asserted content triple",
+  "case_aggregation": "A case has a grounding error if at least one asserted content triple is judged unsupported.",
+  "evidence_policy": "The source sentence is the only evidence. Auxiliary type assertions used for symbolic checks are never sent to the assessor.",
+  "completeness_policy": "The assessor evaluates support for asserted content only and does not judge missing source facts.",
+  "calibration_split": {
+    "file": "experiments/grounding_calibration_split.json",
+    "seed": 42,
+    "calibration_fraction": 0.6,
+    "eligible": 35,
+    "calibration_n": 20,
+    "heldout_n": 15
+  },
+  "revision_history": {
+    "v1_calibration": {
+      "n": 20,
+      "tp": 13,
+      "fp": 3,
+      "tn": 4,
+      "fn": 0,
+      "precision": 0.8125,
+      "recall": 1.0,
+      "f1": 0.896551724137931,
+      "accuracy": 0.85,
+      "mismatch_ids": [
+        "ont_2_music_test_146",
+        "ont_2_music_test_235",
+        "ont_2_music_test_27"
+      ]
+    },
+    "v2_calibration": {
+      "n": 20,
+      "tp": 13,
+      "fp": 1,
+      "tn": 6,
+      "fn": 0,
+      "precision": 0.9285714285714286,
+      "recall": 1.0,
+      "f1": 0.962962962962963,
+      "accuracy": 0.95,
+      "mismatch_ids": [
+        "ont_2_music_test_146"
+      ]
+    },
+    "v3_calibration": {
+      "n": 20,
+      "tp": 13,
+      "fp": 0,
+      "tn": 7,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "accuracy": 1.0,
+      "mismatch_ids": []
+    }
+  },
+  "heldout_evaluation": {
+    "opened_once": true,
+    "n": 15,
+    "tp": 9,
+    "fp": 3,
+    "tn": 3,
+    "fn": 0,
+    "precision": 0.75,
+    "recall": 1.0,
+    "f1": 0.8571428571428571,
+    "accuracy": 0.8,
+    "mismatch_ids": [
+      "ont_1_movie_test_767",
+      "ont_1_movie_test_771",
+      "ont_2_music_test_98"
+    ],
+    "post_heldout_prompt_changes": false,
+    "post_heldout_model_changes": false
+  },
+  "freeze_policy": "Version 3 is frozen. Results from the reserved evaluation set or the controlled evaluation cannot change the prompt or the model.",
+  "controlled_expected_grounding": {
+    "clean": {
+      "all_conditions": false
+    },
+    "injected": {
+      "disjointness": true,
+      "domain_range": false,
+      "cardinality": false,
+      "temporal": true,
+      "grounding": true
+    }
+  },
+  "controlled_target_evaluation": {
+    "source_results": "results/controlled_grounding_validation.jsonl",
+    "target_analysis": "results/controlled_grounding_target_analysis.json",
+    "human_adjudication": "experiments/controlled_grounding_adjudication.json",
+    "cases": 50,
+    "target_matches_expected": 44,
+    "target_mismatches": 6,
+    "by_condition": {
+      "disjointness": {
+        "n": 10,
+        "matches_expected": 10,
+        "observed_target_grounding_errors": 10
+      },
+      "domain_range": {
+        "n": 10,
+        "matches_expected": 5,
+        "observed_target_grounding_errors": 5
+      },
+      "cardinality": {
+        "n": 10,
+        "matches_expected": 10,
+        "observed_target_grounding_errors": 0
+      },
+      "temporal": {
+        "n": 10,
+        "matches_expected": 10,
+        "observed_target_grounding_errors": 10
+      },
+      "grounding": {
+        "n": 10,
+        "matches_expected": 9,
+        "observed_target_grounding_errors": 9
+      }
+    },
+    "adjudication": {
+      "false_positives": 5,
+      "false_negatives": 1,
+      "false_positive_ids": [
+        "ont_1_movie_test_423",
+        "ont_1_movie_test_463",
+        "ont_1_movie_test_559",
+        "ont_1_movie_test_652",
+        "ont_1_movie_test_767"
+      ],
+      "false_negative_ids": [
+        "ont_2_music_test_252"
+      ]
+    },
+    "interpretation": "Only the primary change is evaluated. Support status was fixed before the run. Five Movie domain and range cases are false positives: the judge rejected narrative_location claims that the source supports. The Music grounding case is a false negative: the source names the injected person as lyricist, not composer. Unsupported labels on other triples in a clean graph are background findings. They are false positives only after a human review of that triple.",
+    "post_controlled_prompt_or_model_changes": false,
+    "post_controlled_case_changes": false,
+    "controlled_judgments_rerun": false
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "purpose": "Human review of six cases. In each case the frozen v3 judge and the expected support status of the primary change disagreed.",
+  "policy": {
+    "judge_or_prompt_changed": false,
+    "controlled_cases_changed": false,
+    "judgments_rerun": false,
+    "use": "This review explains the existing frozen results. It does not change the judge or the cases.",
+    "unit": "the primary change in each controlled case",
+    "background_note": "If the judge marks a clean graph as unsupported, that is not automatically a false positive. The label may belong to a baseline triple that nobody reviewed for grounding. Cases were selected for a usable symbolic injection. Selection did not require every triple in the clean graph to be supported by the source."
+  },
+  "summary": {
+    "controlled_cases": 50,
+    "target_matches_expected": 44,
+    "target_mismatches": 6,
+    "adjudicated_false_positives": 5,
+    "adjudicated_false_negatives": 1,
+    "false_positive_condition": {
+      "domain_range": 5
+    },
+    "false_negative_condition": {
+      "grounding": 1
+    }
+  },
+  "cases": [
+    {
+      "id": "ont_1_movie_test_423",
+      "domain": "movie",
+      "condition": "domain_range",
+      "source_text": "Paradise Now (Arabic:  ‎) is a period film directed by Hany Abu-Assad about two Palestinian men preparing for a suicide attack in Israel.",
+      "target_triple": [
+        "Paradise Now",
+        "narrative_location",
+        "Israel"
+      ],
+      "expected_grounding_error": false,
+      "observed_grounding_error": true,
+      "adjudication": "false_positive",
+      "rationale": "The sentence places the attack in the story in Israel. That supports the location assertion. Israel is a country rather than a city, which is the intended range violation."
+    },
+    {
+      "id": "ont_1_movie_test_463",
+      "domain": "movie",
+      "condition": "domain_range",
+      "source_text": "Our Homeland (, Kazoku no kuni) is a 2012 Japanese drama film about a Korean man's visit to his family in Japan after a long exile in North Korea.",
+      "target_triple": [
+        "Our Homeland",
+        "narrative_location",
+        "Japan"
+      ],
+      "expected_grounding_error": false,
+      "observed_grounding_error": true,
+      "adjudication": "false_positive",
+      "rationale": "The sentence says the film is about a visit to family in Japan. That supports the location assertion. Japan is a country rather than a city, which is the intended range violation."
+    },
+    {
+      "id": "ont_1_movie_test_559",
+      "domain": "movie",
+      "condition": "domain_range",
+      "source_text": "The Italian Job tells the story of Charlie Croker (Michael Caine), the leader of a cockney criminal gang released from prison with the intention of doing a \"big job\" in Italy to steal gold bullion from an armoured security truck.",
+      "target_triple": [
+        "The Italian Job",
+        "narrative_location",
+        "Italy"
+      ],
+      "expected_grounding_error": false,
+      "observed_grounding_error": true,
+      "adjudication": "false_positive",
+      "rationale": "The sentence says the planned job in the story takes place in Italy. That supports the location assertion. Italy is a country rather than a city, which is the intended range violation."
+    },
+    {
+      "id": "ont_1_movie_test_652",
+      "domain": "movie",
+      "condition": "domain_range",
+      "source_text": "Havana Blues (Habana Blues) is a 2005 Spanish and Cuban film by Benito Zambrano, which tells the story of two young musicians in Cuba.",
+      "target_triple": [
+        "Havana Blues",
+        "narrative_location",
+        "Cuba"
+      ],
+      "expected_grounding_error": false,
+      "observed_grounding_error": true,
+      "adjudication": "false_positive",
+      "rationale": "The sentence says the story follows two musicians in Cuba. That supports the location assertion. Cuba is a country rather than a city, which is the intended range violation."
+    },
+    {
+      "id": "ont_1_movie_test_767",
+      "domain": "movie",
+      "condition": "domain_range",
+      "source_text": "Cry Freedom is a 1987 epic drama film directed and produced by Sir Richard Attenborough, set in late-1970s apartheid-era South Africa.",
+      "target_triple": [
+        "Cry Freedom",
+        "narrative_location",
+        "South Africa"
+      ],
+      "expected_grounding_error": false,
+      "observed_grounding_error": true,
+      "adjudication": "false_positive",
+      "rationale": "The sentence says the film is set in South Africa. That supports the location assertion. South Africa is a country rather than a city, which is the intended range violation."
+    },
+    {
+      "id": "ont_2_music_test_252",
+      "domain": "music",
+      "condition": "grounding",
+      "source_text": "\"Bei Mir Bistu Shein\" (Yiddish:    ‎, [baj mir bistu ejn], \"To Me You're Beautiful\") is a popular Yiddish song written by Jacob Jacobs (lyricist) and Sholom Secunda (composer) for a 1932 Yiddish language comedy musical, I Would If I Could (in Yiddish, Men Ken Lebn Nor Men Lost Nisht, \"You could live, but they don't let you\"), which closed after one season (at the Parkway Theatre in Brooklyn, New York City).",
+      "target_triple": [
+        "Bei Mir Bistu Shein",
+        "composer",
+        "Jacob Jacobs"
+      ],
+      "expected_grounding_error": true,
+      "observed_grounding_error": false,
+      "adjudication": "false_negative",
+      "rationale": "The sentence names Jacob Jacobs as the lyricist and Sholom Secunda as the composer. The injected composer assertion for Jacob Jacobs is not supported."
+    }
+  ]
+}
