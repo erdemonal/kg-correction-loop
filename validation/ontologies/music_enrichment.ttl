@@ -1,0 +1,29 @@
+@prefix kcl: <https://github.com/erdemonal/kg-correction-loop#> .
+@prefix musicc: <https://cenguix.github.io/Text2KGBench/ont_2_music/concepts#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+kcl:musicEnrichment a owl:Ontology .
+
+musicc:Q5 owl:disjointWith musicc:Q2188189 .
+
+kcl:radioPremiereDate
+    a owl:DatatypeProperty ;
+    rdfs:domain musicc:Q2188189 ;
+    rdfs:range xsd:date .
+
+kcl:digitalReleaseDate
+    a owl:DatatypeProperty ;
+    rdfs:domain musicc:Q2188189 ;
+    rdfs:range xsd:date .
+
+kcl:recordingDate
+    a owl:DatatypeProperty ;
+    rdfs:domain musicc:Q2188189 ;
+    rdfs:range xsd:date .
+
+kcl:releaseDate
+    a owl:DatatypeProperty ;
+    rdfs:domain musicc:Q2188189 ;
+    rdfs:range xsd:date .

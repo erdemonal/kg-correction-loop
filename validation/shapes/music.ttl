@@ -1,0 +1,52 @@
+@prefix kcl: <https://github.com/erdemonal/kg-correction-loop#> .
+@prefix musicc: <https://cenguix.github.io/Text2KGBench/ont_2_music/concepts#> .
+@prefix musicr: <https://cenguix.github.io/Text2KGBench/ont_2_music/relations#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+kcl:MusicPerformerSubjectShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf musicr:P175 ;
+    sh:not [
+        sh:class musicc:Q5
+    ] ;
+    sh:message "A human cannot be used as the subject of performer." .
+
+kcl:MusicRecordLabelShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf musicr:P264 ;
+    sh:class musicc:Q482994 ;
+    sh:message "The subject of record label must be an album." .
+
+kcl:MusicRadioReleaseOrderShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf kcl:radioPremiereDate ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "The radio premiere date must not be after the digital release date." ;
+        sh:select """
+            PREFIX kcl: <https://github.com/erdemonal/kg-correction-loop#>
+            SELECT $this
+            WHERE {
+                $this kcl:radioPremiereDate ?premiere ;
+                      kcl:digitalReleaseDate ?release .
+                FILTER (?premiere > ?release)
+            }
+        """
+    ] .
+
+kcl:MusicRecordingReleaseOrderShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf kcl:recordingDate ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "The recording date must not be after the release date." ;
+        sh:select """
+            PREFIX kcl: <https://github.com/erdemonal/kg-correction-loop#>
+            SELECT $this
+            WHERE {
+                $this kcl:recordingDate ?recording ;
+                      kcl:releaseDate ?release .
+                FILTER (?recording > ?release)
+            }
+        """
+    ] .

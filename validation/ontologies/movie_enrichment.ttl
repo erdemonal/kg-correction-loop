@@ -1,0 +1,19 @@
+@prefix kcl: <https://github.com/erdemonal/kg-correction-loop#> .
+@prefix moviec: <https://cenguix.github.io/Text2KGBench/ont_1_movie/concepts#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+kcl:movieEnrichment a owl:Ontology .
+
+moviec:Q5 owl:disjointWith moviec:Q1762059 .
+
+kcl:premiereDate
+    a owl:DatatypeProperty ;
+    rdfs:domain moviec:Q11424 ;
+    rdfs:range xsd:date .
+
+kcl:theatricalReleaseDate
+    a owl:DatatypeProperty ;
+    rdfs:domain moviec:Q11424 ;
+    rdfs:range xsd:date .

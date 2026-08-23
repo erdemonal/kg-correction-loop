@@ -1,0 +1,35 @@
+@prefix kcl: <https://github.com/erdemonal/kg-correction-loop#> .
+@prefix moviec: <https://cenguix.github.io/Text2KGBench/ont_1_movie/concepts#> .
+@prefix movier: <https://cenguix.github.io/Text2KGBench/ont_1_movie/relations#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+kcl:MovieProductionCompanyShape
+    a sh:NodeShape ;
+    sh:targetObjectsOf movier:P272 ;
+    sh:not [
+        sh:class moviec:Q5
+    ] ;
+    sh:message "A human cannot be used as a production company." .
+
+kcl:MovieNarrativeLocationShape
+    a sh:NodeShape ;
+    sh:targetObjectsOf movier:P840 ;
+    sh:class moviec:Q515 ;
+    sh:message "A narrative location must be a city." .
+
+kcl:MovieTemporalOrderShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf kcl:premiereDate ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "The premiere date must not be after the theatrical release date." ;
+        sh:select """
+            PREFIX kcl: <https://github.com/erdemonal/kg-correction-loop#>
+            SELECT $this
+            WHERE {
+                $this kcl:premiereDate ?premiere ;
+                      kcl:theatricalReleaseDate ?release .
+                FILTER (?premiere > ?release)
+            }
+        """
+    ] .
