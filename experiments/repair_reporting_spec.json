@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "purpose": "Reporting plan for the completed controlled repair analysis.",
+  "input": "results/repair_dynamics_analysis.json",
+  "outputs": {
+    "tables": [
+      "condition_summary.csv",
+      "condition_summary.tex",
+      "overall_summary.tex"
+    ],
+    "figures": [
+      "condition_resolution",
+      "condition_side_effects",
+      "resolution_retention",
+      "first_resolution",
+      "stop_reasons"
+    ],
+    "notes": "rq2_results_notes.md",
+    "manifest": "repair_reporting_manifest.json"
+  },
+  "figure_formats": [
+    "png",
+    "pdf"
+  ],
+  "reporting_rules": [
+    "Use counts from the completed repair analysis without rerunning a model or validator.",
+    "Keep end to end target resolution separate from target status at the last validated graph.",
+    "Keep exact clean reference recovery separate from target resolution.",
+    "Report no feedback separately from a validated stop.",
+    "Treat output failures as trajectory outcomes, not as graph regressions.",
+    "Describe bootstrap intervals as resampling sensitivity for the controlled cases, not population performance intervals."
+  ],
+  "models_or_validators_run": false
+}
