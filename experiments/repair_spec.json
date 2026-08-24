@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "purpose": "Protocol for the controlled repair experiment.",
   "repair_model": {
     "name": "llama3.1:8b-instruct-q4_K_M",
@@ -27,7 +27,9 @@
     "complete_graph_required": true,
     "explanation_allowed": false,
     "duplicate_handling": "order preserving exact duplicate removal",
-    "invalid_relation_policy": "record as output error; do not silently correct"
+    "invalid_relation_policy": "record as output error; do not silently correct",
+    "invalid_output_retry": false,
+    "truncated_output_policy": "record as output failure"
   },
   "main_validators": [
     "raw_shacl",
@@ -52,6 +54,7 @@
       "violation_id",
       "error_type",
       "focus",
+      "path",
       "message"
     ]
   },
@@ -63,7 +66,9 @@
     "validated": "no actionable violations remain",
     "stalled": "content triple set and actionable violation identity set are unchanged across two consecutive repair rounds",
     "oscillation": "content graph state and actionable violation set repeat a previous nonadjacent repair round",
-    "max_rounds": 5
+    "max_rounds": 5,
+    "no_feedback": "no actionable feedback exists at round 0, so no repair request is made",
+    "output_failure": "model output cannot be used as a complete repaired graph"
   },
   "outcomes": [
     "end_to_end_target_resolution",
@@ -117,5 +122,18 @@
     "restore_cardinality_restriction": true,
     "preserve_temporal_hermit_date_handling": true,
     "grounding_content_only": true
+  },
+  "grounding_cache": {
+    "seed_from_frozen_clean_and_injected_results": true,
+    "judge_only_assertions_not_already_cached": true,
+    "exclude_frozen_clean_unsupported_from_feedback": true
+  },
+  "runner": {
+    "path": "src/run_controlled_repair.py",
+    "result_path": "results/controlled_repair_trajectories.jsonl",
+    "store_rendered_prompt": true,
+    "store_raw_model_response": true,
+    "transport_failure_policy": "abort run; do not score as model failure",
+    "preflight_only_mode": true
   }
 }

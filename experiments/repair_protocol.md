@@ -267,3 +267,21 @@ The experiment characterizes repair behavior on this controlled set. It does not
 The main repair experiment uses the combined feedback format defined above.
 
 The later feedback framing analysis for OWL inconsistency is a separate experiment. It may compare different levels of OWL feedback, but it must not be used to change the main repair results after they are observed.
+
+## Runner behavior
+
+The main runner is `src/run_controlled_repair.py`.
+
+Before a repair run starts, it verifies the repair prompt hash, the repair model digest, the frozen grounding prompt and model identity, and the required frozen result files.
+
+The frozen clean and injected grounding judgments seed a cache for each controlled case. Assertions that already have a frozen judgment are not sent to the grounding model again. A new assertion created during repair is sent to the frozen grounding assessor the first time it appears. If the same assertion appears again later in the trajectory, its existing judgment is reused.
+
+This keeps the initial controlled grounding result unchanged and avoids repeated judgments for an identical source sentence and assertion inside one trajectory.
+
+A malformed, empty, out of vocabulary, or truncated repair output is recorded as an output failure. The model is not asked to regenerate a different answer after an output failure. Transport failures are treated as execution failures and abort the run rather than being counted as repair failures.
+
+If round 0 has no actionable feedback, the trajectory stops with `no_feedback`. No repair request is made, and the case remains in the end to end denominator.
+
+For every repair round, the result file records the rendered prompt, its SHA256 value, the raw model response, parsed content statements, validator results, actionable feedback, target resolution, reference comparison, new violation identities, and the final trajectory outcome.
+
+The runner also provides `--preflight-only`. This mode checks the frozen files and local model identities but does not generate a repair or validate a controlled case.
