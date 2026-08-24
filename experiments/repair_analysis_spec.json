@@ -1,0 +1,46 @@
+{
+  "version": 2,
+  "purpose": "Implementation details for summarizing the completed controlled repair run.",
+  "analysis_unit": "controlled case",
+  "main_measures": [
+    "end to end target resolution across all 50 controlled cases",
+    "end to end target resolution among cases that received initial actionable feedback",
+    "exact clean reference recovery",
+    "rounds to first target resolution",
+    "validated state",
+    "collateral edits",
+    "new violations",
+    "stalled and oscillating trajectories",
+    "repair output failures"
+  ],
+  "secondary_dynamics": [
+    "whether the target was ever resolved",
+    "whether a later valid graph lost a previously resolved target",
+    "whether an output failure occurred after the target had already been resolved",
+    "target status in the last validated graph before an output failure",
+    "distinct new violation identities by validator"
+  ],
+  "validated_state_note": "validated_state means that no actionable feedback remains. no_feedback is reported separately and is not counted as a validated stop.",
+  "output_failure_note": "An output failure is a scientific trajectory outcome under the fixed runner policy. The failed output is not regenerated. Because an invalid output has no validated graph, it is not described as a graph regression. End to end target resolution follows the runner and counts an output-failure trajectory as unresolved, while last validated target status is reported separately.",
+  "grounding_note": "Grounding findings are assessor behavior. The analysis does not reinterpret frozen or repair-round grounding verdicts as human ground truth.",
+  "bootstrap": {
+    "samples": 10000,
+    "seed": 42,
+    "confidence_level": 0.95,
+    "overall_sampling": "resample controlled cases with replacement within each error category",
+    "condition_sampling": "resample controlled cases with replacement within the selected error category",
+    "interpretation": "Bootstrap intervals describe sensitivity to resampling the controlled cases and are not population performance intervals."
+  },
+  "provenance_checks": {
+    "require_50_cases": true,
+    "require_25_cases_per_domain": true,
+    "require_10_cases_per_error_category": true,
+    "require_start_case_1": true,
+    "require_no_limit": true,
+    "require_no_case_filter": true,
+    "require_five_round_cap": true,
+    "require_no_invalid_output_retry": true,
+    "verify_recorded_input_hashes": true
+  },
+  "models_or_validators_run_by_analysis": false
+}
