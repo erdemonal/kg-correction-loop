@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "purpose": "Protocol for the controlled repair experiment.",
   "repair_model": {
     "name": "llama3.1:8b-instruct-q4_K_M",
@@ -12,9 +12,12 @@
     }
   },
   "input": {
-    "original_text2kgbench_prompt": true,
+    "source_sentence": true,
+    "allowed_relations": true,
     "current_content_graph": true,
     "structured_feedback": true,
+    "include_clean_reference_graph": false,
+    "include_human_adjudication": false,
     "include_auxiliary_rdf_types": false,
     "include_owl_restrictions": false,
     "include_shacl_shapes": false
@@ -63,7 +66,8 @@
     "max_rounds": 5
   },
   "outcomes": [
-    "target_resolution",
+    "end_to_end_target_resolution",
+    "target_resolution_given_feedback",
     "reference_recovery",
     "rounds_to_resolution",
     "validated_state",
@@ -78,5 +82,40 @@
     "claim_boundary": "controlled reference recovery, not complete recovery of all source facts"
   },
   "analysis_unit": "controlled case",
-  "rq3_separate": true
+  "rq3_separate": true,
+  "prompt": {
+    "path": "experiments/repair_prompt.txt",
+    "sha256": "ac091682d5617765ca963a1541da8ee9ed459f3f78ea417bac4270e1297d36e8",
+    "frozen_before_run": true,
+    "benchmark_demonstration_included": false,
+    "reason_demonstration_removed": "One selected Movie case uses the same sentence as the fixed Movie benchmark demonstration, so the demonstration is omitted for every repair case."
+  },
+  "allowed_relations": {
+    "pinned_domain_relations": true,
+    "controlled_temporal_relations_for_temporal_cases": true,
+    "other_relation_policy": "record as output failure"
+  },
+  "shacl_identity": [
+    "sourceConstraintComponent",
+    "focusNode",
+    "resultPath",
+    "value",
+    "sourceShape"
+  ],
+  "owl_feedback": {
+    "main_message": "The graph is logically inconsistent.",
+    "controlled_focus_when_available": true,
+    "include_explanation": false,
+    "include_expected_repair": false,
+    "later_unlocalized_inconsistency_focus": null
+  },
+  "validation_reconstruction": {
+    "preserve_clean_background_types": true,
+    "derive_new_background_types_from_repair": false,
+    "restore_case_shapes": true,
+    "restore_owl_context": true,
+    "restore_cardinality_restriction": true,
+    "preserve_temporal_hermit_date_handling": true,
+    "grounding_content_only": true
+  }
 }

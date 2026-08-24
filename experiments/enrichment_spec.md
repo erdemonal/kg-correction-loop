@@ -164,7 +164,7 @@ The modification exchanges the two dates.
 
 For these cases, SHACL SPARQL reports the temporal violation.
 
-The OWL model contains no axiom that orders the two date values. In the current HermiT environment, `xsd:date` assertions are removed only from the copy sent to HermiT because the reasoner does not support that datatype in this setup. As a result, the OWL part of the study does not examine the date assertions or their order.
+The OWL model contains no axiom that orders the two date values. In the current HermiT environment, `xsd:date` assertions are removed only from the copy sent to HermiT because the reasoner does not support that datatype in this setup. As a result, the OWL part of the study does not check the date assertions or their order.
 
 The grounding assessor also reports an error because exchanging the dates makes the temporal statements inconsistent with the source text.
 

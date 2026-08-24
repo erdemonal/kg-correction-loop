@@ -229,14 +229,20 @@ def patch_enrichment_wording():
                 "reasoner datatype support. As a result, the OWL arm does not evaluate "
                 "the temporal date assertions or their ordering."
             ),
+            (
+                "The OWL model contains no axiom that orders the two date values. "
+                "In the current HermiT environment, `xsd:date` assertions are removed "
+                "only from the copy sent to HermiT because the reasoner does not "
+                "support that datatype in this setup. As a result, the OWL part of "
+                "the study does not examine the date assertions or their order."
+            ),
         ],
         (
             "The OWL model contains no axiom that orders the two date values. "
             "In the current HermiT environment, `xsd:date` assertions are removed "
             "only from the copy sent to HermiT because the reasoner does not "
-            "support that datatype in this setup. The OWL part of the study "
-            "does not examine the date assertions or their order."
-       
+            "support that datatype in this setup. As a result, the OWL part of "
+            "the study does not check the date assertions or their order."
         ),
         "temporal OWL",
     )

@@ -74,7 +74,7 @@ Before a graph is sent to HermiT, the code creates a compatibility copy. In that
 
 This helper is used whenever such triples are present. It is not limited to the temporal cases.
 
-SHACL and grounding still receive the original date assertions. The temporal cases are still checked by the HermiT procedure, but the OWL part of the study does not examine the date assertions or their order. Temporal order is checked with SHACL SPARQL.
+SHACL and grounding still receive the original date assertions. The temporal cases are still checked by the HermiT procedure, but the OWL part of the study does not check the date assertions or their order. Temporal order is checked with SHACL SPARQL.
 
 This is a limitation of the reasoner setup used in this experiment. It must not be presented as a general limitation of OWL 2.
 

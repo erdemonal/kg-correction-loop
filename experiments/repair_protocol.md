@@ -21,21 +21,32 @@ Generation settings are also kept the same:
 - num_ctx: 4096
 - num_predict: 2048
 
-Using the same model keeps model identity fixed between extraction and repair. The experiment measures correction by the extraction model itself, rather than performance gained by replacing it with a different corrector.
+Using the same model keeps model identity fixed between extraction and repair. The experiment measures correction by the extraction model itself rather than performance gained by replacing it with a different corrector.
 
-## Repair input
+## Repair prompt
+
+The exact repair prompt is stored in `experiments/repair_prompt.txt`.
+
+Its SHA256 value is recorded in `experiments/repair_spec.json`. The prompt is fixed before any repair case is run and is not changed after the main repair run begins.
 
 Each repair request contains:
 
-1. the original Text2KGBench task prompt for the case
-2. the current content graph
-3. structured validation feedback
+1. the source sentence for the controlled case
+2. the allowed relation names
+3. the current content graph
+4. structured validation feedback
 
-The current content graph contains only statements that belong to the extracted or controlled content representation.
+The benchmark demonstration example is not included in repair requests. This rule is applied to all controlled cases. One selected Movie case uses the same sentence as the fixed Movie demonstration, so removing the demonstration avoids giving that case extra answer information.
 
-The repair model does not receive auxiliary RDF type assertions, OWL restrictions, SHACL shapes, or other symbolic scaffolding that was added only for validation.
+The repair model does not receive the clean reference graph, expected repair, human adjudication, auxiliary RDF type assertions, OWL restrictions, SHACL shapes, or other symbolic scaffolding used only for validation.
 
-The original Text2KGBench ontology description remains part of the task prompt. As a result, the repair model is given the same extraction vocabulary used in the baseline task.
+### Allowed relations
+
+For Movie and Music cases, the allowed relation set contains the relations from the pinned Text2KGBench ontology for that domain.
+
+For temporal controlled cases, the relation set also contains the controlled temporal relation names already present in the case. These relations belong to the controlled content representation even though they are not part of the pinned Text2KGBench relation set.
+
+A repair output that uses another relation is recorded as an output failure. The evaluation code does not silently replace or rename relations.
 
 ## Repair output
 
@@ -63,6 +74,16 @@ The supplementary SHACL condition with pySHACL OWL RL inference is not used to g
 
 The grounding assessor and its prompt remain frozen.
 
+### Validation graph reconstruction
+
+For every repaired graph, the validation code rebuilds the same validation context used for the controlled experiment. It restores the frozen background type assertions from the clean controlled case, the case SHACL shapes, the case OWL context, the pinned source ontology, and the controlled enrichment. Only the repaired content statements are replaced.
+
+Background types are not recomputed from repaired statements. This preserves the fixed validation setup and prevents a new repair statement from receiving a derived type merely because it was added by the repair model.
+
+For cardinality cases, the same controlled OWL restriction used in the original case is restored in the symbolic graph. For temporal cases, the same HermiT `xsd:date` compatibility handling remains in use.
+
+The grounding assessor receives only the source sentence and repaired content statements. It never receives symbolic scaffolding.
+
 ## Feedback at the initial repair step
 
 The initial graph is the injected controlled graph.
@@ -71,7 +92,7 @@ At the first repair step, feedback is limited to violations associated with the 
 
 This keeps the experiment focused on the deliberate controlled change. Grounding findings that were already present in the clean baseline are recorded but are not sent to the repair model.
 
-A grounding signal produced by the frozen assessor is not revised based on later human review before it is sent to the repair model. As a result, false positive and false negative behavior remains part of the observed correction loop.
+A grounding signal that was produced by the frozen assessor is not corrected using later human review before it is sent to the repair model. False positive and false negative behavior therefore remains part of the observed correction loop.
 
 If the controlled modification receives no actionable feedback from any main validator, no repair request is made at that step.
 
@@ -96,26 +117,46 @@ Each feedback item records:
 - validator
 - violation identity
 - error type when known
-- focus
+- focus when available
 - message
 
-The focus identifies the assertion, entity, or path involved in the reported problem.
+For SHACL, the result path is retained when present.
 
-The feedback must describe the validator result without revealing the clean reference graph or the expected repair.
+The feedback describes the validator result without revealing the clean reference graph or the expected repair. A SHACL message may state the failed constraint, focus, and path. For example, a minimum count result may state that a director value is missing. It must not provide the missing director value from the clean reference graph.
 
-The main repair experiment uses one combined feedback set containing all actionable feedback from the three main validators.
-
-The source validator is retained for every item so that later analysis can separate SHACL, OWL, and grounding feedback.
+The main repair experiment uses one combined feedback set containing all actionable feedback from the three main validators. The source validator is retained for every item. This records which validators contributed feedback, but it does not isolate the causal effect of each validator when several feedback items are shown together.
 
 ## Violation identity
 
-Violation identities must be stable enough to compare consecutive repair rounds.
+### SHACL
 
-SHACL identities are based on the reported constraint and focus.
+Each SHACL result is kept as a separate violation. Its stable identity uses:
 
-Grounding identities are based on the unsupported assertion.
+- `sourceConstraintComponent`
+- `focusNode`
+- `resultPath`, when present
+- `value`, when present
+- `sourceShape`
 
-OWL consistency uses a stable case level inconsistency identity. The graph state is also required for convergence, so a changed graph cannot be treated as converged merely because an OWL inconsistency remains.
+Missing fields are represented explicitly as missing values. Including the path, value, and shape prevents different violations on the same focus node from collapsing into one identity.
+
+### Grounding
+
+A grounding identity is based on the unsupported content assertion.
+
+### OWL consistency
+
+OWL consistency uses one stable inconsistency identity for each controlled case. The graph state is also required for the stalled and oscillation rules, so a changed graph cannot be treated as stalled merely because an OWL inconsistency remains. Because the main condition does not request a reasoner explanation, distinct OWL causes inside one repaired graph are not claimed to be separately localized.
+
+## OWL feedback
+
+HermiT supplies the consistency verdict for the main repair condition. The main condition does not use a reasoner explanation.
+
+When the original controlled disjointness inconsistency is still present, the neutral OWL feedback contains the validator identity, the stable inconsistency identity, the focus entity involved in the controlled inconsistency, and the message `The graph is logically inconsistent.`
+
+It does not state which assertion should be removed or added, which classes are disjoint, or what the expected repair is.
+
+If a later repair produces an OWL inconsistency that cannot be identified as the original controlled inconsistency without an explanation, the feedback contains the inconsistency verdict without a focus entity. More detailed OWL explanations are reserved for the later feedback framing experiment.
 
 ## Repair rounds
 
@@ -153,9 +194,13 @@ The trajectory reaches round 5 without meeting another stop rule.
 
 ## Main outcome measures
 
-### Target resolution
+### End to end target resolution
 
-Whether the controlled primary violation is resolved.
+Whether the controlled primary violation is resolved across all 50 controlled cases. Cases that receive no actionable feedback remain in this denominator.
+
+### Target resolution given feedback
+
+Whether the controlled primary violation is resolved among cases that received at least one actionable feedback item. This is reported separately from end to end target resolution.
 
 ### Reference recovery
 
@@ -175,19 +220,11 @@ Whether the trajectory reaches a state with no actionable violations.
 
 ### Collateral edits
 
-Changes to statements that were not part of the controlled primary modification.
-
-The analysis records:
-
-- clean reference statements removed by the repair
-- new statements not present in the clean reference graph
-- total symmetric difference from the clean reference graph
+Changes to statements that were not part of the controlled primary modification. The analysis records clean reference statements removed by the repair, new statements not present in the clean reference graph, and the total symmetric difference from the clean reference graph.
 
 ### New violations
 
-Violations that were not present in the initial controlled feedback and appear after a repair.
-
-These are recorded by validator.
+Violations that were not present in the initial controlled feedback and appear after a repair. These are recorded by validator.
 
 ### Stalled trajectories
 
@@ -199,7 +236,7 @@ Trajectories that revisit a previous nonadjacent repair state.
 
 ### Output failures
 
-Parsing failures, empty outputs, and relations outside the task vocabulary are recorded separately and are not silently repaired by the evaluation code.
+Parsing failures, empty outputs, and relations outside the allowed relation set are recorded separately and are not silently repaired by the evaluation code.
 
 ## Grounding interpretation
 
@@ -209,13 +246,13 @@ Its feedback is used exactly as produced by the frozen assessor during the repai
 
 Known false positive and false negative behavior from the controlled validation study is retained in later interpretation. Human review is not used to edit the feedback before repair.
 
-Grounding results during repair are reported as assessor behavior unless a separate human review is explicitly stated.
+Grounding results during repair are therefore reported as assessor behavior unless a separate human review is explicitly stated.
 
 ## Controlled cases with no feedback
 
 A controlled error may remain unresolved because no validator reports it.
 
-Such a case is part of the correction loop result. It is not removed from the denominator and is not given oracle feedback.
+Such a case is part of the end to end correction loop result. It is not removed from the denominator and is not given oracle feedback. Conditional repair results among cases that received feedback are reported separately.
 
 ## Analysis unit
 

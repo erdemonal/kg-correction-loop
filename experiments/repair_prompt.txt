@@ -1,0 +1,24 @@
+You are repairing a knowledge graph extracted from one source sentence.
+
+Use only the source sentence, the allowed relations, the current graph, and the validation feedback below.
+
+Do not invent facts that are not supported by the source sentence.
+Do not add explanations.
+Return the complete repaired graph, not only the changed statements.
+Use exactly one statement per line in this format:
+
+relation(subject, object)
+
+Source sentence:
+{source_text}
+
+Allowed relations:
+{allowed_relations}
+
+Current graph:
+{current_graph}
+
+Validation feedback:
+{feedback}
+
+Repaired graph:

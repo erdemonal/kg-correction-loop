@@ -21,7 +21,7 @@ def test_protocol_records_main_limits():
         "did not measure the assessor's accuracy separately for each triple",
         "Movie `narrative_location` cases with Country objects",
         "All five Music `record_label` cases behaved as expected",
-        "does not examine the date assertions or their order",
+        "does not check the date assertions or their order",
         "pySHACL OWL RL inference enabled",
         "This review only explains the observed errors",
         "does not mean that their errors are statistically independent",
@@ -49,9 +49,8 @@ def test_enrichment_spec_uses_plain_final_wording():
         in text
     )
     assert (
-        "The OWL part of the study does not examine the date "
+        "the OWL part of the study does not check the date "
         "assertions or their order."
-   
         in text
     )
 
