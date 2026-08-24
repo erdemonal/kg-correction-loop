@@ -49,8 +49,9 @@ def test_enrichment_spec_uses_plain_final_wording():
         in text
     )
     assert (
-        "The OWL part of the study therefore does not examine the date "
+        "The OWL part of the study does not examine the date "
         "assertions or their order."
+   
         in text
     )
 

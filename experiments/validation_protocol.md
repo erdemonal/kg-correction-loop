@@ -32,7 +32,7 @@ The human pilot labels used for calibration and the reserved evaluation set are 
 
 The grounding assessor returns a decision for each asserted triple. In the controlled RQ1 analysis, the relevant unit is the assertion or assertions changed by the controlled modification.
 
-The pilot did not include a human label for every individual triple. The study therefore did not measure the assessor's accuracy separately for each triple. The controlled results show how the frozen assessor behaved in this study. They should not be read as a general estimate of grounding accuracy.
+The pilot did not include a human label for every individual triple. As a result, the study did not measure the assessor's accuracy separately for each triple. The controlled results show how the frozen assessor behaved in this study. They should not be read as a general estimate of grounding accuracy.
 
 ## Controlled grounding results
 
@@ -90,7 +90,7 @@ The six grounding mismatches were reviewed only after the frozen run. The review
 
 ## Statistical scope
 
-Each domain and error category contains five controlled cases. The study therefore describes the detection patterns in this controlled set. It does not estimate how common these patterns are in a larger population.
+Each domain and error category contains five controlled cases. The study describes the detection patterns observed in this controlled set. It does not estimate how common these patterns are in a larger population.
 
 Significance tests and confidence intervals are not used for groups of only five cases. Any later bootstrap analysis must use a larger and suitable unit of analysis.
 

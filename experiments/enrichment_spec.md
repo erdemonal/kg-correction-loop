@@ -88,13 +88,13 @@ The SHACL shape checks every subject of `record label` and requires it to be an 
 
 The controlled modification uses a subject explicitly typed as `Single (Q134556)`.
 
-`Single` is a subclass of `Musical work`, but it is not disjoint with `Album`. OWL therefore remains consistent and may infer that the subject is also an `Album`.
+`Single` is a subclass of `Musical work`, but it is not disjoint with `Album`. As a result, OWL remains consistent and may infer that the subject is also an `Album`.
 
 Pilot case `ont_2_music_test_230` is a natural example of this pattern, but it is not automatically used as a controlled case.
 
 SHACL is evaluated on the original graph and in a supplementary condition with pySHACL OWL RL inference enabled. The ontology is supplied during validation.
 
-OWL RL inference may add a type implied by an OWL domain or range axiom. A SHACL violation in the original graph may therefore disappear when this inference option is enabled. The two conditions are kept separate.
+OWL RL inference may add a type implied by an OWL domain or range axiom. As a result, a SHACL violation in the original graph may disappear when this inference option is enabled. The two conditions are kept separate.
 
 ## Cardinality
 
@@ -134,7 +134,7 @@ The expected symbolic behavior is the same as in the Movie case. SHACL reports a
 
 The pinned Movie and Music ontologies do not contain properties for the pairs of temporal events needed in this condition.
 
-The controlled study therefore introduces a small set of temporal properties for statements that are explicitly supported by the source text.
+The controlled study introduces a small set of temporal properties for statements that are explicitly supported by the source text.
 
 The temporal constraints compare two dates with SHACL SPARQL. No arbitrary historical cutoff is used.
 
@@ -164,7 +164,7 @@ The modification exchanges the two dates.
 
 For these cases, SHACL SPARQL reports the temporal violation.
 
-The OWL model contains no axiom that orders the two date values. In the current HermiT environment, `xsd:date` assertions are removed only from the copy sent to HermiT because the reasoner does not support that datatype in this setup. The OWL part of the study therefore does not examine the date assertions or their order.
+The OWL model contains no axiom that orders the two date values. In the current HermiT environment, `xsd:date` assertions are removed only from the copy sent to HermiT because the reasoner does not support that datatype in this setup. As a result, the OWL part of the study does not examine the date assertions or their order.
 
 The grounding assessor also reports an error because exchanging the dates makes the temporal statements inconsistent with the source text.
 
@@ -182,7 +182,7 @@ The added object is typed as `Human`, so the range requirement of the property i
 
 The source text does not support that person as a director of the film.
 
-The graph should therefore pass the symbolic checks while the grounding assessor reports the unsupported statement.
+In this case, the graph passes the symbolic checks, but the grounding assessor reports the unsupported statement.
 
 ### Music
 
@@ -192,7 +192,7 @@ The added object is typed as `Human`, so the range requirement of the property i
 
 The source text does not support that person as a composer of the musical work.
 
-The graph should therefore pass the symbolic checks while the grounding assessor reports the unsupported statement.
+In this case, the graph passes the symbolic checks, but the grounding assessor reports the unsupported statement.
 
 ## Functional property conflicts
 
@@ -206,4 +206,4 @@ In particular, `publication date (P577)` has multiple legitimate values in the b
 
 Adding a new functional property only to create this error condition would introduce an artificial modeling assumption that is not supported by the selected ontologies.
 
-The study therefore keeps the error type in the taxonomy but reports it as not instantiated for the Movie and Music domains.
+The study keeps the error type in the taxonomy but reports it as not instantiated for the Movie and Music domains.

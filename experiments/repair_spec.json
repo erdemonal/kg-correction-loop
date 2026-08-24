@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "purpose": "Protocol for the controlled repair experiment.",
+  "repair_model": {
+    "name": "llama3.1:8b-instruct-q4_K_M",
+    "must_match_extraction_digest": true,
+    "options": {
+      "temperature": 0,
+      "seed": 42,
+      "num_ctx": 4096,
+      "num_predict": 2048
+    }
+  },
+  "input": {
+    "original_text2kgbench_prompt": true,
+    "current_content_graph": true,
+    "structured_feedback": true,
+    "include_auxiliary_rdf_types": false,
+    "include_owl_restrictions": false,
+    "include_shacl_shapes": false
+  },
+  "output": {
+    "format": "relation(subject, object)",
+    "complete_graph_required": true,
+    "explanation_allowed": false,
+    "duplicate_handling": "order preserving exact duplicate removal",
+    "invalid_relation_policy": "record as output error; do not silently correct"
+  },
+  "main_validators": [
+    "raw_shacl",
+    "owl_consistency",
+    "grounding_v3"
+  ],
+  "supplementary_not_used_for_feedback": [
+    "shacl_with_pyshacl_owl_rl_inference"
+  ],
+  "feedback": {
+    "initial": "controlled primary modification only",
+    "later": [
+      "remaining controlled violation",
+      "new symbolic violations introduced by repair",
+      "new grounding violations not present in clean baseline"
+    ],
+    "exclude_clean_baseline_grounding_noise": true,
+    "use_frozen_grounding_output_without_human_correction": true,
+    "combined_feedback": true,
+    "fields": [
+      "validator",
+      "violation_id",
+      "error_type",
+      "focus",
+      "message"
+    ]
+  },
+  "rounds": {
+    "initial_injected_graph": 0,
+    "max_repair_rounds": 5
+  },
+  "stop_rules": {
+    "validated": "no actionable violations remain",
+    "stalled": "content triple set and actionable violation identity set are unchanged across two consecutive repair rounds",
+    "oscillation": "content graph state and actionable violation set repeat a previous nonadjacent repair round",
+    "max_rounds": 5
+  },
+  "outcomes": [
+    "target_resolution",
+    "reference_recovery",
+    "rounds_to_resolution",
+    "validated_state",
+    "collateral_edits",
+    "new_violations",
+    "stalled",
+    "oscillation",
+    "output_failures"
+  ],
+  "reference_recovery": {
+    "definition": "final content triple set equals clean reference content triple set",
+    "claim_boundary": "controlled reference recovery, not complete recovery of all source facts"
+  },
+  "analysis_unit": "controlled case",
+  "rq3_separate": true
+}

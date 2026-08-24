@@ -12,4 +12,4 @@ These patterns are retained as pilot observations rather than added to the contr
 
 Two types of conversion issue were observed. In two cases, commas inside entity surface forms made the relation argument syntax ambiguous. In three cases, the model repeated ontology relation signatures in explanatory text and the generic parser interpreted those signatures as extracted triples. The latter cases reflect an interaction between model output format and parsing rather than a parser error alone.
 
-The controlled error taxonomy therefore remains unchanged after the pilot. The uncovered cases and conversion issues remain recorded in the pilot annotations and should be considered when preparing clean graphs for controlled injection.
+The controlled error taxonomy remains unchanged after the pilot. The uncovered cases and conversion issues remain recorded in the pilot annotations and should be considered when preparing clean graphs for controlled injection.

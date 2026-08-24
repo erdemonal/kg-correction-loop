@@ -157,9 +157,10 @@ def patch_enrichment_wording():
             "condition with pySHACL OWL RL inference enabled. The ontology is "
             "supplied during validation.\n\n"
             "OWL RL inference may add a type implied by an OWL domain or range "
-            "axiom. A SHACL violation in the original graph may therefore "
+            "axiom. As a result, a SHACL violation in the original graph may "
             "disappear when this inference option is enabled. The two "
             "conditions are kept separate."
+       
         ),
         "OWL RL",
     )
@@ -225,7 +226,7 @@ def patch_enrichment_wording():
                 "The intended OWL comparison contains no axiom that orders the two "
                 "date values. In the current HermiT environment, xsd:date assertions "
                 "are removed only from the HermiT compatibility view because of "
-                "reasoner datatype support. The OWL arm therefore does not evaluate "
+                "reasoner datatype support. As a result, the OWL arm does not evaluate "
                 "the temporal date assertions or their ordering."
             ),
         ],
@@ -234,7 +235,8 @@ def patch_enrichment_wording():
             "In the current HermiT environment, `xsd:date` assertions are removed "
             "only from the copy sent to HermiT because the reasoner does not "
             "support that datatype in this setup. The OWL part of the study "
-            "therefore does not examine the date assertions or their order."
+            "does not examine the date assertions or their order."
+       
         ),
         "temporal OWL",
     )
