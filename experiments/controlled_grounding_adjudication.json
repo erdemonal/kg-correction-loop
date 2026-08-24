@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "purpose": "Human review of six cases. In each case the frozen v3 judge and the expected support status of the primary change disagreed.",
+  "purpose": "Human review of six cases. In each case the v3 judge's verdict on the primary change did not match the expected support status.",
   "policy": {
     "judge_or_prompt_changed": false,
     "controlled_cases_changed": false,

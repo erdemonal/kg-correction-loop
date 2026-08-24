@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "purpose": "Protocol for the controlled repair experiment.",
   "repair_model": {
     "name": "llama3.1:8b-instruct-q4_K_M",
@@ -126,7 +126,10 @@
   "grounding_cache": {
     "seed_from_frozen_clean_and_injected_results": true,
     "judge_only_assertions_not_already_cached": true,
-    "exclude_frozen_clean_unsupported_from_feedback": true
+    "exclude_frozen_clean_unsupported_from_feedback": true,
+    "shared_assertion_precedence": "injected_state",
+    "clean_background_exclusion_source": "clean_state",
+    "rerun_to_resolve_frozen_disagreement": false
   },
   "runner": {
     "path": "src/run_controlled_repair.py",

@@ -278,6 +278,8 @@ The frozen clean and injected grounding judgments seed a cache for each controll
 
 This keeps the initial controlled grounding result unchanged and avoids repeated judgments for an identical source sentence and assertion inside one trajectory.
 
+The clean and injected graphs were assessed in separate grounding calls. The same unchanged assertion can receive two stored verdicts. When that happens, the injected verdict is used in the trajectory cache because round 0 is the injected graph. The clean verdict is still used to identify baseline grounding findings that must remain excluded from actionable feedback. Assertions that appear only in the clean graph keep that stored verdict if a repair brings them back. The grounding assessor is not called again to choose between the two stored verdicts.
+
 A malformed, empty, out of vocabulary, or truncated repair output is recorded as an output failure. The model is not asked to regenerate a different answer after an output failure. Transport failures are treated as execution failures and abort the run rather than being counted as repair failures.
 
 If round 0 has no actionable feedback, the trajectory stops with `no_feedback`. No repair request is made, and the case remains in the end to end denominator.

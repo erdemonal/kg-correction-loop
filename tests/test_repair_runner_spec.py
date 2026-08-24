@@ -13,7 +13,7 @@ def test_repair_spec_records_runner_semantics():
         )
     )
 
-    assert payload["version"] == 3
+    assert payload["version"] == 4
     assert payload["output"]["invalid_output_retry"] is False
     assert payload["feedback"]["fields"] == [
         "validator",
@@ -27,6 +27,9 @@ def test_repair_spec_records_runner_semantics():
         "seed_from_frozen_clean_and_injected_results"
     ] is True
     assert payload["runner"]["preflight_only_mode"] is True
+    assert payload["grounding_cache"]["shared_assertion_precedence"] == "injected_state"
+    assert payload["grounding_cache"]["clean_background_exclusion_source"] == "clean_state"
+    assert payload["grounding_cache"]["rerun_to_resolve_frozen_disagreement"] is False
 
 
 def test_protocol_records_output_failure_and_no_feedback():

@@ -574,7 +574,13 @@ def load_frozen_grounding():
     return results, analysis_rows
 
 
-def add_judgment(cache, judgment, source):
+def add_judgment(
+    cache,
+    judgment,
+    source,
+    *,
+    replace_existing=False,
+):
     triple = judgment.get("triple")
     verdict = judgment.get("verdict")
 
@@ -597,41 +603,62 @@ def add_judgment(cache, judgment, source):
 
     previous = cache.get(key)
 
-    if (
-        previous is not None
-        and previous["verdict"] != verdict
-    ):
-        raise RuntimeError(
-            "Frozen grounding results disagree for the same "
-            f"assertion: {list(key)}"
-        )
-
     if previous is None:
         cache[key] = value
+        return
+
+    if not replace_existing:
+        return
+
+    if previous["verdict"] != verdict:
+        value["frozen_state_disagreement"] = {
+            "previous_source": previous["source"],
+            "previous_verdict": previous["verdict"],
+            "selected_source": source,
+            "selected_verdict": verdict,
+            "resolution": "injected_state_precedence",
+        }
+
+    cache[key] = value
 
 
 def grounding_cache_for_case(frozen_row):
     cache = {}
 
-    for state_name in ("clean", "injected"):
-        state = frozen_row.get(state_name, {})
-        judgments = state.get("judgments")
+    clean = frozen_row.get("clean", {})
+    injected = frozen_row.get("injected", {})
 
-        if not isinstance(judgments, list):
-            raise RuntimeError(
-                f"Frozen {state_name} result has no judgments"
-            )
+    clean_judgments = clean.get("judgments")
+    injected_judgments = injected.get("judgments")
 
-        for judgment in judgments:
-            add_judgment(
-                cache,
-                judgment,
-                f"frozen_{state_name}",
-            )
+    if not isinstance(clean_judgments, list):
+        raise RuntimeError(
+            "Frozen clean result has no judgments"
+        )
+
+    if not isinstance(injected_judgments, list):
+        raise RuntimeError(
+            "Frozen injected result has no judgments"
+        )
+
+    for judgment in clean_judgments:
+        add_judgment(
+            cache,
+            judgment,
+            "frozen_clean",
+        )
+
+    for judgment in injected_judgments:
+        add_judgment(
+            cache,
+            judgment,
+            "frozen_injected",
+            replace_existing=True,
+        )
 
     clean_unsupported = {
         tuple(row["triple"])
-        for row in frozen_row["clean"]["judgments"]
+        for row in clean_judgments
         if row["verdict"] == "UNSUPPORTED"
     }
 

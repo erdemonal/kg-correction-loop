@@ -1,6 +1,7 @@
 import json
 
 from src.run_controlled_repair import (
+    grounding_cache_for_case,
     grounding_identity,
     parse_repair_response,
     render_repair_prompt,
@@ -120,3 +121,106 @@ def test_strict_repair_parser_rejects_trailing_prose():
 
     assert result["ok"] is False
     assert result["failure"] == "unparseable_output"
+
+
+
+def frozen_judgment(triple, verdict, reason):
+    return {
+        "triple": list(triple),
+        "verdict": verdict,
+        "reason": reason,
+    }
+
+
+def test_grounding_cache_uses_injected_state_for_shared_assertion():
+    triple = ("Film", "cast_member", "Actor")
+    frozen = {
+        "clean": {
+            "judgments": [
+                frozen_judgment(
+                    triple,
+                    "UNSUPPORTED",
+                    "clean reason",
+                )
+            ]
+        },
+        "injected": {
+            "judgments": [
+                frozen_judgment(
+                    triple,
+                    "SUPPORTED",
+                    "injected reason",
+                )
+            ]
+        },
+    }
+
+    cache, clean_unsupported = grounding_cache_for_case(
+        frozen
+    )
+
+    assert cache[triple]["verdict"] == "SUPPORTED"
+    assert cache[triple]["reason"] == "injected reason"
+    assert cache[triple]["source"] == "frozen_injected"
+    assert cache[triple]["frozen_state_disagreement"] == {
+        "previous_source": "frozen_clean",
+        "previous_verdict": "UNSUPPORTED",
+        "selected_source": "frozen_injected",
+        "selected_verdict": "SUPPORTED",
+        "resolution": "injected_state_precedence",
+    }
+    assert triple in clean_unsupported
+
+
+def test_grounding_cache_keeps_injected_record_when_verdict_matches():
+    triple = ("Film", "director", "Person")
+    frozen = {
+        "clean": {
+            "judgments": [
+                frozen_judgment(
+                    triple,
+                    "SUPPORTED",
+                    "clean reason",
+                )
+            ]
+        },
+        "injected": {
+            "judgments": [
+                frozen_judgment(
+                    triple,
+                    "SUPPORTED",
+                    "injected reason",
+                )
+            ]
+        },
+    }
+
+    cache, _ = grounding_cache_for_case(frozen)
+
+    assert cache[triple]["verdict"] == "SUPPORTED"
+    assert cache[triple]["reason"] == "injected reason"
+    assert cache[triple]["source"] == "frozen_injected"
+    assert "frozen_state_disagreement" not in cache[triple]
+
+
+def test_grounding_cache_keeps_clean_only_assertion():
+    triple = ("Film", "director", "Person")
+    frozen = {
+        "clean": {
+            "judgments": [
+                frozen_judgment(
+                    triple,
+                    "SUPPORTED",
+                    "clean reason",
+                )
+            ]
+        },
+        "injected": {
+            "judgments": []
+        },
+    }
+
+    cache, _ = grounding_cache_for_case(frozen)
+
+    assert cache[triple]["verdict"] == "SUPPORTED"
+    assert cache[triple]["source"] == "frozen_clean"
