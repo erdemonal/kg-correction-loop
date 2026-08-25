@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "purpose": "Create publication ready descriptive tables, paired case figures, and cautious US academic English notes from the locked RQ3 analysis.",
+  "input": "results/owl_feedback_framing_analysis.json",
+  "output_directory": "results/owl_feedback_report",
+  "condition_order": ["verdict", "location", "explanation"],
+  "tables": ["condition_summary.csv", "condition_summary.tex", "paired_comparisons.csv", "paired_comparisons.tex", "domain_summary.csv"],
+  "figures": ["framing_outcomes", "framing_side_effects", "framing_paired_targets"],
+  "figure_formats": ["png", "pdf"],
+  "notes": "rq3_results_notes.md",
+  "manifest": "owl_feedback_reporting_manifest.json",
+  "preserve_paired_case_identity": true,
+  "graph_dependent_denominator": "usable repair outputs only",
+  "execution": {
+    "runs_repair_model": false,
+    "runs_grounding_assessor": false,
+    "runs_validator": false,
+    "modifies_locked_results": false
+  }
+}

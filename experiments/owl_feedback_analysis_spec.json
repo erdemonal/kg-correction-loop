@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "purpose": "Summarize the completed OWL feedback framing run without rerunning a model or validator.",
+  "design": {
+    "analysis_unit": "controlled case",
+    "paired_by_case": true,
+    "case_count": 10,
+    "conditions": ["verdict", "location", "explanation"],
+    "observations_per_condition": 10,
+    "case_condition_observations": 30,
+    "domains": {"movie": 5, "music": 5},
+    "repair_steps_per_condition": 1
+  },
+  "locked_run": {
+    "git_head": "0d9b4d11a840215dcab46edd7d28a710ff675105",
+    "rq2_locked_commit": "ef6f2874ca3dd5d551bd30649d64cc61c2f46705",
+    "result_sha256": "53c82fefbcf1adb67f02a95bdd9b129c9d9a005cd7257dffa0f904a02fb468a8",
+    "metadata_sha256": "3d3318d0732f7bc636caece8f8a27f1906b038a2e9a1ce840dafa2c34b7aa168",
+    "repair_generations": 30,
+    "invalid_output_retry": false,
+    "post_repair_measurement_visible_to_model": false
+  },
+  "denominators": {
+    "controlled_target_removed": "all paired controlled cases",
+    "reference_recovery": "all paired controlled cases",
+    "output_failure": "all paired controlled cases",
+    "owl_consistent": "usable repair outputs only",
+    "collateral_edit": "usable repair outputs only",
+    "new_raw_shacl_findings": "usable repair outputs only",
+    "new_grounding_findings": "usable repair outputs only",
+    "edit_distances": "usable repair outputs only"
+  },
+  "paired_comparisons": [
+    ["explanation", "verdict"],
+    ["explanation", "location"],
+    ["location", "verdict"]
+  ],
+  "claim_boundaries": [
+    "The 30 rows are paired observations of a case and a condition, not 30 independent cases.",
+    "A model output failure is not a valid inconsistent graph.",
+    "Removal of the controlled target and OWL consistency are different outcomes.",
+    "Exact recovery concerns the clean controlled reference graph, not all source facts.",
+    "Grounding findings describe the locked assessor, not human review of each assertion.",
+    "The explanation is derived from controlled construction, not a newly generated reasoner explanation.",
+    "Results are descriptive paired comparisons over ten controlled cases. No population claim or claim of statistical dominance is made."
+  ],
+  "execution": {
+    "runs_repair_model": false,
+    "runs_grounding_assessor": false,
+    "runs_validator": false,
+    "modifies_locked_results": false
+  }
+}
