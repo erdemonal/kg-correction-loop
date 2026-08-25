@@ -1,0 +1,39 @@
+{
+  "version": 2,
+  "purpose": "Summarize clean reference F1 and recorded model cost from the completed 50 case RQ2 repair run.",
+  "analysis_unit": "controlled case",
+  "models_or_validators_run_by_analysis": false,
+  "does_not_modify_existing_rq1_rq2_rq3_results": true,
+  "reference_f1_interpretation": "Clean reference F1 compares the current graph to the controlled clean graph as sets. It is not human source faithfulness and not Text2KGBench benchmark F1.",
+  "paired_change": "For each controlled case, F1 at the last validated graph minus F1 at round 0. Report the mean, the median, and how many cases improved, stayed the same, or worsened. The mean uses a case bootstrap with 10000 resamples and seed 42. The overall interval resamples within each error condition. The condition and domain intervals resample within that group.",
+  "transition_change": "For every pair of consecutive validated graphs in a case, F1 of the later graph minus F1 of the earlier graph. A round with an output failure has no graph and is skipped. The repair transition number is the later round index.",
+  "survivor_round_summaries": "Round means include only the cases that still had a validated graph at that round. They do not track the same 50 cases at every round.",
+  "survivor_round_warning": "A lower mean F1 at later rounds does not mean that extra rounds made the graphs worse. The later means include only the cases that were still running.",
+  "available_from_trajectories": [
+    "triples for every validated graph, by round",
+    "clean_reference_removed and new_not_in_clean_reference",
+    "collateral_removed and collateral_added",
+    "target_resolved and reference_recovery",
+    "repair prompt_eval_count, eval_count, and total_duration_ns for every repair generation including output failures",
+    "grounding prompt_eval_count, eval_count, and total_duration_ns on source=repair_round judgments",
+    "end to end stop_reason, validated_state, and output_failure type"
+  ],
+  "unavailable": [
+    "end to end wall clock runtime",
+    "reasoner runtime",
+    "SHACL validator runtime",
+    "monetary cost",
+    "human source faithfulness scores",
+    "Text2KGBench benchmark F1",
+    "token counts for cached frozen_clean and frozen_injected grounding judgments"
+  ],
+  "grounding_cost_rule": "Count a grounding assessor generation once per case for each triple whose stored judgment has source repair_round and recorded token fields. Later listings of the same cached judgment are not additional calls.",
+  "time_rule": "Recorded model time is Ollama total_duration_ns. Repair model time and live grounding assessor time are summed separately. Their sum is recorded model time, not wall clock runtime.",
+  "output_failure_rule": "A round with an output failure has no validated graph. Precision, recall, and F1 are omitted for that round. Repair generation tokens and duration remain if present. End to end target resolution follows the runner. Last validated state is reported separately.",
+  "aggregation": "Case summaries use one last validated value per controlled case. Rows for each round are descriptive and are not independent experimental cases.",
+  "outputs": {
+    "json": "results/repair_quality_cost.json",
+    "cases_csv": "results/repair_quality_cost_cases.csv",
+    "rounds_csv": "results/repair_quality_cost_rounds.csv"
+  }
+}
