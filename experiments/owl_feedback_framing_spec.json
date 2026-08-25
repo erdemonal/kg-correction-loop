@@ -1,0 +1,155 @@
+{
+  "version": 1,
+  "status": "pre_run_candidate",
+  "purpose": "Paired comparison of OWL inconsistency feedback framing after a single repair step.",
+  "rq2_locked_commit": "ef6f2874ca3dd5d551bd30649d64cc61c2f46705",
+  "pre_run_audit": {
+    "required": true,
+    "scope": "Verify that condition prompts differ only in OWL feedback information and do not leak the repair answer."
+  },
+  "cases": {
+    "selection_path": "experiments/controlled_selection.json",
+    "selection_sha256": "25be4d458dd82b48454cea415423783ec243c317a4251db9814cb28a3357fb27",
+    "error_type": "disjointness",
+    "count": 10,
+    "movie_count": 5,
+    "music_count": 5
+  },
+  "design": {
+    "analysis_unit": "controlled case",
+    "paired_by_case": true,
+    "conditions_per_case": 3,
+    "repair_steps_per_condition": 1,
+    "repair_generations": 30,
+    "condition_order": [
+      "verdict",
+      "location",
+      "explanation"
+    ],
+    "execution_order": "rotate condition_order by case index modulo three",
+    "condition_outputs_are_independent": true,
+    "start_each_condition_from_injected_graph": true
+  },
+  "repair_model": {
+    "name": "llama3.1:8b-instruct-q4_K_M",
+    "must_match_extraction_digest": true,
+    "options": {
+      "temperature": 0,
+      "seed": 42,
+      "num_ctx": 4096,
+      "num_predict": 2048
+    }
+  },
+  "prompt": {
+    "path": "experiments/repair_prompt.txt",
+    "sha256": "ac091682d5617765ca963a1541da8ee9ed459f3f78ea417bac4270e1297d36e8",
+    "reused_without_modification": true,
+    "condition_label_included": false,
+    "clean_reference_included": false,
+    "symbolic_scaffolding_included": false
+  },
+  "feedback": {
+    "model_receives_only_owl_feedback": true,
+    "shacl_feedback_included": false,
+    "grounding_feedback_included": false,
+    "fixed_fields": [
+      "validator",
+      "violation_id",
+      "error_type",
+      "focus",
+      "path",
+      "message"
+    ],
+    "validator": "owl_consistency",
+    "error_type": null,
+    "path": null,
+    "verdict": {
+      "focus": null,
+      "message": "The graph is logically inconsistent."
+    },
+    "location": {
+      "focus": "controlled focus entity",
+      "message": "The graph is logically inconsistent."
+    },
+    "explanation": {
+      "focus": "controlled focus entity",
+      "message_by_domain": {
+        "movie": "The graph is logically inconsistent. The focus entity is classified as both a person and a production company, and these classes are disjoint.",
+        "music": "The graph is logically inconsistent. The focus entity is classified as both a person and a musical work, and these classes are disjoint."
+      },
+      "source": "controlled construction, not a newly requested reasoner explanation",
+      "expected_repair_included": false,
+      "repair_instruction_included": false
+    }
+  },
+  "output": {
+    "format": "relation(subject, object)",
+    "complete_graph_required": true,
+    "explanation_allowed": false,
+    "invalid_output_retry": false,
+    "truncated_output_policy": "record as output failure",
+    "other_relation_policy": "record as output failure"
+  },
+  "post_repair_measurement": {
+    "visible_to_repair_model": false,
+    "validators": [
+      "raw_shacl",
+      "owl_consistency",
+      "grounding_v3"
+    ],
+    "reuse_rq2_validation_reconstruction": true,
+    "grounding_cache_scope": "one cache per case, shared across conditions only for measurement after repair",
+    "ground_novel_assertions_after_all_three_repairs": true,
+    "novel_assertion_order": "sorted",
+    "judge_each_unique_novel_assertion_once_per_case": true,
+    "grounding_calls_are_not_repair_generations": true
+  },
+  "outcomes": [
+    "controlled_target_removed",
+    "owl_consistent",
+    "reference_recovery",
+    "collateral_edit",
+    "new_raw_shacl_findings",
+    "new_grounding_findings",
+    "owl_inconsistent_after_target_removal",
+    "output_failure",
+    "edit_distance_from_injected",
+    "edit_distance_from_clean_reference"
+  ],
+  "claim_boundaries": {
+    "reference_recovery": "exact clean controlled reference recovery, not complete recovery of all source facts",
+    "owl_new_finding": "do not claim a new localized OWL violation from a global consistency verdict",
+    "statistics": "descriptive paired comparison on 10 controlled cases. No population or dominance claim"
+  },
+  "locked_dependencies": {
+    "experiments/repair_protocol.md": "d623f53b07706ee8748b023d79df80e07346dd6082e43b854c95f14fc91e22ad",
+    "experiments/repair_spec.json": "1c80e2995f1fca1fc7177b960463c9fef46f7b9eda704ab6f963e82706d490dc",
+    "src/run_controlled_repair.py": "3ee48b59e5783bd5ba75ddf54f334c15334e8451f4ffec52a08deed8329ac3db",
+    "src/repair_engine.py": "ab02a395acfc7ab5faf82aa93059c6c67d63bfb9a4268ec8286c05805d1894bf",
+    "src/repair_validation.py": "4a2b10cb596f6ab902b467ffe4874f2ca09c129425cd2d3a8dc8726d2fb64ea5",
+    "src/controlled_cases.py": "440b3576e19c72adc90d3db73666b9eb55ff87b02b6d95405e4d93ed00db0e68",
+    "src/build_controlled_dataset.py": "32bb5ec9d58c3a2ca1736a6c8797bfe0c9a78e80e3859038011f0d02d12f420c",
+    "src/validate_controlled_symbolic.py": "6b21a94b0bc63e11cc41fc161cea5654e4cbfa4248a57ef00b7cbd9431007ce4",
+    "src/extract_text2kg.py": "41bd3ac5ebf9d97c3d9ed9e2919ec1c32718a18865658e0d061095b37f305c96",
+    "src/grounding_judge.py": "149380887ba9fb673cc102337a75827cf25444a370505b6949db22c12f6e4d7d",
+    "experiments/text2kgbench_llama31_baseline.json": "3e1b31bec6c50e87dd39b14df6f9d369650948ab5cf4f4c6e62f7fdab502f76e",
+    "experiments/grounding_judge_spec.json": "ab279e94e5221ce532113fb302bf068a80f1178b2858c142d4528fc2aa6182b8",
+    "experiments/grounding_judge_prompt_v3.txt": "7fa341845f64e6c2b7079026bc4567e33f0ef3910c7e02f3efc654559223e73b",
+    "experiments/environment.json": "f29c235e25d151b72d20746755d5f5a4f4f3bd4932e9b2fb3752011e2f916dce",
+    "validation/ontologies/movie_enrichment.ttl": "580862650bd8619fb6c809920dee426a3835a6d1e6e956f902318bd3b65ff4dd",
+    "validation/ontologies/music_enrichment.ttl": "6132305d51dc0348d1f74471bfa0edf4c0834f28f6489441dbc8525993e20970",
+    "validation/shapes/movie_controlled.ttl": "19b301173efba8c6b586fc356ebec374fb709f374837399bc0baaafd854bc27e",
+    "validation/shapes/music_controlled.ttl": "de46061cd584b1068d4aaf21c4ad0e956717299d0d3bf5fe2831a59cf8a64a36"
+  },
+  "runner": {
+    "path": "src/run_owl_feedback_framing.py",
+    "result_path": "results/owl_feedback_framing.jsonl",
+    "metadata_suffix": ".meta.json",
+    "custom_result_path_allowed": false,
+    "preflight_only_mode": true,
+    "overwrite_existing_output": false,
+    "store_rendered_prompt": true,
+    "store_raw_model_response": true,
+    "transport_failure_policy": "abort the run and do not score it as a model failure"
+  }
+}
