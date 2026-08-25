@@ -7,6 +7,7 @@ from src.analyze_repair_quality_cost import (
     BOOTSTRAP_SEED,
     SURVIVOR_ROUND_LABEL,
     SURVIVOR_ROUND_WARNING,
+    CONVENTION_SUMMARY_NOTE,
     scores_from_reference,
     analyze_records,
     analyze_trajectory,
@@ -70,6 +71,8 @@ def test_spec_does_not_claim_wall_clock_or_human_faithfulness():
     assert "Text2KGBench benchmark F1" in spec["unavailable"]
     assert spec["survivor_round_summaries"] == SURVIVOR_ROUND_LABEL
     assert spec["survivor_round_warning"] == SURVIVOR_ROUND_WARNING
+    assert spec["all_case_convention_based_summary"] == CONVENTION_SUMMARY_NOTE
+    assert "not a population confidence interval" in spec["bootstrap_interpretation"]
 
 
 def test_prf_matches_the_clean_reference():
@@ -179,6 +182,51 @@ def sample_case(stop="validated", output_failure=None, extra_round=None):
     }
 
 
+def empty_reference_case(*, last_triples=None, case_id="empty-1"):
+    last_triples = [["B", "q", "1"]] if last_triples is None else last_triples
+    feedback = [
+        {
+            "validator": "raw_shacl",
+            "violation_id": "v1",
+            "error_type": "domain_range_violation",
+            "focus": "B",
+            "path": "q",
+            "message": "range",
+        }
+    ]
+    return {
+        "id": case_id,
+        "domain": "movie",
+        "condition": "domain_range",
+        "received_initial_feedback": True,
+        "initial_feedback_sources": ["raw_shacl"],
+        "rounds": [
+            {
+                "round": 0,
+                "triples": [["B", "q", "1"]],
+                "validation": validation(extra=[["B", "q", "1"]], feedback=feedback),
+                "new_violation_ids": [],
+            },
+            {
+                "round": 1,
+                "repair": repair(),
+                "triples": last_triples,
+                "validation": validation(extra=last_triples, target=True),
+                "new_violation_ids": [],
+            },
+        ],
+        "final": {
+            "stop_reason": "validated",
+            "repair_rounds": 1,
+            "target_resolved": True,
+            "validated_state": True,
+            "reference_recovery": last_triples == [],
+            "rounds_to_resolution": 1,
+            "output_failure": None,
+        },
+    }
+
+
 def test_output_failure_keeps_repair_cost_and_omits_graph_scores():
     failure_round = {
         "round": 2,
@@ -203,6 +251,7 @@ def test_output_failure_keeps_repair_cost_and_omits_graph_scores():
     assert last["parse_failure"] == "unparseable_output"
     assert row["end_to_end_target_resolved"] is False
     assert row["last_validated_f1"] == 1.0
+    assert row["last_validated_f1"] != 0
     assert row["repair_calls"] == 2
     assert row["f1_delta"] == 1.0 - row["initial_f1"]
     assert last["f1"] is None
@@ -215,7 +264,10 @@ def test_case_level_summary_does_not_treat_rounds_as_independent_cases():
     payload = analyze_records([sample_case()], {}, spec, verify_inputs=False)
     assert payload["overall"]["n"] == 1
     assert payload["overall"]["aggregation"] == "one last validated value per controlled case"
-    assert payload["overall"]["mean_last_validated_f1"] == 1.0
+    assert payload["primary_f1"]["n"] == 1
+    assert payload["primary_f1"]["primary"] is True
+    assert payload["primary_f1"]["mean_last_validated_f1"] == 1.0
+    assert payload["all_case_convention_based_summary"]["primary"] is False
     assert payload["by_condition"]["cardinality"]["n"] == 1
 
 
@@ -240,7 +292,7 @@ def test_paired_delta_is_last_validated_minus_initial():
     assert row["last_validated_f1"] == 1.0
     assert row["f1_delta"] == 1.0 - (2 / 3)
     payload = analyze_records([sample_case()], {}, load_spec(), verify_inputs=False)
-    paired = payload["paired_f1_change"]["overall"]
+    paired = payload["primary_f1"]
     assert paired["n"] == 1
     assert paired["mean_delta"] == row["f1_delta"]
     assert paired["median_delta"] == row["f1_delta"]
@@ -250,6 +302,7 @@ def test_paired_delta_is_last_validated_minus_initial():
     assert paired["bootstrap_mean_delta"]["estimate"] == row["f1_delta"]
     assert paired["bootstrap_mean_delta"]["samples"] == BOOTSTRAP_SAMPLES
     assert paired["bootstrap_mean_delta"]["seed"] == BOOTSTRAP_SEED
+    assert "not a population confidence interval" in paired["bootstrap_mean_delta"]["interpretation"]
 
 
 def test_bootstrap_mean_is_deterministic_with_seed_42():
@@ -294,26 +347,58 @@ def test_within_case_transitions_skip_failed_rounds_and_count_consecutive_graphs
     assert row["transitions"][1]["repair_transition"] == 2
     assert row["transitions"][1]["change"] == "worsened"
     payload = analyze_records([first], {}, load_spec(), verify_inputs=False)
-    transitions = payload["transitions"]
+    transitions = payload["primary_f1"]["transitions"]
     assert transitions["n"] == 2
     assert transitions["improved"] == 1
     assert transitions["worsened"] == 1
     assert transitions["unchanged"] == 0
     assert transitions["by_repair_transition"][1]["n"] == 1
     assert transitions["by_repair_transition"][2]["n"] == 1
-    assert payload["paired_f1_change"]["overall"]["mean_delta"] == row["f1_delta"]
+    assert payload["primary_f1"]["mean_delta"] == row["f1_delta"]
 
 
 def test_survivor_round_summaries_do_not_track_the_same_cases_at_every_round():
     payload = analyze_records([sample_case()], {}, load_spec(), verify_inputs=False)
-    summaries = payload["survivor_round_summaries"]
+    summaries = payload["primary_f1"]["survivor_round_summaries"]
     assert summaries["label"] == SURVIVOR_ROUND_LABEL
     assert summaries["warning"] == SURVIVOR_ROUND_WARNING
     assert payload["survivor_round_warning"] == SURVIVOR_ROUND_WARNING
     assert "still running" in summaries["warning"]
-    assert "do not track the same 50 cases" in summaries["label"]
+    assert "fixed set of cases" in summaries["label"]
     assert summaries["by_round"][0]["n"] == 1
     assert summaries["by_round"][1]["n"] == 1
+
+
+def test_empty_reference_cases_are_excluded_from_primary_f1_and_use_extra_counts():
+    recovered = empty_reference_case(last_triples=[], case_id="empty-recover")
+    grown = empty_reference_case(
+        last_triples=[["B", "q", "1"], ["C", "q", "2"]],
+        case_id="empty-grown",
+    )
+    payload = analyze_records(
+        [sample_case(), recovered, grown],
+        {},
+        load_spec(),
+        verify_inputs=False,
+    )
+    primary = payload["primary_f1"]
+    empty = payload["empty_reference"]
+    convention = payload["all_case_convention_based_summary"]
+    assert primary["n"] == 1
+    assert primary["primary"] is True
+    assert all(row["initial_reference_size"] > 0 for row in payload["cases"] if not row["empty_reference"])
+    assert {row["id"] for row in empty["cases"]} == {"empty-recover", "empty-grown"}
+    assert empty["n"] == 2
+    assert "mean_last_validated_f1" not in empty
+    assert empty["primary_metric"] == "extra triples, not F1"
+    assert empty["exact_empty_graph_recovery"] == 1
+    assert empty["improved"] == 1
+    assert empty["worsened"] == 1
+    assert empty["unchanged"] == 0
+    assert convention["n"] == 3
+    assert convention["primary"] is False
+    assert "not the primary graph quality estimate" in convention["note"]
+    assert "computational convention" in convention["note"]
 
 
 def test_frozen_trajectories_support_reconstructed_clean_reference_f1():
@@ -342,28 +427,50 @@ def test_frozen_trajectories_support_reconstructed_clean_reference_f1():
     assert all(case["rounds"][-1]["f1"] is None for case in failed)
     assert payload["overall"]["sum_repair_calls"] == 97
     assert payload["overall"]["sum_grounding_assessor_calls"] == 103
-    paired = payload["paired_f1_change"]["overall"]
-    assert paired["improved"] + paired["unchanged"] + paired["worsened"] == 50
-    assert paired["mean_delta"] == sum(case["f1_delta"] for case in payload["cases"]) / 50
-    assert paired["bootstrap_mean_delta"]["samples"] == 10000
-    assert paired["bootstrap_mean_delta"]["seed"] == 42
+    primary = payload["primary_f1"]
+    assert primary["n"] == 40
+    assert primary["primary"] is True
+    assert all(case["initial_reference_size"] > 0 for case in payload["cases"] if not case["empty_reference"])
+    assert sum(case["empty_reference"] for case in payload["cases"]) == 10
+    primary_ids = {case["id"] for case in payload["cases"] if not case["empty_reference"]}
+    empty_ids = {row["id"] for row in payload["empty_reference"]["cases"]}
+    assert len(primary_ids) == 40
+    assert len(empty_ids) == 10
+    assert primary_ids.isdisjoint(empty_ids)
+    assert "domain_range" not in primary["by_condition"]
+    assert primary["improved"] + primary["unchanged"] + primary["worsened"] == 40
+    nonempty = [case for case in payload["cases"] if not case["empty_reference"]]
+    assert primary["mean_delta"] == sum(case["f1_delta"] for case in nonempty) / 40
+    assert primary["bootstrap_mean_delta"]["samples"] == 10000
+    assert primary["bootstrap_mean_delta"]["seed"] == 42
+    assert "not a population confidence interval" in primary["bootstrap_mean_delta"]["interpretation"]
+    convention = payload["all_case_convention_based_summary"]
+    assert convention["n"] == 50
+    assert convention["primary"] is False
+    assert convention["includes_empty_reference_domain_range_cases"] == 10
+    assert convention["note"] == CONVENTION_SUMMARY_NOTE
+    empty = payload["empty_reference"]
+    assert empty["n"] == 10
+    assert "mean_last_validated_f1" not in empty
+    assert empty["primary_metric"] == "extra triples, not F1"
     again = analyze_records(
         rows,
         read_json(Path("results/controlled_repair_trajectories.jsonl.meta.json")),
         spec,
     )
-    assert again["paired_f1_change"] == payload["paired_f1_change"]
+    assert again["primary_f1"]["bootstrap_mean_delta"] == primary["bootstrap_mean_delta"]
     expected_transitions = sum(
         max(0, sum(1 for round_row in case["rounds"] if round_row["has_validated_graph"]) - 1)
-        for case in payload["cases"]
+        for case in nonempty
     )
-    transitions = payload["transitions"]
-    assert transitions["n"] == expected_transitions
+    assert primary["transitions"]["n"] == expected_transitions
     assert (
-        transitions["improved"] + transitions["unchanged"] + transitions["worsened"]
+        primary["transitions"]["improved"]
+        + primary["transitions"]["unchanged"]
+        + primary["transitions"]["worsened"]
         == expected_transitions
     )
-    assert payload["survivor_round_summaries"]["label"] == SURVIVOR_ROUND_LABEL
+    assert primary["survivor_round_summaries"]["label"] == SURVIVOR_ROUND_LABEL
     assert "still running" in payload["survivor_round_warning"]
     diagnostic = payload["domain_range_diagnostic"]
     assert diagnostic["n"] == 10
@@ -380,3 +487,4 @@ def test_frozen_trajectories_support_reconstructed_clean_reference_f1():
         assert reconstructed["f1"] == row["last_validated_f1"]
         assert row["last_validated_f1"] == 0.0
         assert row["last_validated_true_positive"] == 0
+        assert row["initial_reference_size"] == 0

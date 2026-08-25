@@ -32,15 +32,38 @@ OUTPUT_JSON = ROOT / "results" / "repair_quality_cost.json"
 OUTPUT_CASES_CSV = ROOT / "results" / "repair_quality_cost_cases.csv"
 OUTPUT_ROUNDS_CSV = ROOT / "results" / "repair_quality_cost_rounds.csv"
 DOMAINS = ("movie", "music")
+PRIMARY_CONDITIONS = (
+    "disjointness",
+    "cardinality",
+    "temporal",
+    "grounding",
+)
 BOOTSTRAP_SAMPLES = 10000
 BOOTSTRAP_SEED = 42
+BOOTSTRAP_INTERPRETATION = (
+    "This interval describes sensitivity to resampling the controlled cases. "
+    "It is not a population confidence interval."
+)
 SURVIVOR_ROUND_LABEL = (
-    "Round means include only the cases that still had a validated graph at that round. "
-    "They do not track the same 50 cases at every round."
+    "Round means include only the nonempty reference cases that still had a validated graph at that round. "
+    "They do not track a fixed set of cases at every round."
 )
 SURVIVOR_ROUND_WARNING = (
     "A lower mean F1 at later rounds does not mean that extra rounds made the graphs worse. "
     "The later means include only the cases that were still running."
+)
+PRIMARY_F1_NOTE = (
+    "Primary clean reference F1 uses only the cases whose initial clean reference contains at least one triple."
+)
+CONVENTION_SUMMARY_NOTE = (
+    "This summary uses all 50 cases. It includes the 10 empty reference domain_range cases. "
+    "F1 of 0 for a nonempty prediction against an empty reference is only an explicit computational convention. "
+    "It is not the primary graph quality estimate."
+)
+EMPTY_REFERENCE_NOTE = (
+    "These cases have an empty clean reference at the initial graph. "
+    "The quality metric is the number of extra triples, not F1. "
+    "F1 of 0 for a nonempty prediction against an empty reference is only an explicit computational convention."
 )
 
 
@@ -207,6 +230,7 @@ def analyze_round(round_row, previous_triples, seen_grounding):
                 "true_positive": None,
                 "false_positive": None,
                 "false_negative": None,
+                "reference_size": None,
                 "reference_recovery": None,
                 "collateral_removed": None,
                 "collateral_added": None,
@@ -274,6 +298,8 @@ def analyze_trajectory(trajectory):
         "last_validated_false_positive": last_metrics["false_positive"],
         "last_validated_false_negative": last_metrics["false_negative"],
         "last_validated_graph_size": last_metrics["graph_size"],
+        "last_validated_reference_size": last_metrics["reference_size"],
+        "last_validated_extra_triples": last_metrics["new_not_in_clean_reference"],
         "last_validated_collateral_removed": last_metrics["collateral_removed"],
         "last_validated_collateral_added": last_metrics["collateral_added"],
         "last_validated_symmetric_edit_distance": last_metrics["symmetric_edit_distance"],
@@ -284,6 +310,12 @@ def analyze_trajectory(trajectory):
         "initial_false_positive": initial["false_positive"],
         "initial_false_negative": initial["false_negative"],
         "initial_graph_size": initial["graph_size"],
+        "initial_reference_size": initial["reference_size"],
+        "initial_extra_triples": initial["new_not_in_clean_reference"],
+        "empty_reference": initial["reference_size"] == 0,
+        "extra_delta": (
+            last_metrics["new_not_in_clean_reference"] - initial["new_not_in_clean_reference"]
+        ),
         "f1_delta": last_metrics["f1"] - initial["f1"],
         "rounds": rounds,
         "transitions": graph_transitions(rounds),
@@ -358,6 +390,7 @@ def bootstrap_mean(values, *, samples=BOOTSTRAP_SAMPLES, seed=BOOTSTRAP_SEED, gr
             "samples": samples,
             "seed": seed,
             "unit": "controlled case",
+            "interpretation": BOOTSTRAP_INTERPRETATION,
         }
     if groups is None:
         grouped = [list(values)]
@@ -377,6 +410,7 @@ def bootstrap_mean(values, *, samples=BOOTSTRAP_SAMPLES, seed=BOOTSTRAP_SEED, gr
         "samples": samples,
         "seed": seed,
         "unit": "controlled case",
+        "interpretation": BOOTSTRAP_INTERPRETATION,
     }
 
 
@@ -390,12 +424,23 @@ def paired_change_summary(cases, *, stratify_by=None, stratify_order=None):
                 groups.append(selected)
     else:
         groups = None
+    bootstrap = bootstrap_mean(deltas, groups=groups)
     return {
         "n": len(cases),
+        "mean_initial_precision": mean(row["initial_precision"] for row in cases),
+        "mean_initial_recall": mean(row["initial_recall"] for row in cases),
+        "mean_initial_f1": mean(row["initial_f1"] for row in cases),
+        "mean_last_validated_precision": mean(row["last_validated_precision"] for row in cases),
+        "mean_last_validated_recall": mean(row["last_validated_recall"] for row in cases),
+        "mean_last_validated_f1": mean(row["last_validated_f1"] for row in cases),
         "mean_delta": mean(deltas),
         "median_delta": median(deltas),
         **count_changes(deltas),
-        "bootstrap_mean_delta": bootstrap_mean(deltas, groups=groups),
+        "bootstrap_mean_delta": bootstrap,
+        "end_to_end_target_resolved": sum(row["end_to_end_target_resolved"] for row in cases),
+        "last_validated_target_resolved": sum(row["last_validated_target_resolved"] for row in cases),
+        "output_failure": sum(row["output_failure"] is not None for row in cases),
+        "validated_state": sum(row["validated_state"] for row in cases),
     }
 
 
@@ -406,6 +451,44 @@ def grouped_paired(cases, key, expected):
     if set(groups) != set(expected):
         raise RuntimeError(f"Unexpected {key} groups: {sorted(groups)}")
     return {name: paired_change_summary(groups[name]) for name in expected}
+
+
+def nonempty_reference_cases(cases):
+    return [row for row in cases if row["initial_reference_size"] > 0]
+
+
+def empty_reference_cases(cases):
+    return [row for row in cases if row["initial_reference_size"] == 0]
+
+
+def classify_extra_change(delta):
+    if delta < 0:
+        return "improved"
+    if delta > 0:
+        return "worsened"
+    return "unchanged"
+
+
+def count_extra_changes(deltas):
+    improved = unchanged = worsened = 0
+    for delta in deltas:
+        label = classify_extra_change(delta)
+        if label == "improved":
+            improved += 1
+        elif label == "worsened":
+            worsened += 1
+        else:
+            unchanged += 1
+    return {
+        "improved": improved,
+        "unchanged": unchanged,
+        "worsened": worsened,
+    }
+
+
+def present_names(cases, key, expected):
+    found = {row[key] for row in cases}
+    return tuple(name for name in expected if name in found)
 
 
 def summarize_transitions(transitions):
@@ -455,9 +538,9 @@ def domain_range_diagnostic(cases):
     selected = [row for row in cases if row["condition"] == "domain_range"]
     return {
         "purpose": (
-            "Initial and last validated precision, recall, and F1 for each "
-            "domain_range case. Use this list to check a mean last validated F1 "
-            "of 0 against the case scores."
+            "Case table for each domain_range trajectory, including precision, recall, and F1. "
+            "All 10 have an empty initial clean reference. Extra triple counts in the empty "
+            "reference summary are the quality metric for these cases."
         ),
         "n": len(selected),
         "mean_initial_f1": mean(row["initial_f1"] for row in selected),
@@ -466,12 +549,15 @@ def domain_range_diagnostic(cases):
             {
                 "id": row["id"],
                 "domain": row["domain"],
+                "initial_reference_size": row["initial_reference_size"],
+                "initial_extra_triples": row["initial_extra_triples"],
                 "initial_true_positive": row["initial_true_positive"],
                 "initial_false_positive": row["initial_false_positive"],
                 "initial_false_negative": row["initial_false_negative"],
                 "initial_precision": row["initial_precision"],
                 "initial_recall": row["initial_recall"],
                 "initial_f1": row["initial_f1"],
+                "last_validated_extra_triples": row["last_validated_extra_triples"],
                 "last_validated_true_positive": row["last_validated_true_positive"],
                 "last_validated_false_positive": row["last_validated_false_positive"],
                 "last_validated_false_negative": row["last_validated_false_negative"],
@@ -482,6 +568,73 @@ def domain_range_diagnostic(cases):
             }
             for row in selected
         ],
+    }
+
+
+def empty_reference_summary(cases):
+    selected = empty_reference_cases(cases)
+    extras_initial = [row["initial_extra_triples"] for row in selected]
+    extras_last = [row["last_validated_extra_triples"] for row in selected]
+    extra_deltas = [row["extra_delta"] for row in selected]
+    recovered = [row["last_validated_graph_size"] == 0 for row in selected]
+    return {
+        "note": EMPTY_REFERENCE_NOTE,
+        "primary_metric": "extra triples, not F1",
+        "n": len(selected),
+        "exact_empty_graph_recovery": sum(recovered),
+        "exact_empty_graph_recovery_rate": (
+            sum(recovered) / len(selected) if selected else None
+        ),
+        "mean_initial_extra_triples": mean(extras_initial),
+        "mean_last_validated_extra_triples": mean(extras_last),
+        "median_initial_extra_triples": median(extras_initial),
+        "median_last_validated_extra_triples": median(extras_last),
+        "mean_extra_delta": mean(extra_deltas),
+        "median_extra_delta": median(extra_deltas),
+        **count_extra_changes(extra_deltas),
+        "end_to_end_target_resolved": sum(row["end_to_end_target_resolved"] for row in selected),
+        "last_validated_target_resolved": sum(
+            row["last_validated_target_resolved"] for row in selected
+        ),
+        "output_failure": sum(row["output_failure"] is not None for row in selected),
+        "validated_state": sum(row["validated_state"] for row in selected),
+        "cases": [
+            {
+                "id": row["id"],
+                "domain": row["domain"],
+                "condition": row["condition"],
+                "initial_reference_size": row["initial_reference_size"],
+                "initial_extra_triples": row["initial_extra_triples"],
+                "last_validated_extra_triples": row["last_validated_extra_triples"],
+                "extra_delta": row["extra_delta"],
+                "extra_change": classify_extra_change(row["extra_delta"]),
+                "last_validated_graph_size": row["last_validated_graph_size"],
+                "exact_empty_graph_recovery": row["last_validated_graph_size"] == 0,
+                "end_to_end_target_resolved": row["end_to_end_target_resolved"],
+                "last_validated_target_resolved": row["last_validated_target_resolved"],
+                "output_failure": row["output_failure"],
+                "validated_state": row["validated_state"],
+            }
+            for row in selected
+        ],
+    }
+
+
+def f1_cohort_block(cases, *, note, primary, condition_names, domain_names, stratify_overall):
+    overall = paired_change_summary(
+        cases,
+        stratify_by="condition" if stratify_overall else None,
+        stratify_order=condition_names if stratify_overall else None,
+    )
+    transitions = [row for case in cases for row in case["transitions"]]
+    return {
+        "note": note,
+        "primary": primary,
+        **overall,
+        "by_condition": grouped_paired(cases, "condition", condition_names) if cases else {},
+        "by_domain": grouped_paired(cases, "domain", domain_names) if cases else {},
+        "transitions": summarize_transitions(transitions),
+        "survivor_round_summaries": survivor_round_summaries(cases),
     }
 
 
@@ -540,33 +693,67 @@ def analyze_records(trajectories, metadata, spec, verify_inputs=True):
     if verify_inputs and len(indexed) != 50:
         raise RuntimeError("Quality and cost analysis requires the 50 case RQ2 run")
     cases = [analyze_trajectory(indexed[case_id]) for case_id in sorted(indexed)]
-    condition_names = CONDITIONS if verify_inputs else tuple(sorted({row["condition"] for row in cases}))
-    domain_names = DOMAINS if verify_inputs else tuple(sorted({row["domain"] for row in cases}))
-    transitions = [row for case in cases for row in case["transitions"]]
+    primary = nonempty_reference_cases(cases)
+    empty = empty_reference_cases(cases)
+    if verify_inputs:
+        if len(cases) != 50:
+            raise RuntimeError("Quality and cost analysis requires the 50 case RQ2 run")
+        if len(primary) != 40:
+            raise RuntimeError("Primary F1 requires 40 nonempty reference cases")
+        if len(empty) != 10:
+            raise RuntimeError("Empty reference summary requires 10 empty reference cases")
+        if {row["condition"] for row in primary} != set(PRIMARY_CONDITIONS):
+            raise RuntimeError("Primary F1 conditions do not match the four nonempty reference conditions")
+        condition_names = CONDITIONS
+        domain_names = DOMAINS
+        primary_conditions = PRIMARY_CONDITIONS
+        primary_domains = DOMAINS
+    else:
+        condition_names = tuple(sorted({row["condition"] for row in cases}))
+        domain_names = tuple(sorted({row["domain"] for row in cases}))
+        primary_conditions = present_names(primary, "condition", condition_names)
+        primary_domains = present_names(primary, "domain", domain_names)
+    convention_conditions = present_names(cases, "condition", condition_names)
+    convention_domains = present_names(cases, "domain", domain_names)
     return {
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "analysis_unit": "controlled case",
         "reference_f1_interpretation": spec["reference_f1_interpretation"],
         "unavailable": spec["unavailable"],
         "survivor_round_warning": SURVIVOR_ROUND_WARNING,
+        "bootstrap_interpretation": BOOTSTRAP_INTERPRETATION,
         "input": {
             "trajectory_path": "results/controlled_repair_trajectories.jsonl",
             "trajectory_sha256": sha256_file(TRAJECTORIES) if TRAJECTORIES.exists() else None,
         },
         "overall": summarize_cases(cases),
-        "by_condition": grouped_summary(cases, "condition", condition_names),
-        "by_domain": grouped_summary(cases, "domain", domain_names),
-        "paired_f1_change": {
-            "overall": paired_change_summary(
+        "primary_f1": f1_cohort_block(
+            primary,
+            note=PRIMARY_F1_NOTE,
+            primary=True,
+            condition_names=primary_conditions,
+            domain_names=primary_domains,
+            stratify_overall=True,
+        ),
+        "all_case_convention_based_summary": {
+            "includes_empty_reference_domain_range_cases": len(empty),
+            **f1_cohort_block(
                 cases,
-                stratify_by="condition",
-                stratify_order=condition_names,
+                note=CONVENTION_SUMMARY_NOTE if verify_inputs else (
+                    f"This summary uses all {len(cases)} cases. "
+                    f"It includes {len(empty)} empty reference cases. "
+                    "F1 of 0 for a nonempty prediction against an empty reference is only an explicit computational convention. "
+                    "It is not the primary graph quality estimate."
+                ),
+                primary=False,
+                condition_names=convention_conditions,
+                domain_names=convention_domains,
+                stratify_overall=True,
             ),
-            "by_condition": grouped_paired(cases, "condition", condition_names),
-            "by_domain": grouped_paired(cases, "domain", domain_names),
         },
-        "transitions": summarize_transitions(transitions),
-        "survivor_round_summaries": survivor_round_summaries(cases),
+        "empty_reference": empty_reference_summary(cases),
+        "by_condition": grouped_summary(cases, "condition", convention_conditions) if cases else {},
+        "by_domain": grouped_summary(cases, "domain", convention_domains) if cases else {},
         "domain_range_diagnostic": domain_range_diagnostic(cases),
         "cases": cases,
     }
@@ -591,6 +778,8 @@ CASE_FIELDS = [
     "last_validated_false_positive",
     "last_validated_false_negative",
     "last_validated_graph_size",
+    "last_validated_reference_size",
+    "last_validated_extra_triples",
     "last_validated_collateral_removed",
     "last_validated_collateral_added",
     "initial_precision",
@@ -600,6 +789,10 @@ CASE_FIELDS = [
     "initial_false_positive",
     "initial_false_negative",
     "initial_graph_size",
+    "initial_reference_size",
+    "initial_extra_triples",
+    "empty_reference",
+    "extra_delta",
     "f1_delta",
     "repair_calls",
     "repair_prompt_eval_count",
@@ -626,6 +819,7 @@ ROUND_FIELDS = [
     "true_positive",
     "false_positive",
     "false_negative",
+    "reference_size",
     "reference_recovery",
     "collateral_removed",
     "collateral_added",
@@ -676,6 +870,48 @@ def write_outputs(payload, json_path=OUTPUT_JSON, cases_path=OUTPUT_CASES_CSV, r
     return json_path, cases_path, rounds_path
 
 
+def print_f1_block(title, block):
+    bootstrap = block["bootstrap_mean_delta"]
+    print(title)
+    print(block["note"])
+    print(f"  n={block['n']}")
+    print(
+        f"  initial mean P/R/F1={block['mean_initial_precision']}/"
+        f"{block['mean_initial_recall']}/{block['mean_initial_f1']}"
+    )
+    print(
+        f"  last validated mean P/R/F1={block['mean_last_validated_precision']}/"
+        f"{block['mean_last_validated_recall']}/{block['mean_last_validated_f1']}"
+    )
+    print(
+        f"  paired F1 mean delta={block['mean_delta']} median delta={block['median_delta']} "
+        f"improved={block['improved']} unchanged={block['unchanged']} "
+        f"worsened={block['worsened']}"
+    )
+    print(
+        f"  controlled case resampling sensitivity "
+        f"[{bootstrap['lower_95']}, {bootstrap['upper_95']}] "
+        f"samples={bootstrap['samples']} seed={bootstrap['seed']}"
+    )
+    print(f"  {bootstrap['interpretation']}")
+    print(
+        f"  end to end target resolved={block['end_to_end_target_resolved']} "
+        f"last validated target resolved={block['last_validated_target_resolved']} "
+        f"output failure={block['output_failure']} "
+        f"validated state={block['validated_state']}"
+    )
+    for name, row in block["by_condition"].items():
+        print(
+            f"  condition {name}: n={row['n']} mean delta={row['mean_delta']} "
+            f"+{row['improved']} ={row['unchanged']} -{row['worsened']}"
+        )
+    for name, row in block["by_domain"].items():
+        print(
+            f"  domain {name}: n={row['n']} mean delta={row['mean_delta']} "
+            f"+{row['improved']} ={row['unchanged']} -{row['worsened']}"
+        )
+
+
 def run_analysis(
     trajectory_path=TRAJECTORIES,
     metadata_path=RUN_METADATA,
@@ -694,38 +930,48 @@ def run_analysis(
     )
     write_outputs(payload, json_path, cases_path, rounds_path)
     overall = payload["overall"]
-    paired = payload["paired_f1_change"]["overall"]
-    bootstrap = paired["bootstrap_mean_delta"]
-    transitions = payload["transitions"]
+    primary = payload["primary_f1"]
+    convention = payload["all_case_convention_based_summary"]
+    empty = payload["empty_reference"]
     diagnostic = payload["domain_range_diagnostic"]
     print(f"cases: {overall['n']}")
-    print(f"mean last validated F1: {overall['mean_last_validated_f1']}")
-    print("paired F1 change from the initial graph to the last validated graph:")
+    print_f1_block("primary clean reference F1 (nonempty reference cases):", primary)
+    print_f1_block("all case convention based summary (secondary):", convention)
+    print("empty reference diagnostic (extra triples, not F1):")
+    print(empty["note"])
+    print(f"  n={empty['n']}")
     print(
-        f"  mean delta={paired['mean_delta']} median delta={paired['median_delta']} "
-        f"improved={paired['improved']} unchanged={paired['unchanged']} "
-        f"worsened={paired['worsened']}"
+        f"  exact empty graph recovery={empty['exact_empty_graph_recovery']}/"
+        f"{empty['n']} rate={empty['exact_empty_graph_recovery_rate']}"
     )
     print(
-        f"  bootstrap mean delta 95% interval "
-        f"[{bootstrap['lower_95']}, {bootstrap['upper_95']}] "
-        f"samples={bootstrap['samples']} seed={bootstrap['seed']}"
+        f"  extra triples initial mean/median="
+        f"{empty['mean_initial_extra_triples']}/{empty['median_initial_extra_triples']} "
+        f"last validated mean/median="
+        f"{empty['mean_last_validated_extra_triples']}/{empty['median_last_validated_extra_triples']}"
     )
-    print("consecutive validated graphs in the same case:")
     print(
-        f"  n={transitions['n']} mean delta={transitions['mean_delta']} "
-        f"median delta={transitions['median_delta']} "
-        f"improved={transitions['improved']} unchanged={transitions['unchanged']} "
-        f"worsened={transitions['worsened']}"
+        f"  extra delta mean={empty['mean_extra_delta']} median={empty['median_extra_delta']} "
+        f"improved={empty['improved']} unchanged={empty['unchanged']} "
+        f"worsened={empty['worsened']}"
     )
-    for number, row in transitions["by_repair_transition"].items():
+    print(
+        f"  end to end target resolved={empty['end_to_end_target_resolved']} "
+        f"last validated target resolved={empty['last_validated_target_resolved']} "
+        f"output failure={empty['output_failure']} "
+        f"validated state={empty['validated_state']}"
+    )
+    for row in empty["cases"]:
         print(
-            f"  repair transition {number}: n={row['n']} mean={row['mean_delta']} "
-            f"median={row['median_delta']} improved={row['improved']} "
-            f"unchanged={row['unchanged']} worsened={row['worsened']}"
+            f"  {row['id']} {row['domain']} extras {row['initial_extra_triples']} -> "
+            f"{row['last_validated_extra_triples']} ({row['extra_change']}) "
+            f"size={row['last_validated_graph_size']} "
+            f"empty_graph={row['exact_empty_graph_recovery']} "
+            f"e2e_target={row['end_to_end_target_resolved']} "
+            f"output_failure={row['output_failure']}"
         )
-    print(payload["survivor_round_summaries"]["label"])
-    print(payload["survivor_round_summaries"]["warning"])
+    print(primary["survivor_round_summaries"]["label"])
+    print(primary["survivor_round_summaries"]["warning"])
     print("domain_range diagnostic:")
     print(
         f"  n={diagnostic['n']} mean initial F1={diagnostic['mean_initial_f1']} "
@@ -734,6 +980,7 @@ def run_analysis(
     for row in diagnostic["cases"]:
         print(
             f"  {row['id']} {row['domain']} "
+            f"ref_size={row['initial_reference_size']} "
             f"initial P/R/F1={row['initial_precision']:.3f}/"
             f"{row['initial_recall']:.3f}/{row['initial_f1']:.3f} "
             f"(tp={row['initial_true_positive']} fp={row['initial_false_positive']} "
@@ -743,11 +990,14 @@ def run_analysis(
             f"(tp={row['last_validated_true_positive']} "
             f"fp={row['last_validated_false_positive']} "
             f"fn={row['last_validated_false_negative']} "
-            f"size={row['last_validated_graph_size']})"
+            f"size={row['last_validated_graph_size']} "
+            f"extras={row['last_validated_extra_triples']})"
         )
     print(f"repair generations: {overall['sum_repair_calls']}")
     print(f"live grounding assessor calls: {overall['sum_grounding_assessor_calls']}")
     print(f"wrote: {json_path}")
+    print(f"wrote: {cases_path}")
+    print(f"wrote: {rounds_path}")
     return payload
 
 
