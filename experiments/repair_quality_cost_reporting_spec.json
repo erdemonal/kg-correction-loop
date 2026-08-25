@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "purpose": "Make figures and tables from the completed repair quality and cost analysis.",
+  "view": "clean reference F1 and repair side effects",
+  "input": "results/repair_quality_cost.json",
+  "rq2_input": "results/repair_dynamics_analysis.json",
+  "output_directory": "results/repair_quality_cost_report",
+  "primary_f1_cohort": "40 cases with a nonempty clean reference",
+  "empty_reference_cohort": "10 domain_range cases with an empty clean reference",
+  "figure_formats": ["png", "pdf"],
+  "figures": [
+    "paired_f1_change",
+    "condition_f1_change",
+    "empty_reference_extras",
+    "quality_side_effect_tradeoff",
+    "recorded_model_effort"
+  ],
+  "tables": [
+    "quality_cost_summary.csv",
+    "quality_cost_summary.tex",
+    "empty_reference_summary.csv",
+    "empty_reference_summary.tex"
+  ],
+  "notes": "repair_quality_cost_notes.md",
+  "manifest": "repair_quality_cost_reporting_manifest.json",
+  "reporting_rules": [
+    "Use the stored quality cost and RQ2 summaries. Do not rerun a model, validator, grounding assessor, or reasoner.",
+    "The main F1 results use only cases whose initial reference_size is greater than 0. The 10 domain_range cases with an empty clean reference do not appear in the main F1 figures or the main F1 table.",
+    "Clean reference F1 compares the current graph to the controlled clean graph as sets. It is not human source faithfulness. It is not Text2KGBench F1.",
+    "The scatter of F1 change against collateral edits is descriptive. It does not define a Pareto front.",
+    "Round means at later rounds include only the cases still running. They are not a follow up of the same cases at every round.",
+    "Recorded duration is Ollama total_duration_ns converted to seconds. It is not wall clock time. It is not money.",
+    "Bootstrap intervals describe resampling of these controlled cases. They are not population confidence intervals.",
+    "An output failure is a trajectory outcome. A failed round has no graph. F1 is omitted for that round. It is not stored as 0.",
+    "For cases with an empty clean reference, the quality result is the number of extra triples, not F1."
+  ],
+  "execution": {
+    "runs_repair_model": false,
+    "runs_grounding_assessor": false,
+    "runs_validator": false,
+    "modifies_locked_results": false
+  }
+}
