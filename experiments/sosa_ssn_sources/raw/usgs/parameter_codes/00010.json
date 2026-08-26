@@ -1,0 +1,70 @@
+{
+    "type":"Feature",
+    "properties":{
+        "id":"00010",
+        "parameter_name":"Temperature, water",
+        "unit_of_measure":"deg C",
+        "parameter_group_code":"PHY",
+        "parameter_description":"Temperature, water, degrees Celsius",
+        "medium":"Water",
+        "statistical_basis":null,
+        "time_basis":null,
+        "weight_basis":null,
+        "particle_size_basis":null,
+        "sample_fraction":null,
+        "temperature_basis":null,
+        "epa_equivalence":"Agree"
+    },
+    "id":"00010",
+    "geometry":null,
+    "prev":"00009",
+    "next":"00011",
+    "links":[
+        {
+            "type":"application/json",
+            "rel":"root",
+            "title":"The landing page of this server as JSON",
+            "href":"https://api.waterdata.usgs.gov/ogcapi/v0?f=json"
+        },
+        {
+            "type":"text/html",
+            "rel":"root",
+            "title":"The landing page of this server as HTML",
+            "href":"https://api.waterdata.usgs.gov/ogcapi/v0?f=html"
+        },
+        {
+            "rel":"self",
+            "type":"application/geo+json",
+            "title":"This document as JSON",
+            "href":"https://api.waterdata.usgs.gov/ogcapi/v0/collections/parameter-codes/items/00010?f=json"
+        },
+        {
+            "rel":"alternate",
+            "type":"application/ld+json",
+            "title":"This document as RDF (JSON-LD)",
+            "href":"https://api.waterdata.usgs.gov/ogcapi/v0/collections/parameter-codes/items/00010?f=jsonld"
+        },
+        {
+            "rel":"alternate",
+            "type":"text/html",
+            "title":"This document as HTML",
+            "href":"https://api.waterdata.usgs.gov/ogcapi/v0/collections/parameter-codes/items/00010?f=html"
+        },
+        {
+            "rel":"collection",
+            "type":"application/json",
+            "title":"Parameter codes",
+            "href":"https://api.waterdata.usgs.gov/ogcapi/v0/collections/parameter-codes"
+        },
+        {
+            "rel":"prev",
+            "type":"application/json",
+            "href":"https://api.waterdata.usgs.gov/ogcapi/v0/collections/parameter-codes/items/00009?f=json"
+        },
+        {
+            "rel":"next",
+            "type":"application/json",
+            "href":"https://api.waterdata.usgs.gov/ogcapi/v0/collections/parameter-codes/items/00011?f=json"
+        }
+    ]
+}

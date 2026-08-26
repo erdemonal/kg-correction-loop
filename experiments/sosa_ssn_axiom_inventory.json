@@ -6,6 +6,7 @@
   "inventory_date": "2026-08-26",
   "edition": "SOSA/SSN 2023 Edition",
   "document_status": "First Public Working Draft. Pinned draft snapshot. Work in progress",
+  "vendored_core_root": "validation/ontologies/sosa_ssn_2023/core",
   "core_module_sha256": {
     "ssn/rdf/ontology/core/sosa-actuation.ttl": "18c840cba0a4e148048e6147cb2b5fa9b36bbf09dcb60802ce65d3ecfb3175c5",
     "ssn/rdf/ontology/core/sosa-common.ttl": "31bb4a6fb3d4b8b7612998744f73b5a8194d34ef866184460ed22dc0f78a91aa",

@@ -1,0 +1,225 @@
+{
+  "version": 1,
+  "purpose": "Freeze source snapshots that require no credential and enumerate the SOSA and SSN confirmatory candidate pool before case selection or model execution.",
+  "ontology_commit": "37fa55298187464b41c3712620dcbf5bd438b1b2",
+  "adapter_version": "sosa-ssn-source-adapter-v1",
+  "renderer_version": "sosa-ssn-record-renderer-v1",
+  "execution": {
+    "offline_only": true,
+    "runs_extractor": false,
+    "runs_repair_model": false,
+    "runs_grounding_assessor": false,
+    "runs_validator": false,
+    "selects_final_cases": false,
+    "locks_sample_size": false
+  },
+  "source_families": {
+    "usgs_daily": {
+      "provider": "U.S. Geological Survey",
+      "api_documentation": "https://api.waterdata.usgs.gov/docs/ogcapi/",
+      "reuse_statement": "USGS-authored or produced data and information are considered to be in the U.S. Public Domain.",
+      "reuse_url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
+      "api_key_required": false,
+      "collection": "daily",
+      "observation_date": "2024-01-01",
+      "limit_per_parameter": 100,
+      "quality_filter": {
+        "approval_status": "Approved",
+        "qualifier": null
+      },
+      "independence_filter": "retain at most one record per monitoring_location_id",
+      "parameter_priority": [
+        "00010",
+        "00045",
+        "00060",
+        "00065"
+      ],
+      "parameters": {
+        "00010": {
+          "name": "water temperature",
+          "scenario_family": "water_temperature",
+          "snapshot": "experiments/sosa_ssn_sources/raw/usgs/daily_00010_2024-01-01.json",
+          "snapshot_sha256": "96d0c94a85fac264b0041d8177bc9b60b87f2984ff84ed3cc224f82187d14bbe",
+          "metadata_snapshot": "experiments/sosa_ssn_sources/raw/usgs/parameter_codes/00010.json",
+          "metadata_sha256": "3304a20e1e68fb6238f6de2e18d85bebea6e43e142cca0f58ee06ded830108cb",
+          "query_url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/daily/items?f=json&limit=100&parameter_code=00010&datetime=2024-01-01/2024-01-01"
+        },
+        "00045": {
+          "name": "precipitation",
+          "scenario_family": "precipitation",
+          "snapshot": "experiments/sosa_ssn_sources/raw/usgs/daily_00045_2024-01-01.json",
+          "snapshot_sha256": "48e840aacb964cb5d5dc9e828acbd45780da9d34112b3f77fd3e7d80e13ce62f",
+          "metadata_snapshot": "experiments/sosa_ssn_sources/raw/usgs/parameter_codes/00045.json",
+          "metadata_sha256": "90e1b5d823e9d53dfb184ac2bb1f87fc9b6b86c32771067d2105ab3b870dc3cc",
+          "query_url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/daily/items?f=json&limit=100&parameter_code=00045&datetime=2024-01-01/2024-01-01"
+        },
+        "00060": {
+          "name": "discharge",
+          "scenario_family": "stream_discharge",
+          "snapshot": "experiments/sosa_ssn_sources/raw/usgs/daily_00060_2024-01-01.json",
+          "snapshot_sha256": "7b582ffc32a28175e7d89c44cd331ba20648a124b476a0a1a25e9ab786fdf7e1",
+          "metadata_snapshot": "experiments/sosa_ssn_sources/raw/usgs/parameter_codes/00060.json",
+          "metadata_sha256": "6afed403aaba5f4ea3abbb450ac0a2dfe921906155b7545e6564127c754c005c",
+          "query_url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/daily/items?f=json&limit=100&parameter_code=00060&datetime=2024-01-01/2024-01-01"
+        },
+        "00065": {
+          "name": "gage height",
+          "scenario_family": "gage_height",
+          "snapshot": "experiments/sosa_ssn_sources/raw/usgs/daily_00065_2024-01-01.json",
+          "snapshot_sha256": "372e081854a93097f048955332c0183fb388b0d831e534e28d8cf66093dccdbd",
+          "metadata_snapshot": "experiments/sosa_ssn_sources/raw/usgs/parameter_codes/00065.json",
+          "metadata_sha256": "7c273ebf0439b3df54e2adc3e9e10977a44d45ad11c09f68ae1f44106cac467c",
+          "query_url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/daily/items?f=json&limit=100&parameter_code=00065&datetime=2024-01-01/2024-01-01"
+        }
+      },
+      "eligible_conditions": [
+        "disjointness",
+        "functional_property_conflict",
+        "domain_range",
+        "cardinality",
+        "temporal",
+        "grounding"
+      ]
+    },
+    "w3c_examples": {
+      "provider": "W3C Spatial Data on the Web Working Group",
+      "repository": "https://github.com/w3c/sdw-sosa-ssn",
+      "pinned_commit": "37fa55298187464b41c3712620dcbf5bd438b1b2",
+      "reuse_statement": "Files are copied byte for byte from the pinned public W3C repository and retain that repository's licensing and attribution context.",
+      "examples": [
+        {
+          "id": "w3c_forecast",
+          "path": "experiments/sosa_ssn_sources/raw/w3c/forecast.ttl",
+          "sha256": "4e968116607c71a26de11d7da4b0acb129db83fcd2a5e1b214e1333d4abe7b5f",
+          "root_token": "ex:Observation299876",
+          "scenario_family": "weather_forecast",
+          "summary": "Observation 299876 concerns Celsius temperature in the Earth's atmosphere. Its forecast phenomenon interval begins on 2024-03-09 at 11:00 +10:00 and ends at 12:00 +10:00. Its result time is 2024-03-06 at 12:00 +10:00.",
+          "eligible_conditions": ["functional_property_conflict", "domain_range", "cardinality", "grounding"]
+        },
+        {
+          "id": "w3c_eautonome_collection",
+          "path": "experiments/sosa_ssn_sources/raw/w3c/EautonomeObservationCollection.ttl",
+          "sha256": "b0993adab40140ec92093bf3a2c17f5b040c85aa07fd0f4653bccb83cc7fc9b3",
+          "root_token": "eau:obsColMorningShower20230715",
+          "scenario_family": "domestic_water_collection",
+          "summary": "The morning shower observation collection contains a flow observation at the heater output. The collection covers 2023-07-15 from 07:30 to 07:45 +02:00. The member records a simple flow result of 4.85.",
+          "eligible_conditions": ["disjointness", "functional_property_conflict", "domain_range", "cardinality", "temporal", "grounding"]
+        },
+        {
+          "id": "w3c_planned_ph_collection",
+          "path": "experiments/sosa_ssn_sources/raw/w3c/PlannedObservationCollection.ttl",
+          "sha256": "5965e09c21330f25fcfa8b4c6f10756ff452b7f964739f59f70a1972e0647e5c",
+          "root_token": "ex:ObsColpH",
+          "scenario_family": "planned_river_observation",
+          "summary": "The planned observation collection concerns pH for a sample collection from the Loire River and uses the pH-A56 observing procedure.",
+          "eligible_conditions": ["disjointness", "domain_range", "cardinality", "grounding"]
+        },
+        {
+          "id": "w3c_historical_air_temperature",
+          "path": "experiments/sosa_ssn_sources/raw/w3c/historical-airtemp.ttl",
+          "sha256": "980acd65475cc12c01483ed36ecd083608dbdb4e8f728947637107a72a4ff9f4",
+          "root_token": "ex:SHW_T_1872-04-04T15",
+          "scenario_family": "historical_air_temperature",
+          "summary": "Thermometer 99 observed air temperature at Station Hohe Warte on 1872-04-04 at 15:00 +01:00. The result was 22.5 degrees Celsius.",
+          "eligible_conditions": ["functional_property_conflict", "domain_range", "cardinality", "grounding"]
+        },
+        {
+          "id": "w3c_seismograph",
+          "path": "experiments/sosa_ssn_sources/raw/w3c/seismograph.ttl",
+          "sha256": "827c65c4d66dc588700864fbf6e2d9b7ecfdc9baec3c7b189d3b25b7ac950270",
+          "root_token": "ex:VCAB-DP1-BP-40_t2017-04-18T08%3A23%3A00-07%3A00",
+          "scenario_family": "seismic_observation",
+          "summary": "Seismograph VCAB DP1 BP 40 observed ground displacement speed at its Parkfield location on 2017-04-18 at 08:23 -07:00. The result was 0.0005 centimetres per second.",
+          "eligible_conditions": ["functional_property_conflict", "domain_range", "cardinality", "grounding"]
+        },
+        {
+          "id": "w3c_tree_height",
+          "path": "experiments/sosa_ssn_sources/raw/w3c/tree-height.ttl",
+          "sha256": "a54a085e690c86e261a1c08dbfafdc967726c3aa209275d1199b2c18c9b73a14",
+          "root_token": "ex:observation_1087",
+          "scenario_family": "tree_height",
+          "summary": "Observation 1087 used rangefinder 30 to observe the height of tree 124. The result was 15.3 metres.",
+          "eligible_conditions": ["functional_property_conflict", "domain_range", "cardinality", "grounding"]
+        },
+        {
+          "id": "w3c_open_window",
+          "path": "experiments/sosa_ssn_sources/raw/w3c/open-window.ttl",
+          "sha256": "c0caf1eea2a5383444a20a4a1acdc57d9dd5412ddc1161dbde2f37978705fdbd",
+          "root_token": "ex:A188",
+          "scenario_family": "window_actuation",
+          "summary": "Actuation A188 used window closer 987 on window 98's open state. It started at 17:23 and ended at 17:24 +02:00 on 2017-04-18, with the simple result true.",
+          "eligible_conditions": ["functional_property_conflict", "domain_range", "cardinality", "grounding"]
+        },
+        {
+          "id": "w3c_time_series_collection",
+          "path": "experiments/sosa_ssn_sources/raw/w3c/timeseries-oc.ttl",
+          "sha256": "9f6b6cd31ecb053711955b6fe7f590bd5241957b95bcbbf957b735c7175f8e95",
+          "root_token": "ex:ts159c",
+          "scenario_family": "time_series_collection",
+          "summary": "Observation collection ts159c contains four sensor observations at one minute intervals from 20:00 through 20:03 UTC on 2017-04-15. The member results are 3.24, 3.21, 3.15, and 3.15 metres per second.",
+          "eligible_conditions": ["disjointness", "functional_property_conflict", "domain_range", "cardinality", "temporal", "grounding"]
+        },
+        {
+          "id": "w3c_located_sample",
+          "path": "experiments/sosa_ssn_sources/raw/w3c/LocatedSample.ttl",
+          "sha256": "e0182131d962c9e77f5a3253b7fc2ff74d21fdf4986a1f63a90cfd6d434866b7",
+          "root_token": "ex:EarthAtmosphere_StE",
+          "scenario_family": "located_material_sample",
+          "summary": "The material sample EarthAtmosphere_StE is a sample of the Earth's atmosphere and has source location POINT (4.387611 45.437772).",
+          "eligible_conditions": ["domain_range", "cardinality", "grounding"]
+        },
+        {
+          "id": "w3c_ice_bubble_observation",
+          "path": "experiments/sosa_ssn_sources/raw/w3c/obs-sample-foi.ttl",
+          "sha256": "88c56522ca2c4d8f8b7a4506c484d7ce265a36e8333b476ef6df94f101753272",
+          "root_token": "ex:Ob873c4",
+          "scenario_family": "sample_observation",
+          "summary": "Observation Ob873c4 concerns carbon dioxide concentration in sample Bubble873, which is a sample of the Earth's atmosphere. The recorded result is 240 parts per million.",
+          "eligible_conditions": ["functional_property_conflict", "domain_range", "cardinality", "grounding"]
+        },
+        {
+          "id": "w3c_wind_observation",
+          "path": "experiments/sosa_ssn_sources/raw/w3c/spinning-cups.ttl",
+          "sha256": "8c250efb462597d7e616de053b6fc1aac795d3810219d0d5a02fd369cf9651f3",
+          "root_token": "ex:observation_147",
+          "scenario_family": "wind_observation",
+          "summary": "Wind sensor 14 produced observation 147 of wind speed at 12:00 UTC on 2017-04-12. Spinning cup movement originated the observation, whose result was 47 kilometres per hour.",
+          "eligible_conditions": ["functional_property_conflict", "domain_range", "cardinality", "grounding"]
+        },
+        {
+          "id": "w3c_apartment_electricity",
+          "path": "experiments/sosa_ssn_sources/raw/w3c/apartment-134.ttl",
+          "sha256": "29262bdb6d0897c620469b947dd527be6916af1766222572852d8915101c87cf",
+          "root_token": "ex:Observation_235714",
+          "scenario_family": "building_energy_observation",
+          "summary": "Sensor 926 observed apartment 134's electricity consumption on 2017-04-15. The result was 22.4 kilowatt hours and became available at 00:00:12 UTC on 2017-04-16.",
+          "eligible_conditions": ["functional_property_conflict", "domain_range", "cardinality", "grounding"]
+        }
+      ]
+    },
+    "epa_airdata": {
+      "status": "deferred_from_v1_pool",
+      "reason": "The AirData route that requires no credential is viable. No small immutable EPA snapshot is pinned in this commit. EPA is not represented as an included source family.",
+      "official_information": "https://www.epa.gov/aqs/obtaining-aqs-data"
+    }
+  },
+  "conditions": [
+    "disjointness",
+    "functional_property_conflict",
+    "domain_range",
+    "cardinality",
+    "temporal",
+    "grounding"
+  ],
+  "outputs": {
+    "source_units": "experiments/sosa_ssn_source_units.jsonl",
+    "candidate_pool": "experiments/sosa_ssn_candidate_pool.jsonl",
+    "manifest": "experiments/sosa_ssn_source_manifest.json"
+  },
+  "sampling_constraints_not_yet_applied": [
+    "at most one selected condition per source unit",
+    "approximately 30 independent source units per condition",
+    "scenario family balance",
+    "preliminary Movie and Music cases excluded"
+  ]
+}

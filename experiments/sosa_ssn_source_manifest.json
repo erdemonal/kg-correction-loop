@@ -1,0 +1,285 @@
+{
+  "adapter_version": "sosa-ssn-source-adapter-v1",
+  "candidate_pool": {
+    "by_condition": {
+      "cardinality": 371,
+      "disjointness": 362,
+      "domain_range": 371,
+      "functional_property_conflict": 369,
+      "grounding": 371,
+      "temporal": 361
+    },
+    "by_source_family": {
+      "usgs_daily": 2154,
+      "w3c_examples": 51
+    },
+    "count": 2205,
+    "path": "experiments/sosa_ssn_candidate_pool.jsonl",
+    "rows_are_independent_experimental_units": false,
+    "sha256": "a67eee2f1d1997aad95dff3790267a7cbc905b0c31498acd803619a0e5a65773"
+  },
+  "execution": {
+    "grounding_assessor_executed": false,
+    "model_executed": false,
+    "network_accessed": false,
+    "reasoner_executed": false,
+    "validator_executed": false
+  },
+  "experimental_unit": "source_unit",
+  "ontology_commit": "37fa55298187464b41c3712620dcbf5bd438b1b2",
+  "renderer_version": "sosa-ssn-record-renderer-v1",
+  "selection": {
+    "one_condition_per_source_unit_required_later": true,
+    "performed": false,
+    "sample_size_locked": false
+  },
+  "source_family_status": {
+    "epa_airdata": "deferred_not_counted",
+    "usgs_daily": "included",
+    "w3c_examples": "included"
+  },
+  "source_units": {
+    "by_scenario_family": {
+      "building_energy_observation": 1,
+      "domestic_water_collection": 1,
+      "gage_height": 92,
+      "historical_air_temperature": 1,
+      "located_material_sample": 1,
+      "planned_river_observation": 1,
+      "precipitation": 90,
+      "sample_observation": 1,
+      "seismic_observation": 1,
+      "stream_discharge": 82,
+      "time_series_collection": 1,
+      "tree_height": 1,
+      "water_temperature": 95,
+      "weather_forecast": 1,
+      "wind_observation": 1,
+      "window_actuation": 1
+    },
+    "by_source_family": {
+      "usgs_daily": 359,
+      "w3c_examples": 12
+    },
+    "count": 371,
+    "path": "experiments/sosa_ssn_source_units.jsonl",
+    "sha256": "a3b24a655d8c71ff35b22a246ba8d4e05c0bb29152c0382175dcd6f57fd914b9"
+  },
+  "spec_sha256": "4fd532a4109fa38dc28948eb6aa4e7d28b775ba8d6fefb75831e76d18140297d",
+  "usgs_rejections": {
+    "by_reason": {
+      "duplicate_monitoring_location": 8,
+      "not_approved": 17,
+      "qualified_record": 16
+    },
+    "count": 41,
+    "records": [
+      {
+        "reason": "duplicate_monitoring_location",
+        "record_id": "1e07f780910045d6b1c510dc838ece50:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "duplicate_monitoring_location",
+        "record_id": "229052874fb843b08845ce8a99aa0836:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "duplicate_monitoring_location",
+        "record_id": "2c9b462d8ddf4f2593d781bdb839c02e:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "duplicate_monitoring_location",
+        "record_id": "8db700a42f534dd19ad02e2b74003e34:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "duplicate_monitoring_location",
+        "record_id": "c06516dd74824616b5c83efbff60db15:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "duplicate_monitoring_location",
+        "record_id": "c0dc2c178b4a4be5969d34e62ca15d6e:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "duplicate_monitoring_location",
+        "record_id": "ca62c101ae694b9e913e214b42944779:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "duplicate_monitoring_location",
+        "record_id": "da8387557e864f00b3ce909cadcc81dc:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "not_approved",
+        "record_id": "0cf4dc7f6dea4cb181e5f8d8762cd83a:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "not_approved",
+        "record_id": "0e9af0c8eb884191bca87ada0974e72a:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "not_approved",
+        "record_id": "3483de9243354e13bf6e325deed823c6:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "not_approved",
+        "record_id": "34cba852783742bea8eebfb2def80454:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "not_approved",
+        "record_id": "68a8d16d8dca4e8fb5acd13152afe1a8:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "not_approved",
+        "record_id": "6db42dc413174e5e938a9a2f10cccb5d:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "not_approved",
+        "record_id": "7035ffd3ce4949cc96664697dee4093f:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "not_approved",
+        "record_id": "78e3aea6be2a40c58fbcce5a3fe8ba3c:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "not_approved",
+        "record_id": "7abecd350580418a922085f0d17efd12:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "not_approved",
+        "record_id": "87099512736b41f883559b31be206033:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "not_approved",
+        "record_id": "a8481043e283443b9a5a26b84e4f2e1e:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "not_approved",
+        "record_id": "bf090ed57b784ee4a4fc3181381c08b8:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "not_approved",
+        "record_id": "cdf20d15c78342f180344b1fdd8a2643:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "not_approved",
+        "record_id": "d608061aa21b4479b16ed0988b0ed856:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "not_approved",
+        "record_id": "e0761cb41a0642588a656479e0dfb3b7:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "not_approved",
+        "record_id": "ed1c59a659fe4711984b6f670515191d:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "not_approved",
+        "record_id": "fdffe6235b0241f6a371baab2d91822e:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "qualified_record",
+        "record_id": "017ffb961224473eaae3e8265024affe:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "qualified_record",
+        "record_id": "0916fb1e6ac34b24a9a534e85398fcb6:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "qualified_record",
+        "record_id": "45a058289ae7420eaa071137afba331c:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "qualified_record",
+        "record_id": "5057f4394a6b42af81fbe4b936a62bf4:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "qualified_record",
+        "record_id": "53beabf0761d4f9591f37b7e12b2e7d6:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "qualified_record",
+        "record_id": "6fdcb6f934044feabfdb894d75acdf1c:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "qualified_record",
+        "record_id": "74276dc37f7446d699954f90885156cb:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "qualified_record",
+        "record_id": "771d09f0adf240ed8db9c30e91da39b9:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "qualified_record",
+        "record_id": "90811aa2e79c4ebd8ce5f9f7a689a123:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "qualified_record",
+        "record_id": "9b48d8d6f2674afba70c17e9863e360c:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "qualified_record",
+        "record_id": "ae0e5aa1c6d64c58b093bb4c605d5f4e:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "qualified_record",
+        "record_id": "d2878c8e495e40a4b26a30f6a5d524b7:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "qualified_record",
+        "record_id": "d7d951c0e23c42e2a330b37d7d8d4283:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "qualified_record",
+        "record_id": "e9fa7ee8bea74dd39040da7fa477b880:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "qualified_record",
+        "record_id": "ec7f2d23970b46b494aa3b8e1ce9ecc5:2024-01-01",
+        "source_family": "usgs_daily"
+      },
+      {
+        "reason": "qualified_record",
+        "record_id": "f07b4a38d0a3440ea0d93dd9810ec279:2024-01-01",
+        "source_family": "usgs_daily"
+      }
+    ]
+  },
+  "version": 1
+}
