@@ -1,0 +1,17 @@
+# Audit register
+
+This register records commit level audits of the locked study. Hashes are taken from git history. Result JSONL files are excluded from version control, so a completed experimental run may have no results commit. When a stored verdict cannot be attached to one exact commit, the verdict column states that fact.
+
+| Audit target | Commit | Auditor verdict | Date | Substantive conclusion |
+| --- | --- | --- | --- | --- |
+| RQ1 grounding validation | `f55d42e21bab1417fa6ab93bec00d8c668a2b035` | Not recorded against this commit | 2026-08-23 | This commit locked the version 3 grounding run used by later RQ1 analysis, with 44 of 50 primary modification matches. The protocol `experiments/validation_protocol.md` records this commit as the repository state before documentation. |
+| RQ1 coverage analysis | `78db9e7df0e5810d4d295ead39b589004b1e7b80` | Not recorded against this commit | 2026-08-24 | This commit closed the Movie and Music RQ1 overlap record for raw SHACL, OWL, and grounding. The related protocol commit is `a195a4a6728334957d4d3a64eafd3aa814d31f81`. |
+| RQ2 runner | `0775ea0e6619098bb5ee75cf56982c24c89fc7ee` | Accepted for execution | 2026-08-24 | The controlled repair runner was accepted before execution. The first 50 case attempt stopped because of a grounding cache assumption. |
+| RQ2 runner cache rule | `cd6d91214663bfb49551b0e7ff74fc7e5eb42677` | Fix verified. Restart required. | 2026-08-24 | Shared assertions may differ across locked clean and injected judgments. The injected judgment is used at round 0. The valid 50 case RQ2 run followed this commit. Trajectories are not stored in git. |
+| RQ2 dynamics analysis | `6ba4cf668aabb1875ec39689fb039fc1df85e222` | Not recorded against this commit | 2026-08-24 | This commit analyzes the completed 50 case trajectories. It does not modify the run. |
+| RQ2 reporting | `ef6f2874ca3dd5d551bd30649d64cc61c2f46705` | Not recorded against this commit | 2026-08-24 | This commit adds reporting only and is the locked RQ2 reporting record. RQ3 specifications record this hash as `rq2_locked_commit`. |
+| RQ3 protocol | `0d9b4d11a840215dcab46edd7d28a710ff675105` | Accepted for execution | 2026-08-25 | The OWL feedback framing protocol was accepted before execution. The completed run is recorded as `locked_run.git_head` in `experiments/owl_feedback_analysis_spec.json`. The result JSONL is not stored in git. |
+| RQ3 analysis and reporting | `0dd5667df697e9cb273093f66b0abb2d7a340689` | Not recorded against this commit | 2026-08-25 | This commit analyzes and reports the completed run of ten cases and three conditions. It does not modify RQ1 or RQ2. |
+| Repair quality and cost analysis | `db5c9d93a0b53d44ada65acecdd874e109ba7a30` | Revision required | 2026-08-25 | The initial analyzer treated empty reference domain and range F1 as a primary quality result. That reading was rejected. |
+| Empty reference revision | `cc07656bba341c926a6486240f64e677abaf7132` | Accepted | 2026-08-25 | Primary F1 uses 40 nonempty reference cases. Extra triples are the metric for the 10 empty reference cases. |
+| Repair quality and cost reporting | `75e40e2667dd9977f7b258d45aa092ae6627600e` | Verified | 2026-08-26 | The reporting layer was accepted. The Movie and Music quality and cost extension closed at this commit. |
