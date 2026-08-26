@@ -1,0 +1,42 @@
+{
+  "case_spec_sha256": "50e2b8df7355c126ffbdaa5cf476c709a24c6597217e8875f8b6383eed34f8a6",
+  "cases": {
+    "by_condition": {
+      "cardinality": 30,
+      "disjointness": 30,
+      "domain_range": 30,
+      "functional_property_conflict": 30,
+      "grounding": 30,
+      "temporal": 30
+    },
+    "by_source_family": {
+      "usgs_daily": 168,
+      "w3c_examples": 12
+    },
+    "count": 180,
+    "path": "experiments/sosa_ssn_confirmatory_cases.jsonl",
+    "sha256": "3c0674b90c9120d3db02fbcf3339470d62d08e6ab8923999c28731f2fe34d43c"
+  },
+  "execution": {
+    "grounding_assessor_executed": false,
+    "model_executed": false,
+    "reasoner_executed": false,
+    "validator_executed": false
+  },
+  "profile": {
+    "layer": "project SHACL application profile, not W3C SOSA and SSN axioms",
+    "path": "validation/shapes/sosa_ssn_confirmatory.ttl",
+    "sha256": "5ee22e71d865d1cbf911be01576f985a55b2942f6a9ddedce963de9ec8b86a49"
+  },
+  "sampling_commit": "ebc7ee1651e6c74a5000070ad8c11194ee49fb18",
+  "semantic_separation": {
+    "clean_content_triples": "record derived triples visible to extraction, repair, and clean reference comparison",
+    "controlled_injection": "one grouped fault transformation recorded as added and removed triples",
+    "scaffold_triples": "project profile targeting or RDF support triples excluded from clean reference comparison and grounding"
+  },
+  "version": 1,
+  "w3c_registry": {
+    "path": "experiments/sosa_ssn_w3c_case_registry.json",
+    "sha256": "97b3756ce966fd9c8c623c5dbfd30a63bd4f23878f915348d418230ce3ca2e60"
+  }
+}

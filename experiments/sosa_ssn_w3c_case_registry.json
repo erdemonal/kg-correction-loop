@@ -1,0 +1,282 @@
+{
+  "version": 1,
+  "purpose": "Auditable minimal graph projections and controlled transformations for the twelve selected pinned W3C SOSA and SSN examples.",
+  "source_commit": "37fa55298187464b41c3712620dcbf5bd438b1b2",
+  "triple_format": [
+    "subject",
+    "predicate",
+    "object",
+    "object_kind"
+  ],
+  "entries": {
+    "w3c_planned_ph_collection": {
+      "condition": "disjointness",
+      "clean_triples": [
+        ["ObsColpH", "type", "ObservationCollection", "entity"],
+        ["Loire_River", "type", "FeatureOfInterest", "entity"],
+        ["PH", "type", "Property", "entity"],
+        ["SC-LaJ2", "type", "SampleCollection", "entity"],
+        ["ObsColpH", "hasUltimateFeatureOfInterest", "Loire_River", "entity"],
+        ["ObsColpH", "observedProperty", "PH", "entity"],
+        ["ObsColpH", "hasFeatureOfInterest", "SC-LaJ2", "entity"]
+      ],
+      "scaffold_triples": [
+        ["SC-LaJ2", "type", "FeatureOfInterest", "entity"]
+      ],
+      "injection": {
+        "operation": "add",
+        "added": [["ObsColpH", "type", "SampleCollection", "entity"]],
+        "removed": []
+      }
+    },
+    "w3c_open_window": {
+      "condition": "functional_property_conflict",
+      "clean_triples": [
+        ["A188", "type", "Actuation", "entity"],
+        ["window98", "type", "FeatureOfInterest", "entity"],
+        ["openState", "type", "Property", "entity"],
+        ["closer-987", "type", "Actuator", "entity"],
+        ["A188", "hasFeatureOfInterest", "window98", "entity"],
+        ["A188", "actsOnProperty", "openState", "entity"],
+        ["A188", "madeByActuator", "closer-987", "entity"],
+        ["A188", "hasSimpleResult", "true", "boolean"],
+        ["A188", "startTime", "2017-04-18T17:23:00+02:00", "datetime"],
+        ["A188", "endTime", "2017-04-18T17:24:00+02:00", "datetime"]
+      ],
+      "injection": {
+        "operation": "add",
+        "added": [["A188", "hasSimpleResult", "false", "boolean"]],
+        "removed": []
+      }
+    },
+    "w3c_tree_height": {
+      "condition": "functional_property_conflict",
+      "clean_triples": [
+        ["observation_1087", "type", "Observation", "entity"],
+        ["tree_124", "type", "FeatureOfInterest", "entity"],
+        ["Height", "type", "Property", "entity"],
+        ["rangefinder_30", "type", "Sensor", "entity"],
+        ["observation_1087", "hasFeatureOfInterest", "tree_124", "entity"],
+        ["observation_1087", "observedProperty", "Height", "entity"],
+        ["observation_1087", "madeBySensor", "rangefinder_30", "entity"],
+        ["observation_1087", "hasResult", "height_result_15_3", "entity"],
+        ["height_result_15_3", "resultValue", "15.3", "decimal"],
+        ["height_result_15_3", "resultUnit", "metre", "string"]
+      ],
+      "injection": {
+        "operation": "add_distinct_result",
+        "added": [
+          ["observation_1087", "hasResult", "height_result_16_3", "entity"],
+          ["height_result_16_3", "resultValue", "16.3", "decimal"],
+          ["height_result_16_3", "resultUnit", "metre", "string"],
+          ["height_result_15_3", "differentFrom", "height_result_16_3", "entity"]
+        ],
+        "removed": []
+      }
+    },
+    "w3c_located_sample": {
+      "condition": "domain_range",
+      "clean_triples": [
+        ["EarthAtmosphere_StE", "type", "MaterialSample", "entity"],
+        ["EarthAtmosphere", "type", "FeatureOfInterest", "entity"],
+        ["EarthAtmosphere_StE", "isSampleOf", "EarthAtmosphere", "entity"]
+      ],
+      "injection": {
+        "operation": "replace",
+        "added": [["EarthAtmosphere", "isSampleOf", "EarthAtmosphere", "entity"]],
+        "removed": [["EarthAtmosphere_StE", "isSampleOf", "EarthAtmosphere", "entity"]]
+      }
+    },
+    "w3c_ice_bubble_observation": {
+      "condition": "domain_range",
+      "clean_triples": [
+        ["Bubble873", "type", "Sample", "entity"],
+        ["EarthAtmosphere", "type", "FeatureOfInterest", "entity"],
+        ["CO2-Concentration", "type", "Property", "entity"],
+        ["Ob873c4", "type", "Observation", "entity"],
+        ["Bubble873", "isSampleOf", "EarthAtmosphere", "entity"],
+        ["Ob873c4", "observedProperty", "CO2-Concentration", "entity"],
+        ["Ob873c4", "hasFeatureOfInterest", "Bubble873", "entity"],
+        ["Ob873c4", "hasUltimateFeatureOfInterest", "EarthAtmosphere", "entity"],
+        ["Ob873c4", "hasResult", "co2_result_240", "entity"],
+        ["co2_result_240", "resultValue", "240.0", "decimal"],
+        ["co2_result_240", "resultUnit", "parts per million", "string"]
+      ],
+      "scaffold_triples": [
+        ["Bubble873", "type", "FeatureOfInterest", "entity"]
+      ],
+      "injection": {
+        "operation": "replace",
+        "added": [["Ob873c4", "hasFeatureOfInterest", "CO2-Concentration", "entity"]],
+        "removed": [["Ob873c4", "hasFeatureOfInterest", "Bubble873", "entity"]]
+      }
+    },
+    "w3c_forecast": {
+      "condition": "cardinality",
+      "clean_triples": [
+        ["Observation299876", "type", "Observation", "entity"],
+        ["EarthAtmosphere", "type", "FeatureOfInterest", "entity"],
+        ["TEMC", "type", "Property", "entity"],
+        ["Observation299876", "hasFeatureOfInterest", "EarthAtmosphere", "entity"],
+        ["Observation299876", "observedProperty", "TEMC", "entity"],
+        ["Observation299876", "hasResult", "forecast_grid_299876", "entity"],
+        ["Observation299876", "collectionStart", "2024-03-09T11:00:00+10:00", "datetime"],
+        ["Observation299876", "collectionEnd", "2024-03-09T12:00:00+10:00", "datetime"],
+        ["Observation299876", "resultTime", "2024-03-06T12:00:00+10:00", "datetime"]
+      ],
+      "injection": {
+        "operation": "remove",
+        "added": [],
+        "removed": [["Observation299876", "observedProperty", "TEMC", "entity"]]
+      },
+      "case_constraint": {
+        "kind": "min_count",
+        "focus": "Observation299876",
+        "predicate": "observedProperty",
+        "value": 1
+      }
+    },
+    "w3c_historical_air_temperature": {
+      "condition": "cardinality",
+      "clean_triples": [
+        ["SHW_T_1872-04-04T15", "type", "Observation", "entity"],
+        ["SHW", "type", "FeatureOfInterest", "entity"],
+        ["airTemperature", "type", "Property", "entity"],
+        ["T99", "type", "Sensor", "entity"],
+        ["SHW_T_1872-04-04T15", "madeBySensor", "T99", "entity"],
+        ["SHW_T_1872-04-04T15", "hasFeatureOfInterest", "SHW", "entity"],
+        ["SHW_T_1872-04-04T15", "observedProperty", "airTemperature", "entity"],
+        ["SHW_T_1872-04-04T15", "hasResult", "air_temperature_result_22_5", "entity"],
+        ["air_temperature_result_22_5", "resultValue", "22.5", "decimal"],
+        ["air_temperature_result_22_5", "resultUnit", "degree Celsius", "string"],
+        ["SHW_T_1872-04-04T15", "phenomenonTime", "1872-04-04T15:00:00+01:00", "datetime"],
+        ["SHW_T_1872-04-04T15", "resultTime", "1872-04-04T15:00:00+01:00", "datetime"]
+      ],
+      "injection": {
+        "operation": "remove",
+        "added": [],
+        "removed": [["SHW_T_1872-04-04T15", "observedProperty", "airTemperature", "entity"]]
+      },
+      "case_constraint": {
+        "kind": "min_count",
+        "focus": "SHW_T_1872-04-04T15",
+        "predicate": "observedProperty",
+        "value": 1
+      }
+    },
+    "w3c_eautonome_collection": {
+      "condition": "temporal",
+      "clean_triples": [
+        ["obsColMorningShower20230715", "type", "ObservationCollection", "entity"],
+        ["obsFlowHeaterOutput20230715T0730", "type", "Observation", "entity"],
+        ["mpHeaterOutput", "type", "FeatureOfInterest", "entity"],
+        ["FlowRate", "type", "Property", "entity"],
+        ["obsColMorningShower20230715", "hasMember", "obsFlowHeaterOutput20230715T0730", "entity"],
+        ["obsColMorningShower20230715", "hasFeatureOfInterest", "mpHeaterOutput", "entity"],
+        ["obsColMorningShower20230715", "observedProperty", "FlowRate", "entity"],
+        ["obsColMorningShower20230715", "collectionStart", "2023-07-15T07:30:00+02:00", "datetime"],
+        ["obsColMorningShower20230715", "collectionEnd", "2023-07-15T07:45:00+02:00", "datetime"],
+        ["obsFlowHeaterOutput20230715T0730", "phenomenonTime", "2023-07-15T07:30:00+02:00", "datetime"],
+        ["obsFlowHeaterOutput20230715T0730", "hasSimpleResult", "4.85", "decimal"]
+      ],
+      "injection": {
+        "operation": "replace",
+        "added": [["obsFlowHeaterOutput20230715T0730", "phenomenonTime", "2023-07-15T08:15:00+02:00", "datetime"]],
+        "removed": [["obsFlowHeaterOutput20230715T0730", "phenomenonTime", "2023-07-15T07:30:00+02:00", "datetime"]]
+      }
+    },
+    "w3c_time_series_collection": {
+      "condition": "temporal",
+      "clean_triples": [
+        ["ts159c", "type", "ObservationCollection", "entity"],
+        ["ts159c", "collectionStart", "2017-04-15T20:00:00+00:00", "datetime"],
+        ["ts159c", "collectionEnd", "2017-04-15T20:03:00+00:00", "datetime"],
+        ["t1", "type", "Observation", "entity"],
+        ["t2", "type", "Observation", "entity"],
+        ["t3", "type", "Observation", "entity"],
+        ["t4", "type", "Observation", "entity"],
+        ["ts159c", "hasMember", "t1", "entity"],
+        ["ts159c", "hasMember", "t2", "entity"],
+        ["ts159c", "hasMember", "t3", "entity"],
+        ["ts159c", "hasMember", "t4", "entity"],
+        ["t1", "phenomenonTime", "2017-04-15T20:00:00+00:00", "datetime"],
+        ["t2", "phenomenonTime", "2017-04-15T20:01:00+00:00", "datetime"],
+        ["t3", "phenomenonTime", "2017-04-15T20:02:00+00:00", "datetime"],
+        ["t4", "phenomenonTime", "2017-04-15T20:03:00+00:00", "datetime"],
+        ["t1", "hasSimpleResult", "3.24", "decimal"],
+        ["t2", "hasSimpleResult", "3.21", "decimal"],
+        ["t3", "hasSimpleResult", "3.15", "decimal"],
+        ["t4", "hasSimpleResult", "3.15", "decimal"]
+      ],
+      "injection": {
+        "operation": "replace",
+        "added": [["t4", "phenomenonTime", "2017-04-15T20:04:00+00:00", "datetime"]],
+        "removed": [["t4", "phenomenonTime", "2017-04-15T20:03:00+00:00", "datetime"]]
+      }
+    },
+    "w3c_seismograph": {
+      "condition": "grounding",
+      "clean_triples": [
+        ["seismic_observation_358", "type", "Observation", "entity"],
+        ["VCAB-DP1-BP-40", "type", "Sensor", "entity"],
+        ["VCAB-DP1-BP-40_location", "type", "Sample", "entity"],
+        ["groundDisplacementSpeed", "type", "Property", "entity"],
+        ["seismic_observation_358", "madeBySensor", "VCAB-DP1-BP-40", "entity"],
+        ["seismic_observation_358", "hasFeatureOfInterest", "VCAB-DP1-BP-40_location", "entity"],
+        ["seismic_observation_358", "observedProperty", "groundDisplacementSpeed", "entity"],
+        ["seismic_observation_358", "hasResult", "seismic_result", "entity"],
+        ["seismic_result", "resultValue", "0.0005", "decimal"],
+        ["seismic_result", "resultUnit", "centimetres per second", "string"],
+        ["seismic_observation_358", "resultTime", "2017-04-18T08:23:00-07:00", "datetime"]
+      ],
+      "scaffold_triples": [
+        ["VCAB-DP1-BP-40_location", "type", "FeatureOfInterest", "entity"]
+      ],
+      "injection": {
+        "operation": "replace",
+        "added": [["seismic_result", "resultValue", "0.005", "decimal"]],
+        "removed": [["seismic_result", "resultValue", "0.0005", "decimal"]]
+      }
+    },
+    "w3c_wind_observation": {
+      "condition": "grounding",
+      "clean_triples": [
+        ["observation_147", "type", "Observation", "entity"],
+        ["windSensor_14", "type", "Sensor", "entity"],
+        ["windSpeed", "type", "Property", "entity"],
+        ["observation_147", "madeBySensor", "windSensor_14", "entity"],
+        ["observation_147", "observedProperty", "windSpeed", "entity"],
+        ["observation_147", "hasResult", "wind_result_47", "entity"],
+        ["wind_result_47", "resultValue", "47.0", "decimal"],
+        ["wind_result_47", "resultUnit", "kilometres per hour", "string"],
+        ["observation_147", "resultTime", "2017-04-12T12:00:00+00:00", "datetime"]
+      ],
+      "injection": {
+        "operation": "replace",
+        "added": [["wind_result_47", "resultValue", "74.0", "decimal"]],
+        "removed": [["wind_result_47", "resultValue", "47.0", "decimal"]]
+      }
+    },
+    "w3c_apartment_electricity": {
+      "condition": "grounding",
+      "clean_triples": [
+        ["Observation_235714", "type", "Observation", "entity"],
+        ["sensor_926", "type", "Sensor", "entity"],
+        ["Apartment_134_electricConsumption", "type", "Property", "entity"],
+        ["Observation_235714", "madeBySensor", "sensor_926", "entity"],
+        ["Observation_235714", "observedProperty", "Apartment_134_electricConsumption", "entity"],
+        ["Observation_235714", "hasResult", "electricity_result_22_4", "entity"],
+        ["electricity_result_22_4", "resultValue", "22.4", "decimal"],
+        ["electricity_result_22_4", "resultUnit", "kilowatt-hours", "string"],
+        ["Observation_235714", "collectionStart", "2017-04-15T23:59:30+00:00", "datetime"],
+        ["Observation_235714", "collectionEnd", "2017-04-16T00:00:00+00:00", "datetime"],
+        ["Observation_235714", "resultTime", "2017-04-16T00:00:12+00:00", "datetime"]
+      ],
+      "injection": {
+        "operation": "replace",
+        "added": [["electricity_result_22_4", "resultValue", "24.2", "decimal"]],
+        "removed": [["electricity_result_22_4", "resultValue", "22.4", "decimal"]]
+      }
+    }
+  }
+}

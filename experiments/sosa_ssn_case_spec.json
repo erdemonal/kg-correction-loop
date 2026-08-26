@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "purpose": "Construct one clean graph and one single fault injected graph for each of the 180 locked SOSA and SSN confirmatory source units.",
+  "sampling_commit": "ebc7ee1651e6c74a5000070ad8c11194ee49fb18",
+  "inputs": {
+    "selection": "experiments/sosa_ssn_confirmatory_selection.jsonl",
+    "selection_sha256": "99534641c555b4359bfc9dcf555ff93ba191e7bfbd39265394024507b11a4299",
+    "source_units": "experiments/sosa_ssn_source_units.jsonl",
+    "source_units_sha256": "a3b24a655d8c71ff35b22a246ba8d4e05c0bb29152c0382175dcd6f57fd914b9",
+    "sampling_manifest": "experiments/sosa_ssn_sampling_manifest.json",
+    "sampling_manifest_sha256": "1163081f202a75f53f25d9f8096f40387c23b3d3f062f5440c1c4449ab8e89c7"
+  },
+  "ontology": {
+    "pinned_commit": "37fa55298187464b41c3712620dcbf5bd438b1b2",
+    "vendored_core_root": "validation/ontologies/sosa_ssn_2023/core"
+  },
+  "relations": [
+    "type",
+    "hasMember",
+    "hasFeatureOfInterest",
+    "hasUltimateFeatureOfInterest",
+    "observedProperty",
+    "hasSimpleResult",
+    "hasResult",
+    "resultTime",
+    "phenomenonTime",
+    "startTime",
+    "endTime",
+    "madeBySensor",
+    "madeByActuator",
+    "actsOnProperty",
+    "isSampleOf",
+    "collectionStart",
+    "collectionEnd",
+    "resultValue",
+    "resultUnit",
+    "differentFrom"
+  ],
+  "literal_kinds": [
+    "string",
+    "decimal",
+    "boolean",
+    "date",
+    "datetime"
+  ],
+  "semantic_layers": {
+    "clean_content_triples": "record derived triples visible to extraction, repair, and clean reference comparison",
+    "scaffold_triples": "project profile targeting or RDF support triples excluded from clean reference comparison and grounding",
+    "controlled_injection": "one grouped fault transformation recorded as added and removed triples"
+  },
+  "usgs_adapter": {
+    "representation": "one daily Observation inside one record derived ObservationCollection",
+    "profile_class": "USGSDailyObservation",
+    "collection_interval": "closed one day interval represented by collectionStart and collectionEnd",
+    "simple_result_datatype": "xsd:decimal",
+    "source_text_suffix": "deterministically describes the record derived observation and collection wrapper"
+  },
+  "condition_constructors": {
+    "disjointness": "add SampleCollection type to an ObservationCollection",
+    "functional_property_conflict": "add a distinct second hasSimpleResult literal or a second explicitly different hasResult object",
+    "domain_range": "replace one valid relation endpoint with an entity of an incompatible explicitly represented profile class",
+    "cardinality": "remove one required observedProperty assertion and add a case level minCount constraint when the USGS profile does not already supply it",
+    "temporal": "replace one member phenomenon time with a value outside the collection interval",
+    "grounding": "replace one result value with a different structurally valid value absent from the source text"
+  },
+  "expected_symbolic": {
+    "clean": {
+      "raw_shacl": true,
+      "owl_consistent": true
+    },
+    "injected": {
+      "disjointness": {
+        "raw_shacl": false,
+        "owl_consistent": false
+      },
+      "functional_property_conflict": {
+        "raw_shacl": false,
+        "owl_consistent": false
+      },
+      "domain_range": {
+        "raw_shacl": false,
+        "owl_consistent": true
+      },
+      "cardinality": {
+        "raw_shacl": false,
+        "owl_consistent": true
+      },
+      "temporal": {
+        "raw_shacl": false,
+        "owl_consistent": true
+      },
+      "grounding": {
+        "raw_shacl": true,
+        "owl_consistent": true
+      }
+    }
+  },
+  "profile": {
+    "path": "validation/shapes/sosa_ssn_confirmatory.ttl",
+    "sha256": "5ee22e71d865d1cbf911be01576f985a55b2942f6a9ddedce963de9ec8b86a49",
+    "layer": "project SHACL application profile, not W3C SOSA and SSN axioms"
+  },
+  "w3c_registry": {
+    "path": "experiments/sosa_ssn_w3c_case_registry.json",
+    "sha256": "97b3756ce966fd9c8c623c5dbfd30a63bd4f23878f915348d418230ce3ca2e60"
+  },
+  "outputs": {
+    "cases": "experiments/sosa_ssn_confirmatory_cases.jsonl",
+    "manifest": "experiments/sosa_ssn_case_manifest.json"
+  },
+  "execution": {
+    "runs_extractor": false,
+    "runs_repair_model": false,
+    "runs_grounding_assessor": false,
+    "runs_validator": false,
+    "runs_reasoner": false,
+    "modifies_preliminary_results": false
+  }
+}

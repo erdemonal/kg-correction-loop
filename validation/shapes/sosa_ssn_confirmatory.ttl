@@ -1,0 +1,89 @@
+@prefix kcl: <https://github.com/erdemonal/kg-correction-loop#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+
+# Project application profile. These constraints are not asserted to be W3C
+# SOSA/SSN axioms.
+
+kcl:ObservationCollectionDisjointnessShape
+    a sh:NodeShape ;
+    sh:targetClass sosa:ObservationCollection ;
+    sh:not [ sh:class sosa:SampleCollection ] ;
+    sh:not [ sh:class sosa:SamplingCollection ] ;
+    sh:not [ sh:class sosa:ActuationCollection ] ;
+    sh:message "An ObservationCollection cannot also be another disjoint SOSA collection class." .
+
+kcl:SimpleResultFunctionalShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf sosa:hasSimpleResult ;
+    sh:property [
+        sh:path sosa:hasSimpleResult ;
+        sh:maxCount 1 ;
+        sh:message "An execution has at most one simple result."
+    ] .
+
+kcl:ResultFunctionalShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf sosa:hasResult ;
+    sh:property [
+        sh:path sosa:hasResult ;
+        sh:maxCount 1 ;
+        sh:message "An execution has at most one result."
+    ] .
+
+kcl:FeatureOfInterestObjectShape
+    a sh:NodeShape ;
+    sh:targetObjectsOf sosa:hasFeatureOfInterest ;
+    sh:class sosa:FeatureOfInterest ;
+    sh:message "The object of hasFeatureOfInterest must be a FeatureOfInterest in this profile." .
+
+kcl:ObservedPropertyObjectShape
+    a sh:NodeShape ;
+    sh:targetObjectsOf sosa:observedProperty ;
+    sh:class sosa:Property ;
+    sh:message "The object of observedProperty must be a SOSA Property in this profile." .
+
+kcl:IsSampleOfSubjectShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf sosa:isSampleOf ;
+    sh:or (
+        [ sh:class sosa:Sample ]
+        [ sh:class sosa:MaterialSample ]
+    ) ;
+    sh:message "The subject of isSampleOf must be a Sample or MaterialSample in this profile." .
+
+kcl:IsSampleOfObjectShape
+    a sh:NodeShape ;
+    sh:targetObjectsOf sosa:isSampleOf ;
+    sh:class sosa:FeatureOfInterest ;
+    sh:message "The object of isSampleOf must be a FeatureOfInterest in this profile." .
+
+kcl:USGSDailyObservationShape
+    a sh:NodeShape ;
+    sh:targetClass kcl:USGSDailyObservation ;
+    sh:property [ sh:path sosa:observedProperty ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path sosa:hasFeatureOfInterest ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path sosa:hasSimpleResult ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path sosa:phenomenonTime ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path sosa:resultTime ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+kcl:CollectionMemberIntervalShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf sosa:hasMember ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "A member phenomenon time must fall within the collection interval." ;
+        sh:select """
+            PREFIX sosa: <http://www.w3.org/ns/sosa/>
+            PREFIX kcl: <https://github.com/erdemonal/kg-correction-loop#>
+            SELECT $this ?member ?memberTime
+            WHERE {
+                $this sosa:hasMember ?member ;
+                      kcl:collectionStart ?start ;
+                      kcl:collectionEnd ?end .
+                ?member sosa:phenomenonTime ?memberTime .
+                FILTER (?memberTime < ?start || ?memberTime > ?end)
+            }
+        """
+    ] .
