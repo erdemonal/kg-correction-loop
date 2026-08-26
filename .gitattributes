@@ -1,0 +1,11 @@
+*.ttl linguist-language=Turtle
+
+validation/ontologies/sosa_ssn_2023/** linguist-vendored
+experiments/sosa_ssn_sources/** linguist-vendored
+
+experiments/sosa_ssn_candidate_pool.jsonl linguist-generated
+experiments/sosa_ssn_source_units.jsonl linguist-generated
+experiments/sosa_ssn_source_manifest.json linguist-generated
+
+docs/** linguist-documentation
+literature/** linguist-documentation
