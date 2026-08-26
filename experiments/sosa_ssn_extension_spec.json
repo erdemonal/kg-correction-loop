@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "purpose": "Fix the semantic design of the SOSA and SSN confirmatory extension before source selection or execution.",
+  "study_role": "Independent confirmatory extension. It is not pooled with the locked Movie and Music preliminary study",
+  "ontology": {
+    "edition": "SOSA/SSN 2023 Edition",
+    "status": "W3C and OGC First Public Working Draft. This is a pinned draft snapshot and work in progress. It is not a W3C Recommendation",
+    "official_repository": "https://github.com/w3c/sdw-sosa-ssn",
+    "pinned_commit": "37fa55298187464b41c3712620dcbf5bd438b1b2",
+    "published_specification": "https://www.w3.org/TR/vocab-ssn-2023/",
+    "dated_first_public_working_draft": "https://www.w3.org/TR/2025/WD-vocab-ssn-2023-20250916/",
+    "historical_2017_role": "Background and compatibility reference only. It is not an experimental ontology"
+  },
+  "semantic_layers": [
+    "pinned_sosa_ssn_axioms",
+    "project_shacl_application_profile",
+    "controlled_injection"
+  ],
+  "conditions": [
+    "disjointness",
+    "functional_property_conflict",
+    "domain_range",
+    "cardinality",
+    "temporal",
+    "grounding"
+  ],
+  "base_axiom_conditions": {
+    "disjointness": "pairwise disjoint SOSA collection classes in the pinned SSN graph",
+    "functional_property_conflict": "functional sosa:hasResult or sosa:hasSimpleResult in the pinned SOSA graph"
+  },
+  "application_profile_conditions": {
+    "domain_range": "explicit SHACL subject and object class constraints",
+    "cardinality": "explicit SHACL required value constraints for the record derived graph pattern",
+    "temporal": "SHACL SPARQL implementation of the collection member range or interval rule"
+  },
+  "grounding_condition": "controlled assertion unsupported by the source and derived from the fixed source record",
+  "forbidden_temporal_generalization": "A universal rule that phenomenonTime precedes resultTime is prohibited.",
+  "source_strategy": {
+    "human_annotation": false,
+    "annotation_interface": false,
+    "source_text": "deterministically rendered from the same fixed public record used to build the clean graph",
+    "initial_source_families": [
+      "official W3C SOSA and SSN examples from the pinned snapshot",
+      "fixed historical USGS water observation records",
+      "fixed historical US EPA air quality records"
+    ],
+    "required_provenance": [
+      "public source identifier",
+      "retrieval metadata",
+      "license or reuse statement",
+      "raw content SHA-256",
+      "adapter version",
+      "renderer version"
+    ]
+  },
+  "sampling": {
+    "final_sample_size_locked": false,
+    "design_target_per_condition": 30,
+    "selection_timing": "after eligible pool enumeration and before model outcomes",
+    "experimental_unit": "source unit",
+    "duplicate_source_units_in_primary_sample": false,
+    "preliminary_cases_excluded": true
+  },
+  "audit_gate": {
+    "single_commit_based_pre_run_audit": true,
+    "audit_after": [
+      "ontology vendoring and hash verification",
+      "application profile tests",
+      "source pool manifest",
+      "sample size freeze",
+      "case selection",
+      "prompt and runner tests"
+    ],
+    "audit_before": [
+      "any confirmatory model generation",
+      "any confirmatory repair run"
+    ]
+  },
+  "execution": {
+    "runs_extractor": false,
+    "runs_repair_model": false,
+    "runs_grounding_assessor": false,
+    "runs_validator": false,
+    "modifies_locked_results": false
+  }
+}
