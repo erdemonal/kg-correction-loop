@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "purpose": "Lock the size and deterministic allocation of the SOSA and SSN confirmatory sample before case construction or model execution.",
+  "source_pool_commit": "7ce3e86e6dbf0d91329cdd18dd02a38db9bdec3a",
+  "inputs": {
+    "source_units": {
+      "path": "experiments/sosa_ssn_source_units.jsonl",
+      "sha256": "a3b24a655d8c71ff35b22a246ba8d4e05c0bb29152c0382175dcd6f57fd914b9"
+    },
+    "candidate_pool": {
+      "path": "experiments/sosa_ssn_candidate_pool.jsonl",
+      "sha256": "a67eee2f1d1997aad95dff3790267a7cbc905b0c31498acd803619a0e5a65773"
+    },
+    "source_manifest": {
+      "path": "experiments/sosa_ssn_source_manifest.json",
+      "sha256": "81b1e1067b4395d4df2c1255ddad66c6fa03ec5074bcb015a65dd3da5d677ff9"
+    }
+  },
+  "sample_size": {
+    "conditions": 6,
+    "per_condition": 30,
+    "total_source_units": 180,
+    "one_case_equals_percentage_points": 3.3333333333333335,
+    "maximum_wilson_95_half_width_at_n_30": 0.1685,
+    "interpretation": "A controlled confirmatory characterization with finer descriptive resolution than the preliminary ten case cells. It is not a population representative power calculation."
+  },
+  "conditions": [
+    "disjointness",
+    "functional_property_conflict",
+    "domain_range",
+    "cardinality",
+    "temporal",
+    "grounding"
+  ],
+  "condition_order": [
+    "disjointness",
+    "functional_property_conflict",
+    "domain_range",
+    "cardinality",
+    "temporal",
+    "grounding"
+  ],
+  "selection_seed": 42,
+  "selection_method": "Within each fixed condition and scenario quota, rank eligible unused source units by SHA-256 of seed, condition, scenario family, and source unit ID. Take the lowest ranks.",
+  "source_unit_reuse": false,
+  "usgs_scenario_quotas": {
+    "disjointness": {
+      "water_temperature": 8,
+      "precipitation": 7,
+      "stream_discharge": 7,
+      "gage_height": 7
+    },
+    "functional_property_conflict": {
+      "water_temperature": 7,
+      "precipitation": 7,
+      "stream_discharge": 7,
+      "gage_height": 7
+    },
+    "domain_range": {
+      "water_temperature": 7,
+      "precipitation": 7,
+      "stream_discharge": 7,
+      "gage_height": 7
+    },
+    "cardinality": {
+      "water_temperature": 7,
+      "precipitation": 7,
+      "stream_discharge": 7,
+      "gage_height": 7
+    },
+    "temporal": {
+      "water_temperature": 7,
+      "precipitation": 7,
+      "stream_discharge": 7,
+      "gage_height": 7
+    },
+    "grounding": {
+      "water_temperature": 7,
+      "precipitation": 7,
+      "stream_discharge": 7,
+      "gage_height": 6
+    }
+  },
+  "w3c_assignments": {
+    "disjointness": [
+      "w3c_planned_ph_collection"
+    ],
+    "functional_property_conflict": [
+      "w3c_open_window",
+      "w3c_tree_height"
+    ],
+    "domain_range": [
+      "w3c_located_sample",
+      "w3c_ice_bubble_observation"
+    ],
+    "cardinality": [
+      "w3c_forecast",
+      "w3c_historical_air_temperature"
+    ],
+    "temporal": [
+      "w3c_eautonome_collection",
+      "w3c_time_series_collection"
+    ],
+    "grounding": [
+      "w3c_seismograph",
+      "w3c_wind_observation",
+      "w3c_apartment_electricity"
+    ]
+  },
+  "balance_targets": {
+    "w3c_examples_total": 12,
+    "usgs_total": 168,
+    "usgs_scenario_total_range": [
+      41,
+      43
+    ],
+    "distinct_monitoring_locations": 168,
+    "preliminary_movie_music_cases": 0
+  },
+  "outputs": {
+    "selection": "experiments/sosa_ssn_confirmatory_selection.jsonl",
+    "manifest": "experiments/sosa_ssn_sampling_manifest.json"
+  },
+  "prohibited_selection_inputs": [
+    "extractor output",
+    "validator output",
+    "grounding assessor output",
+    "repair output",
+    "preliminary case outcome",
+    "human annotation"
+  ],
+  "execution": {
+    "runs_extractor": false,
+    "runs_repair_model": false,
+    "runs_grounding_assessor": false,
+    "runs_validator": false,
+    "runs_reasoner": false,
+    "modifies_preliminary_results": false
+  }
+}

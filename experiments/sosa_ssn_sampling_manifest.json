@@ -1,0 +1,144 @@
+{
+  "execution": {
+    "grounding_assessor_executed": false,
+    "model_executed": false,
+    "reasoner_executed": false,
+    "validator_executed": false
+  },
+  "input_sha256": {
+    "candidate_pool": "a67eee2f1d1997aad95dff3790267a7cbc905b0c31498acd803619a0e5a65773",
+    "source_manifest": "81b1e1067b4395d4df2c1255ddad66c6fa03ec5074bcb015a65dd3da5d677ff9",
+    "source_units": "a3b24a655d8c71ff35b22a246ba8d4e05c0bb29152c0382175dcd6f57fd914b9"
+  },
+  "preliminary_cases_included": 0,
+  "sample_size_rationale": {
+    "conditions": 6,
+    "interpretation": "A controlled confirmatory characterization with finer descriptive resolution than the preliminary ten case cells. It is not a population representative power calculation.",
+    "maximum_wilson_95_half_width_at_n_30": 0.1685,
+    "one_case_equals_percentage_points": 3.3333333333333335,
+    "per_condition": 30,
+    "total_source_units": 180
+  },
+  "sampling_spec_sha256": "f9e101b4dce895116a15bb81af3ce24358fce9a79e8bfd0054e31139f4c5f557",
+  "selection": {
+    "by_condition": {
+      "cardinality": 30,
+      "disjointness": 30,
+      "domain_range": 30,
+      "functional_property_conflict": 30,
+      "grounding": 30,
+      "temporal": 30
+    },
+    "by_scenario_family": {
+      "building_energy_observation": 1,
+      "domestic_water_collection": 1,
+      "gage_height": 41,
+      "historical_air_temperature": 1,
+      "located_material_sample": 1,
+      "planned_river_observation": 1,
+      "precipitation": 42,
+      "sample_observation": 1,
+      "seismic_observation": 1,
+      "stream_discharge": 42,
+      "time_series_collection": 1,
+      "tree_height": 1,
+      "water_temperature": 43,
+      "weather_forecast": 1,
+      "wind_observation": 1,
+      "window_actuation": 1
+    },
+    "by_source_family": {
+      "usgs_daily": 168,
+      "w3c_examples": 12
+    },
+    "condition_by_scenario_family": {
+      "cardinality": {
+        "gage_height": 7,
+        "historical_air_temperature": 1,
+        "precipitation": 7,
+        "stream_discharge": 7,
+        "water_temperature": 7,
+        "weather_forecast": 1
+      },
+      "disjointness": {
+        "gage_height": 7,
+        "planned_river_observation": 1,
+        "precipitation": 7,
+        "stream_discharge": 7,
+        "water_temperature": 8
+      },
+      "domain_range": {
+        "gage_height": 7,
+        "located_material_sample": 1,
+        "precipitation": 7,
+        "sample_observation": 1,
+        "stream_discharge": 7,
+        "water_temperature": 7
+      },
+      "functional_property_conflict": {
+        "gage_height": 7,
+        "precipitation": 7,
+        "stream_discharge": 7,
+        "tree_height": 1,
+        "water_temperature": 7,
+        "window_actuation": 1
+      },
+      "grounding": {
+        "building_energy_observation": 1,
+        "gage_height": 6,
+        "precipitation": 7,
+        "seismic_observation": 1,
+        "stream_discharge": 7,
+        "water_temperature": 7,
+        "wind_observation": 1
+      },
+      "temporal": {
+        "domestic_water_collection": 1,
+        "gage_height": 7,
+        "precipitation": 7,
+        "stream_discharge": 7,
+        "time_series_collection": 1,
+        "water_temperature": 7
+      }
+    },
+    "condition_by_source_family": {
+      "cardinality": {
+        "usgs_daily": 28,
+        "w3c_examples": 2
+      },
+      "disjointness": {
+        "usgs_daily": 29,
+        "w3c_examples": 1
+      },
+      "domain_range": {
+        "usgs_daily": 28,
+        "w3c_examples": 2
+      },
+      "functional_property_conflict": {
+        "usgs_daily": 28,
+        "w3c_examples": 2
+      },
+      "grounding": {
+        "usgs_daily": 27,
+        "w3c_examples": 3
+      },
+      "temporal": {
+        "usgs_daily": 28,
+        "w3c_examples": 2
+      }
+    },
+    "path": "experiments/sosa_ssn_confirmatory_selection.jsonl",
+    "sha256": "99534641c555b4359bfc9dcf555ff93ba191e7bfbd39265394024507b11a4299",
+    "source_units": 180,
+    "unique_source_units": 180
+  },
+  "selection_method": {
+    "description": "Within each fixed condition and scenario quota, rank eligible unused source units by SHA-256 of seed, condition, scenario family, and source unit ID. Take the lowest ranks.",
+    "seed": 42,
+    "source_unit_reuse": false,
+    "uses_human_annotations": false,
+    "uses_model_outcomes": false
+  },
+  "source_pool_commit": "7ce3e86e6dbf0d91329cdd18dd02a38db9bdec3a",
+  "version": 1
+}
