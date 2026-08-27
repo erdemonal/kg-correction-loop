@@ -1,0 +1,86 @@
+{
+  "environment": {
+    "owlready2": "0.51",
+    "pyshacl": "0.40.1",
+    "rdflib": "7.6.0",
+    "reasoner": "HermiT through Owlready2"
+  },
+  "execution_scope": {
+    "confirmatory_model_outcomes": false,
+    "modifies_preliminary_results": false,
+    "runs_extractor": false,
+    "runs_grounding_assessor": false,
+    "runs_reasoner": true,
+    "runs_repair_model": false,
+    "runs_shacl": true
+  },
+  "inputs": {
+    "application_profile": {
+      "path": "validation/shapes/sosa_ssn_confirmatory.ttl",
+      "sha256": "5ee22e71d865d1cbf911be01576f985a55b2942f6a9ddedce963de9ec8b86a49"
+    },
+    "axiom_inventory": {
+      "path": "experiments/sosa_ssn_axiom_inventory.json",
+      "sha256": "739ef2da8cd68a0c97587d96b24b98767c64825eb55d5a4de82d2fbffc50f14d"
+    },
+    "case_manifest": {
+      "path": "experiments/sosa_ssn_case_manifest.json",
+      "sha256": "40bfbd04579cd36f2ac90bfd9e9899840f8d5351e4371f86bd5a86b6d4bac8fd"
+    },
+    "case_spec": {
+      "path": "experiments/sosa_ssn_case_spec.json",
+      "sha256": "50e2b8df7355c126ffbdaa5cf476c709a24c6597217e8875f8b6383eed34f8a6"
+    },
+    "cases": {
+      "path": "experiments/sosa_ssn_confirmatory_cases.jsonl",
+      "sha256": "3c0674b90c9120d3db02fbcf3339470d62d08e6ab8923999c28731f2fe34d43c"
+    }
+  },
+  "ontology": {
+    "module_sha256": {
+      "sosa-actuation.ttl": "18c840cba0a4e148048e6147cb2b5fa9b36bbf09dcb60802ce65d3ecfb3175c5",
+      "sosa-common.ttl": "31bb4a6fb3d4b8b7612998744f73b5a8194d34ef866184460ed22dc0f78a91aa",
+      "sosa-deprecated.ttl": "5a99055ea8938f0e9384b81ad3ac1b3eaa13aaf50c54e308cab9551c88392987",
+      "sosa-observation.ttl": "da6b3b2304a491c45a8822e70529f72c1d73606dda9a8b73b0c5360313ab30c3",
+      "sosa-sampling.ttl": "82e59f8354debaff6cdcb3e354397ea17318e4bc45dc7a8a005c1fa5404d2d70",
+      "sosa.ttl": "a1875d19988b0bd17e5cd3a61f76440b6e0f7b1e07bd30237e6fb7341c170305",
+      "ssn-actuation.ttl": "59348e849413f14a0281d0a2856144e2e7d7b939a5e0d2d77b78d88de5d88e86",
+      "ssn-common.ttl": "c54736f646952e1f72f7552eaafc75cb2551fd818b43bdd53997fc5e80149f52",
+      "ssn-deprecated.ttl": "e31a1a4d3119967e83f413ad478527412432fa0aa94654587ce2d55120cb932c",
+      "ssn-observation.ttl": "3f639a1e7696f1b4295e7a15d8f1cf6b089f66d4249f751afffa647724f4043f",
+      "ssn-sampling.ttl": "680ffce21dd16baab98c0649b4c714b89177d2b5e529f67404d9ba56c0e7a9e4",
+      "ssn.ttl": "b0f0594ff3f7eb7cc8f09d30e0c72f35658e0f6ca79fb09d57c7945de4fe48dc"
+    },
+    "parsed_triple_count": 1945,
+    "pinned_commit": "37fa55298187464b41c3712620dcbf5bd438b1b2"
+  },
+  "owl_strategy": {
+    "clean_case_count": 180,
+    "clean_hermit_compatibility_removed": {
+      "owl_imports": 22,
+      "xsd_date": 688
+    },
+    "injected_negative_individual_case_count": 60,
+    "injected_positive_case_count": 120,
+    "injected_positive_hermit_compatibility_removed": {
+      "owl_imports": 22,
+      "xsd_date": 460
+    }
+  },
+  "results": {
+    "by_condition": {
+      "cardinality": 30,
+      "disjointness": 30,
+      "domain_range": 30,
+      "functional_property_conflict": 30,
+      "grounding": 30,
+      "temporal": 30
+    },
+    "case_count": 180,
+    "mismatch_case_count": 0,
+    "path": "experiments/sosa_ssn_symbolic_validation_results.jsonl",
+    "sha256": "101e8cd722519af787f277568930475f0045f1acdd0646f444c89020742cd051"
+  },
+  "spec_sha256": "5317bbe5865a0ce016a4e80df52798bb12b85230a46aa3048ff821d5c24079c0",
+  "version": 1
+}
