@@ -229,4 +229,4 @@ def test_execution_guard_prohibits_every_experimental_component():
     )
     assert "not reported results" in protocol
     assert "not as normative W3C axioms" in protocol
-    assert "not an LLM annotation" in protocol
+    assert "not a language model annotation" in protocol

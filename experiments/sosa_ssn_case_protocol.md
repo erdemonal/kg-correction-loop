@@ -50,7 +50,7 @@ time without treating this project rule as a W3C rule.
 The model visible source text consists of the captured USGS sentence followed
 by a deterministic adapter sentence that names the observation, collection,
 feature, and property represented in the graph. The suffix is generated from
-the same locked record. It is not an LLM annotation.
+the same locked record. It is not a language model annotation.
 
 ## W3C example registry
 
