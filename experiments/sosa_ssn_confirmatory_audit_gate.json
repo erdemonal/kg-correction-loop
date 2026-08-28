@@ -1,14 +1,14 @@
 {
   "version": 1,
-  "status": "pending_pre_run_audit",
-  "execution_allowed": false,
-  "auditor": null,
-  "verdict": null,
-  "audited_commit": null,
-  "audit_date": null,
+  "status": "accepted",
+  "execution_allowed": true,
+  "auditor": "independent auditor",
+  "verdict": "A",
+  "audited_commit": "c18bb8aebc595bb314628a60efaa7a9b66369210",
+  "audit_date": "2026-08-28",
   "allowed_post_audit_changes": [
     "experiments/sosa_ssn_confirmatory_audit_gate.json",
     "docs/audit_register.md"
   ],
-  "note": "The grounding and repair runners must refuse experimental execution until an accepted audit is recorded against one exact commit."
+  "note": "Accepted for confirmatory execution after semantic, sampling scope, hash, leakage, model identity, and runner checks. Changes after this audit remain restricted to this gate and the audit register."
 }
