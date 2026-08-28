@@ -42,6 +42,10 @@
     "grounding_judge_spec": {
       "path": "experiments/grounding_judge_spec.json",
       "sha256": "ab279e94e5221ce532113fb302bf068a80f1178b2858c142d4528fc2aa6182b8"
+    },
+    "reporting_scope": {
+      "path": "experiments/sosa_ssn_confirmatory_reporting_scope.json",
+      "sha256": "30d9382fabd34e0e7a840e6f823a5f0fa5d54c46bb780c26bfd5c2176508e3ee"
     }
   },
   "sample": {

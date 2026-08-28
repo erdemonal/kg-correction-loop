@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "purpose": "Register the inferential scope of the locked SOSA and SSN confirmatory sample before any model execution.",
+  "study_scope": "A controlled confirmatory characterization in one hydrological observation application profile, plus a limited set of official W3C SOSA and SSN examples.",
+  "project_context": {
+    "adds_a_third_standards_grade_domain_after_movie_and_music": true,
+    "preliminary_and_confirmatory_results_are_pooled": false,
+    "increases_domain_coverage": true,
+    "establishes_generalization_across_all_sosa_and_ssn_deployments": false
+  },
+  "locked_sample_composition": {
+    "total": 180,
+    "usgs_daily": 168,
+    "w3c_examples": 12,
+    "epa_airdata": 0,
+    "usgs_distinct_monitoring_locations": 168,
+    "usgs_scenario_families": {
+      "water_temperature": 43,
+      "precipitation": 42,
+      "stream_discharge": 42,
+      "gage_height": 41
+    },
+    "w3c_examples_are_a_balanced_statistical_stratum": false,
+    "epa_status": "Deferred before sampling and explicitly excluded from the implemented v1 source pool."
+  },
+  "permitted_claims": [
+    "The study characterizes validator coverage and repair behavior for six controlled fault conditions in the locked SOSA and SSN case study.",
+    "The extension tests the previously developed method in a third, standards based sensor observation domain.",
+    "The 168 USGS units are independent monitoring locations under the locked experimental unit rule."
+  ],
+  "prohibited_claims": [
+    "The sample is representative of all SOSA and SSN deployments or source families.",
+    "The sample establishes cross-domain generalization within the SOSA and SSN ecosystem.",
+    "The twelve W3C examples form a balanced comparison group against USGS.",
+    "The study estimates the prevalence of naturally occurring knowledge graph extraction errors.",
+    "EPA data are represented in the confirmatory sample."
+  ],
+  "reporting_requirements": [
+    "Report the 168 USGS and 12 W3C composition with the four USGS scenario family counts.",
+    "Describe the USGS representation as one adapter and one hydrological observation application profile.",
+    "Describe the W3C examples as limited official semantic exemplars, not a balanced source family stratum.",
+    "State that EPA was deferred before sampling and is absent from the confirmatory sample.",
+    "Interpret primary condition level estimates only for the locked controlled sample and application profile.",
+    "Treat any source family or scenario family breakdown as descriptive and do not claim an inferential family comparison."
+  ]
+}

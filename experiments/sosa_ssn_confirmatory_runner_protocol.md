@@ -12,6 +12,25 @@ The confirmatory sample contains 30 independent cases for each of six
 conditions: disjointness, functional property conflict, domain and range,
 cardinality, temporal interval, and grounding. Each source unit occurs once.
 
+## Inferential scope and source composition
+
+The locked sample is a controlled confirmatory characterization in one
+hydrological observation application profile, plus twelve official W3C SOSA and
+SSN examples. It contains 168 USGS daily records from distinct monitoring
+locations and 12 W3C examples. The USGS records use one adapter and four
+balanced hydrological scenario families. The W3C examples are limited semantic
+exemplars rather than a balanced statistical stratum. EPA AirData was deferred
+before sampling and is not represented.
+
+This extension adds a third, standards based sensor observation domain after
+the preliminary Movie and Music domains. It does not establish generalization
+across all SOSA and SSN deployments or source families. It does not support a
+source family comparison or an estimate of naturally occurring error
+prevalence. Primary condition level estimates characterize only the locked
+controlled sample and application profile. These boundaries are locked in
+`experiments/sosa_ssn_confirmatory_reporting_scope.json` and must be stated
+when the results are reported.
+
 ## Fixed models and prompts
 
 Repair uses `llama3.1:8b-instruct-q4_K_M`, digest

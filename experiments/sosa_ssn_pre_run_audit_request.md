@@ -23,6 +23,9 @@ grounding and repair runner package. In particular, verify:
    cost logging cannot silently alter or duplicate cases
 10. the pending audit gate prevents grounding or repair execution before an
     accepted verdict
+11. the registered reporting scope accurately discloses the 168 USGS and 12
+    W3C composition, the single USGS adapter and hydrological application
+    profile, deferred EPA status, and the prohibited generalization claims
 
 Return one verdict:
 

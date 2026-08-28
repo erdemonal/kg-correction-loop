@@ -21,6 +21,30 @@ def test_protocol_keeps_preliminary_and_confirmatory_results_separate():
     assert payload["sample"]["cases_per_condition"] == 30
 
 
+def test_reporting_scope_discloses_source_concentration_and_limits_claims():
+    payload = json.loads(
+        (EXPERIMENTS / "sosa_ssn_confirmatory_reporting_scope.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    composition = payload["locked_sample_composition"]
+    assert composition["usgs_daily"] == 168
+    assert composition["w3c_examples"] == 12
+    assert composition["epa_airdata"] == 0
+    assert composition["usgs_distinct_monitoring_locations"] == 168
+    assert composition["w3c_examples_are_a_balanced_statistical_stratum"] is False
+    assert (
+        payload["project_context"][
+            "establishes_generalization_across_all_sosa_and_ssn_deployments"
+        ]
+        is False
+    )
+    prohibited = " ".join(payload["prohibited_claims"])
+    assert "representative of all SOSA and SSN deployments" in prohibited
+    assert "cross-domain generalization" in prohibited
+    assert "EPA data are represented" in prohibited
+
+
 def test_grounding_contract_reuses_one_frozen_component_without_human_ground_truth():
     payload = spec()["grounding"]
     assert payload["judge_union_once_per_case"] is True
@@ -78,3 +102,5 @@ def test_audit_request_requires_exact_commit_and_explicit_verdict():
     assert "B — revision required before execution" in text
     assert "C — design invalid" in text
     assert "Do not audit an uncommitted" in text
+    assert "168 USGS and 12" in text
+    assert "prohibited generalization claims" in text
