@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "status": "pending_pre_run_audit",
+  "execution_allowed": false,
+  "auditor": null,
+  "verdict": null,
+  "audited_commit": null,
+  "audit_date": null,
+  "allowed_post_audit_changes": [
+    "experiments/sosa_ssn_confirmatory_audit_gate.json",
+    "docs/audit_register.md"
+  ],
+  "note": "The grounding and repair runners must refuse experimental execution until an accepted audit is recorded against one exact commit."
+}

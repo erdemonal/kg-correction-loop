@@ -1,0 +1,159 @@
+{
+  "version": 1,
+  "status": "prepared_for_pre_run_audit",
+  "purpose": "Run the locked SOSA and SSN confirmatory grounding assessment and iterative repair experiment after an accepted commit level audit of the prepared state.",
+  "inputs": {
+    "cases": {
+      "path": "experiments/sosa_ssn_confirmatory_cases.jsonl",
+      "sha256": "3c0674b90c9120d3db02fbcf3339470d62d08e6ab8923999c28731f2fe34d43c"
+    },
+    "case_manifest": {
+      "path": "experiments/sosa_ssn_case_manifest.json",
+      "sha256": "40bfbd04579cd36f2ac90bfd9e9899840f8d5351e4371f86bd5a86b6d4bac8fd"
+    },
+    "case_spec": {
+      "path": "experiments/sosa_ssn_case_spec.json",
+      "sha256": "50e2b8df7355c126ffbdaa5cf476c709a24c6597217e8875f8b6383eed34f8a6"
+    },
+    "symbolic_spec": {
+      "path": "experiments/sosa_ssn_symbolic_validation_spec.json",
+      "sha256": "5317bbe5865a0ce016a4e80df52798bb12b85230a46aa3048ff821d5c24079c0"
+    },
+    "symbolic_manifest": {
+      "path": "experiments/sosa_ssn_symbolic_validation_manifest.json",
+      "sha256": "18f16d4cc4847cd0d69ef68c915579608c0f8fdcf244370b271df9c0c806c57d"
+    },
+    "symbolic_results": {
+      "path": "experiments/sosa_ssn_symbolic_validation_results.jsonl",
+      "sha256": "101e8cd722519af787f277568930475f0045f1acdd0646f444c89020742cd051"
+    },
+    "repair_prompt": {
+      "path": "experiments/repair_prompt.txt",
+      "sha256": "ac091682d5617765ca963a1541da8ee9ed459f3f78ea417bac4270e1297d36e8"
+    },
+    "grounding_prompt": {
+      "path": "experiments/grounding_judge_prompt_v3.txt",
+      "sha256": "7fa341845f64e6c2b7079026bc4567e33f0ef3910c7e02f3efc654559223e73b"
+    },
+    "preliminary_model_baseline": {
+      "path": "experiments/text2kgbench_llama31_baseline.json",
+      "sha256": "3e1b31bec6c50e87dd39b14df6f9d369650948ab5cf4f4c6e62f7fdab502f76e"
+    },
+    "grounding_judge_spec": {
+      "path": "experiments/grounding_judge_spec.json",
+      "sha256": "ab279e94e5221ce532113fb302bf068a80f1178b2858c142d4528fc2aa6182b8"
+    }
+  },
+  "sample": {
+    "cases": 180,
+    "unique_source_units": 180,
+    "cases_per_condition": 30,
+    "conditions": [
+      "cardinality",
+      "disjointness",
+      "domain_range",
+      "functional_property_conflict",
+      "grounding",
+      "temporal"
+    ],
+    "preliminary_results_pooled": false
+  },
+  "models": {
+    "repair": {
+      "name": "llama3.1:8b-instruct-q4_K_M",
+      "digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 4096,
+        "num_predict": 2048
+      },
+      "same_as_preliminary_extraction_and_repair_model": true
+    },
+    "grounding": {
+      "name": "qwen2.5:7b-instruct-q4_K_M",
+      "digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+      "judge_version": "v3",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 4096,
+        "num_predict": 256
+      },
+      "same_frozen_assessor_as_preliminary": true,
+      "treated_as_ground_truth": false
+    }
+  },
+  "grounding": {
+    "decision_unit": "one asserted content triple",
+    "evidence": "locked source_text only",
+    "symbolic_scaffold_visible": false,
+    "judge_union_once_per_case": true,
+    "shared_clean_injected_assertion_rejudged": false,
+    "case_error_if_any_assertion_unsupported": true,
+    "target": "all triples added by the grouped controlled modification",
+    "expected_target_error": {
+      "cardinality": false,
+      "disjointness": true,
+      "domain_range": true,
+      "functional_property_conflict": true,
+      "grounding": true,
+      "temporal": true
+    },
+    "cardinality_explanation": "An omission creates no asserted triple for a source grounding assessor to reject.",
+    "assessor_mismatch_policy": "Retain and report the locked assessor verdict. Do not relabel, rerun selectively, or edit the prompt."
+  },
+  "repair": {
+    "initial_state": "injected_content_triples",
+    "clean_reference": "clean_content_triples",
+    "scaffold_visible_to_model": false,
+    "clean_reference_visible_to_model": false,
+    "combined_feedback": [
+      "raw_shacl",
+      "owl_consistency",
+      "grounding_v3"
+    ],
+    "max_rounds": 5,
+    "complete_graph_output_required": true,
+    "invalid_output_retry": false,
+    "transport_retries": 3,
+    "stop_rules": [
+      "validated",
+      "stalled",
+      "oscillation",
+      "max_rounds",
+      "no_feedback",
+      "output_failure"
+    ],
+    "object_kind_reconstruction": "Known reference values retain their kind. Otherwise predicate specific deterministic lexical rules are used and invalid values are output failures.",
+    "baseline_grounding_noise": "Unsupported clean assertions are recorded but excluded from actionable feedback.",
+    "target_resolution": {
+      "symbolic_conditions": "No round 0 SHACL violation identity from the condition's preregistered component family remains. A changed violation identity is retained separately as a new violation.",
+      "grounding": "Every triple added by the controlled grounding replacement is absent.",
+      "separate_from_validated_state": true,
+      "separate_from_clean_reference_recovery": true
+    }
+  },
+  "runner": {
+    "grounding": "src/run_sosa_ssn_confirmatory_grounding.py",
+    "repair": "src/run_sosa_ssn_confirmatory_repair.py",
+    "offline_preflight": "src/preflight_sosa_ssn_confirmatory.py",
+    "case_order": "condition then case_id",
+    "case_level_resume": true,
+    "duplicate_case_rows_forbidden": true,
+    "partial_case_rows_written": false,
+    "full_run_requires_accepted_audit_gate": true
+  },
+  "outputs": {
+    "grounding_results": "results/sosa_ssn_confirmatory_grounding.jsonl",
+    "grounding_metadata": "results/sosa_ssn_confirmatory_grounding.meta.json",
+    "repair_results": "results/sosa_ssn_confirmatory_repair.jsonl",
+    "repair_metadata": "results/sosa_ssn_confirmatory_repair.meta.json"
+  },
+  "execution_scope_before_audit": {
+    "model_generation": false,
+    "grounding_assessment": false,
+    "repair": false,
+    "offline_preflight_only": true
+  }
+}
