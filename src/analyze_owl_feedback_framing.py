@@ -1,5 +1,3 @@
-"""Analyze one locked, paired OWL feedback experiment without model execution."""
-
 import argparse
 import csv
 import hashlib

@@ -1,5 +1,3 @@
-"""Clean reference F1 and recorded model cost from the completed RQ2 repair run."""
-
 import argparse
 import csv
 import json

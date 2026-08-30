@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-"""Select the locked SOSA and SSN confirmatory sample without model outcomes."""
-
 from __future__ import annotations
 
 import hashlib

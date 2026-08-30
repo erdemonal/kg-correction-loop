@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-"""Build clean and single fault SOSA and SSN confirmatory case records offline."""
-
 from __future__ import annotations
 
 import hashlib

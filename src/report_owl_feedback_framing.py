@@ -1,5 +1,3 @@
-"""Create publication ready artifacts from locked paired OWL framing analysis."""
-
 import argparse
 import csv
 import hashlib

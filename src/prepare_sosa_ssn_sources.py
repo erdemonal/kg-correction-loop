@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-"""Build the offline SOSA and SSN source unit and candidate pool manifests."""
-
 from __future__ import annotations
 
 import hashlib

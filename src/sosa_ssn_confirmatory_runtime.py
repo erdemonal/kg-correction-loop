@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-"""Shared locked helpers for the SOSA and SSN confirmatory runners."""
-
 from __future__ import annotations
 
 import hashlib

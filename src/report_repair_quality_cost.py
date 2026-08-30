@@ -1,5 +1,3 @@
-"""Figures and tables from the completed repair quality and cost analysis."""
-
 import argparse
 import csv
 import hashlib

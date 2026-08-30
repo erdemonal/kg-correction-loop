@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-"""Run or resume the locked SOSA and SSN confirmatory iterative repair."""
-
 from __future__ import annotations
 
 import argparse

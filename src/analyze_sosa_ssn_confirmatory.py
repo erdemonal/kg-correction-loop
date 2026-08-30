@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-"""Analyze the completed SOSA and SSN confirmatory grounding and repair runs."""
-
 from __future__ import annotations
 
 import argparse

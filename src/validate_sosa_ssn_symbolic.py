@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-"""Run the locked SOSA and SSN SHACL and OWL oracle preflight."""
-
 from __future__ import annotations
 
 import hashlib

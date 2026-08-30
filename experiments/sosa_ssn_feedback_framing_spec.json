@@ -1,0 +1,126 @@
+{
+  "version": 1,
+  "status": "ready_for_execution",
+  "purpose": "Paired confirmatory comparison of three forms of OWL inconsistency feedback after one repair step.",
+  "sample": {
+    "cases_path": "experiments/sosa_ssn_confirmatory_cases.jsonl",
+    "cases_sha256": "3c0674b90c9120d3db02fbcf3339470d62d08e6ab8923999c28731f2fe34d43c",
+    "condition": "disjointness",
+    "paired_cases": 30,
+    "observations_per_case": 3,
+    "repair_generations": 90,
+    "outcome_based_selection": false
+  },
+  "design": {
+    "analysis_unit": "controlled case",
+    "paired_by_case": true,
+    "repair_steps_per_condition": 1,
+    "start_each_condition_from_injected_graph": true,
+    "condition_outputs_are_independent": true,
+    "condition_order": [
+      "verdict",
+      "location",
+      "explanation"
+    ],
+    "execution_order": "Rotate condition order by case index modulo three.",
+    "condition_label_visible_to_model": false,
+    "post_repair_measurement_visible_to_model": false
+  },
+  "feedback": {
+    "validator": "owl_consistency",
+    "violation_identity": "A stable opaque identifier derived from SHA-256. The case id and condition name are not visible to the model.",
+    "fixed_fields": [
+      "validator",
+      "violation_id",
+      "error_type",
+      "focus",
+      "path",
+      "message"
+    ],
+    "error_type": null,
+    "path": null,
+    "verdict": {
+      "focus": null,
+      "message": "The graph is logically inconsistent."
+    },
+    "location": {
+      "focus": "controlled focus entity",
+      "message": "The graph is logically inconsistent."
+    },
+    "explanation": {
+      "focus": "controlled focus entity",
+      "message": "The graph is logically inconsistent. The focus entity is classified as both an ObservationCollection and a SampleCollection, and these classes are disjoint in the locked W3C SOSA and SSN ontology.",
+      "expected_repair_included": false,
+      "repair_instruction_included": false
+    }
+  },
+  "generation": {
+    "model": "llama3.1:8b-instruct-q4_K_M",
+    "digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+    "options": {
+      "temperature": 0,
+      "seed": 42,
+      "num_ctx": 4096,
+      "num_predict": 2048
+    },
+    "prompt_path": "experiments/repair_prompt.txt",
+    "prompt_sha256": "ac091682d5617765ca963a1541da8ee9ed459f3f78ea417bac4270e1297d36e8",
+    "invalid_output_retry": false,
+    "complete_graph_required": true
+  },
+  "measurement": {
+    "symbolic_validators": [
+      "raw_shacl",
+      "owl_consistency"
+    ],
+    "grounding_assessor": "grounding_v3",
+    "grounding_assessor_treated_as_ground_truth": false,
+    "shared_grounding_cache_within_case": true,
+    "grounding_measurement_only": true,
+    "primary_outcome": "controlled_target_removed",
+    "secondary_outcomes": [
+      "owl_consistent",
+      "exact_reference_recovery",
+      "collateral_edit",
+      "new_raw_shacl_findings",
+      "new_grounding_findings",
+      "output_failure",
+      "edit_distance_from_injected",
+      "edit_distance_from_clean_reference"
+    ]
+  },
+  "analysis_plan": {
+    "primary_omnibus_test": "Cochran Q on the three paired binary outcomes for whether the controlled target was removed.",
+    "primary_pairwise_tests": "Two sided exact McNemar tests with Holm correction, reported only with the omnibus result.",
+    "effect_reporting": "Condition counts, rates, paired transitions, and paired risk differences with confidence intervals.",
+    "secondary_outcomes": "Descriptive paired comparisons. There is no unplanned ranking of conditions.",
+    "alpha": 0.05,
+    "preliminary_results_pooled": false
+  },
+  "locked_inputs": {
+    "experiments/sosa_ssn_confirmatory_runner_spec.json": "7e7972861d040793c9b48591ee0502224af38990cac68c6657b56543cda5e1d1",
+    "experiments/sosa_ssn_symbolic_validation_spec.json": "5317bbe5865a0ce016a4e80df52798bb12b85230a46aa3048ff821d5c24079c0",
+    "experiments/grounding_judge_prompt_v3.txt": "7fa341845f64e6c2b7079026bc4567e33f0ef3910c7e02f3efc654559223e73b",
+    "validation/shapes/sosa_ssn_confirmatory.ttl": "5ee22e71d865d1cbf911be01576f985a55b2942f6a9ddedce963de9ec8b86a49"
+  },
+  "locked_grounding": {
+    "results_path": "results/sosa_ssn_confirmatory_grounding.jsonl",
+    "metadata_path": "results/sosa_ssn_confirmatory_grounding.meta.json",
+    "results_sha256": "6f68534759095c0763551f6df3de9ae143e3da40ae1ab3ede5dab266d0a4eec5",
+    "run_git_head": "46bf351ba0add65c28599d5dd9c7c0844ace3fe1"
+  },
+  "output": {
+    "results_path": "results/sosa_ssn_feedback_framing.jsonl",
+    "metadata_path": "results/sosa_ssn_feedback_framing.meta.json",
+    "resume_complete_rows": true,
+    "overwrite_complete_output": false,
+    "store_rendered_prompt": true,
+    "store_raw_model_response": true
+  },
+  "claim_boundaries": {
+    "scope": "The locked thirty case SOSA and SSN disjointness sample in one hydrological observation application profile.",
+    "no_ecosystem_generalization": true,
+    "no_prevalence_claim": true,
+    "order_boundary": "Condition order is rotated, not randomized. Paired condition differences are interpreted within the controlled sample."
+  }
+}

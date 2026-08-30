@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-"""Run or resume the locked SOSA and SSN confirmatory grounding assessment."""
-
 from __future__ import annotations
 
 import argparse

@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-"""Offline fail-fast preflight for the SOSA and SSN confirmatory runners."""
-
 from __future__ import annotations
 
 from collections import Counter
