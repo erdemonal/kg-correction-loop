@@ -2,7 +2,7 @@
 
 ## Status
 
-The final controlled experimental design and its planned analyses are complete. The repository holds the implementation, locked protocols, controlled cases, validators, repair runners, and analysis and reporting code. At commit `e529b89e04a3d2cfa0e3390e24e3e3ba7c4f470f`, the test suite contains 300 passing tests.
+The final controlled experimental design and its planned analyses are complete. The repository holds the implementation, locked protocols, controlled cases, validators, repair runners, and analysis and reporting code. The test suite contained 300 passing tests at code commit `e529b89e04a3d2cfa0e3390e24e3e3ba7c4f470f`. Later documentation commits did not change the code or tests.
 
 The remaining work is not experimental. Publish the result archives with their hashes, write the dissertation paper, prepare the presentation, and take in supervisor comments. No further model run is required for the reported research questions.
 
